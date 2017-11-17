@@ -1,0 +1,135 @@
+﻿<style>
+    .txtArea {
+        resize: none;
+        /*width: 20px;*/
+        border: 0 !important;
+        padding: 4px;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .mainDiv {
+        cursor: text;
+        border: 1px solid #ddd;
+    }
+
+    .cA {
+        font-size: 13px;
+        display: inline-block;
+        padding: 3px;
+        vertical-align: top;
+        margin: 2px;
+    }
+
+    .cB {
+        background-color: #f5f5f5;
+        border: 1px solid #d9d9d9;
+        cursor: default;
+        display: block;
+        height: 23px;
+        white-space: nowrap;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .cC {
+        display: inline-block;
+        color: #222;
+        margin: 0px 5px;
+        max-width: 325px;
+        overflow: hidden;
+        direction: ltr;
+        cursor: move;
+    }
+
+    .cB i {
+        cursor: pointer;
+        font-size: 0.9em;
+        color: #bdbaba;
+        margin: 5px 3px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+        .cB i:hover {
+            color: #565656;
+        }
+</style>
+
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create User</h3>
+                </div>
+
+                model {{ user }}
+                <!-- bundleInfo is a main controller to add bundle logic > use as Controller -->
+                <form name="user_form" class="form-horizontal" ng-submit="submit_data(user_form)"
+                      ng-validate="validationOptions">
+                    <div class="box-body">
+                        <div class="col-sm-offset-2 col-sm-7">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">User Name</label>
+                                <div class="col-sm-9">
+                                    <div class="mainDiv">
+                                        <!--<div class="cA">
+                                            <span class="cB">
+                                                <div class="cC">
+                                                    divya gupta
+                                                </div>
+                                                <i class="fa fa-close"></i>
+                                            </span>
+                                        </div>-->
+                                      
+                                         <textarea class="form-control txtArea"
+                                                  placeholder="Enter User Name"
+                                                  rows="1"
+                                                  model="user.userName"
+                                                  text-checker></textarea>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="Enter Password" name="user_password" ng-model="user.password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Select Role </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control col-md-12"
+                                            ng-model="user.RoleId"
+                                            name="user_role"
+                                            ng-options="::role.Id as ::role.Name for role in roleList">
+
+                                        <option value=""> ---- Select Role ---- </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <a class="btn btn-default" ui-sref="book_category_list"> Book Category List </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                            {{ bundleInfo.book_bundle.BundleId ? 'Update' : 'Create' }}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

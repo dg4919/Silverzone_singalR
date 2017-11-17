@@ -1,0 +1,113 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"               
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>{{AddressObj.IsOtherContact?'Other Contact':'Address'}}</strong>
+            <button type="submit"
+                    class="pull-right btn btn-default">
+                <i class="fa fa-saved"></i> <strong>Save</strong>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">                
+                <div class="col-md-12">
+                    <div class="form-group col-md-12">
+                        <label><i class="fa fa-graduation-cap"></i> Designation :</label>
+                        <select class="form-control"
+                                name="DesgId"
+                                ng-model="AddressObj.DesgId"
+                                ng-options="obj.Id as obj.DesgName for obj in Related_Object.Designation">
+                            <option value="">----------Select Designation----------</option>
+                        </select>
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-3">
+                        <label><i class="fa fa-black-tie"></i> Title :</label>
+                        <select class="form-control"
+                                name="TitleId"
+                                ng-model="AddressObj.TitleId"
+                                ng-options="obj.Id as obj.TitleName for obj in Related_Object.Title">
+                            <option value="">Select Title</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-9">
+                        <label><i class="fa fa-user"></i> Contact Person Name :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="ContactName"
+                               ng-model="AddressObj.ContactName">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> Email-ID :</label>
+                        <input type="email"
+                               name="ContactEmail"
+                               class="form-control"
+                               ng-model="AddressObj.ContactEmail">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> (1)Alt Email-ID :</label>
+                        <input type="email"
+                               name="ContactAltEmail1"
+                               class="form-control"
+                               ng-model="AddressObj.ContactAltEmail1">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> (2)Alt Email-ID :</label>
+                        <input type="email"
+                               name="ContactAltEmail2"
+                               class="form-control"
+                               ng-model="AddressObj.ContactAltEmail2">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="ContactMobile"
+                               ng-model="AddressObj.ContactMobile"
+                               only-numbers>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> (1)Alt Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="ContactAltMobile1"
+                               ng-model="AddressObj.ContactAltMobile1"
+                               only-numbers>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> (2)Alt Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="ContactAltMobile2"
+                               ng-model="AddressObj.ContactAltMobile2"
+                               only-numbers>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

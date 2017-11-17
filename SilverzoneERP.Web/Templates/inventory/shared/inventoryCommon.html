@@ -1,0 +1,115 @@
+﻿<style>
+    label {
+        padding: 3px 0px;
+    }
+
+    .myclass {
+        position: absolute;
+        right: 38px;
+        margin-top: -22px;
+        cursor: pointer;
+    }
+
+    #inventoryBox {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    .form-control1[disabled], .form-control1[readonly] {
+        background-color: #eee;
+        opacity: 1;
+        cursor: not-allowed;
+    }
+</style>
+
+<div class="panel panel-info">
+
+    <div class="panel-heading">
+        Create {{ $ctrl.srcName }} Stock
+
+        <refresh:state></refresh:state>
+    </div>
+    <!--model val : {{ model }}-->
+
+    <div class="row" style="padding: 20px;">
+        <inventory:type model="model">
+        </inventory:type>
+
+        <source_info model="model"
+                     clas-type="$ctrl.className"
+                     disabl="disableItem">
+        </source_info>
+
+    </div>
+
+    <!-- form start -->
+    <form name="create_inventoryForm"
+          ng-submit="submit_data(create_inventoryForm)"
+          ng-validate="$ctrl.validationOptions"
+          novalidate="novalidate">
+
+        <div class="row">
+            <challan:info model="model"                          
+                          disabl="$ctrl.disableChallan">
+            </challan:info>
+        </div>
+
+        <div class="row">
+            <remarks model="model"
+                     clas-type="$ctrl.className"
+                     disabl="disableItem">
+            </remarks>
+        </div>
+
+        <div class="panel-body">
+
+            <div id="inventoryBox" class="row">
+
+                <i class="fa myclass"
+                   ng-class="show_Addbtn ? 'fa-minus-circle' : 'fa-plus-circle'"
+                   ng-click="toggleDiv($event)">
+                </i>
+
+                <div class="row" style="padding: 10px;">
+                    <div class="col-sm-12">
+
+                        <po-number model="model"
+                                   clas-type="$ctrl.className">
+                        </po-number>
+
+                        <book:isbn model="model"
+                                   clas-type="$ctrl.className">
+                        </book:isbn>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <book-Search model="model"
+                                     clas="col-sm-4">
+                        </book-Search>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <quantity model="model"
+                                  clas-type="$ctrl.className">
+                        </quantity>
+
+                    </div>
+
+                    <div class="col-sm-12" style="margin-top: 40px;">
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-info pull-right">
+                                        {{ isEdit_record && 'Update Inventory' || 'Add Inventory' }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

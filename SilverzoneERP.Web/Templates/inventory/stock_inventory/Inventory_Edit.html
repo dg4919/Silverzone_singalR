@@ -1,0 +1,95 @@
+﻿<style>
+    .form-group .form-control1.has-error {
+        border: 1px solid #dd4b39;
+    }
+
+    .form-control1[disabled], .form-control1[readonly] {
+        background-color: #eee;
+        opacity: 1;
+        cursor: not-allowed;
+    }
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Edit Inventory
+
+            <refresh:state></refresh:state>
+        </div>
+       
+       <!-- {{ model }}-->
+
+        <form name="create_inventoryForm"
+              ng-validate="validationOptions">
+
+            <div class="row" style="margin-top: 16px; margin-bottom:10px;">
+                <div class="col-md-12">
+
+                    <div class="form-group col-md-5">
+                        <label class="control-label col-sm-12">Challan Number </label>
+                        <div class="col-sm-7">
+                            <input type="text" name="name" class="form-control1"
+                                   ng-model="model.ChallanNo">
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="#"
+                               ng-click="search_stock()">Search Inventory</a>
+                        </div>
+                    </div>
+
+                    <invoice:number ng-if="dispatchInfo"
+                                    model="dispatchInfo.Invoice_No"
+                                    clas-type="className"
+                                    disabl="isChalan_disable">
+                    </invoice:number>
+
+                    <div class="col-md-3" 
+                         ng-if="!dispatchInfo && poInfo.length && !inventoryList.stock_isVerified">
+                        <input type="button" class="btn btn-info"
+                               value="{{ div_isVisible ? 'Hide ' : 'Show ' }} PO"
+                               ng-click="toggleDiv($event)" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="toggleDiv" style="display:none;">
+
+                <div ng-if="!poInfo"
+                     class="text-success">
+                    <h3> Great, there is no pending purchase order found here :) </h3>
+                </div>
+
+                <!--  for Outward Stock -->
+                <table-outward po-info="poInfo"
+                               form-name="create_inventoryForm"
+                               model="model">
+                </table-outward>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div ng-if="inventoryList.stockInfo.length">
+        <stock:detail ng-if="inventoryList.stockInfo.length"
+                      ng-init="clasName = 'col-sm-3'"
+                      stock:item="inventoryList"
+                      clas-type="clasName">
+        </stock:detail>
+
+        <div class="row text-center" style="margin: 35px;" ng-if="!dispatchInfo && inventoryList.stock_isVerified">
+            <input type="button"
+                   class="btn btn-warning"
+                   value="Create Invoice"
+                   ng-click="create_Invoice()" />
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,217 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>Payment</strong>
+            <span class="pull-right">
+                <a href="#"
+                   ng-click="Reset(false)"
+                   style="color:white;">
+                    <i class="fa fa-refresh"></i>
+                </a>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </span>
+
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-3">
+                            <label>Mode :</label>
+                            <select class="form-control"
+                                    ng-disabled="Payment.Type==3"
+                                    name="Mode"
+                                    ng-change="ModeChange()"
+                                    ng-model="Payment.Mode">
+                                <option value="">---Mode---</option>
+                                <option value="1">Cash</option>
+                                <option value="2">Cheuque</option>
+                                <option value="3">DD</option>
+                                <option value="4">Online Transfer</option>
+                                <option value="5">Bank Deposit</option>
+                                <option ng-if="Payment.Type==3" value="6">Adjust</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <label>{{IsFavour==true?'In':'Out'}} Favour of :</label>
+                            <select class="form-control"
+                                    ng-disabled="Payment.Type==3 || Payment.Type==2"
+                                    name="FavourOfId"
+                                    ng-model="Payment.FavourOfId"
+                                    ng-change="FavourOfChange(Payment.FavourOfId)"
+                                    ng-options="obj.Id as obj.Name for obj in FavourOf">
+                                <option value="">----------Select Favour of----------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Drown on Bank :</label>
+                            <select class="form-control"
+                                    name="DrownOnBankId"
+                                    ng-disabled="Payment.Type==3 || Payment.Type==2"
+                                    ng-model="Payment.DrownOnBankId"
+                                    ng-change="DrownOnBankChange(Payment.DrownOnBankId)"
+                                    ng-options="obj.Id as obj.Name for obj in DrownOnBank">
+                                <option value="">----------Select Drown On Bank----------</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Account No :</label>
+                            <span class="form-control"
+                                  name="AccountNo"
+                                  ng-bind="Payment.AccountNo"></span>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label>Letter Mode :</label>
+                            <select ng-disabled="Payment.Mode==1 || Payment.Type==3" class="form-control"
+                                    name="LatterMode"
+                                    ng-model="Payment.LetterMode">
+                                <option value="">------Latter Mode------</option>
+                                <option value="1">Courier Services</option>
+                                <option value="2">Speed Post</option>
+                                <option value="3">Registered Post</option>
+                                <option value="4">By hand</option>
+                                <option ng-if="Payment.Type==3" value="5">Adjust</option>
+                            </select>
+                        </div>
+                       
+                        <div class="form-group col-md-6" ng-if="Payment.Mode=='1'">
+                            <label>Depositor/Receiver :</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Depositor_Receiver"
+                                   maxlength="50"
+                                   ng-model="Payment.Depositor_Receiver">
+                        </div>
+
+                        <div class="form-group col-md-2" ng-if="Payment.Mode=='2' || Payment.Mode=='3' || Payment.Mode=='4'|| Payment.Mode=='5'">
+                            <label ng-if="Payment.Mode=='2'">Cheque No. :</label>
+                            <label ng-if="Payment.Mode=='3'">DD No. :</label>
+                            <label ng-if="Payment.Mode=='4'">Reference No. :</label>
+                            <label ng-if="Payment.Mode=='5'">Receipt No. :</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Cheque_DD_Reference_Receipt_No"
+                                   maxlength="10"
+                                   only-numbers
+                                   ng-model="Payment.Cheque_DD_Reference_Receipt_No">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Payment :</label>
+                            <input type="text"
+                                   ng-disabled="!IsFavour"
+                                   class="form-control"
+                                   name="Payment"
+                                   maxlength="10"
+                                   only-numbers
+                                   ng-model="Payment.Payment">
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label>Date :</label>
+                            <input type='text'
+                                   name="PaymentDate"
+                                   class="form-control"
+                                   payment-date-picker                                  
+                                   ng-model="Payment.PaymentDate" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-12">
+                            <label>Remarks :</label>
+                            <textarea class="form-control"
+                                      maxlength="100"
+                                      ng-model="Payment.Remarks"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 sz_section">
+                        <div class="col-md-2 pull-right">
+                            <select class="form-control"
+                                    ng-model="SelectedYear"
+                                    ng-change="Event_Year_Change(SelectedEvent,SelectedYear)"
+                                    ng-options="obj.EventManagementYear as obj.EventManagementYear for obj in Preserve_PaymentList |unique:'EventManagementYear'">
+                                <option value="">All Year's</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <select class="form-control"
+                                    ng-model="SelectedEvent"
+                                    ng-change="Event_Year_Change(SelectedEvent,SelectedYear)"
+                                    ng-options="obj.EventId as obj.EventCode for obj in Preserve_PaymentList |unique:'EventCode'">
+                                <option value="">All Event</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-12" ng-repeat="obj in PaymentList">
+                        <div class="sz_section">
+                           <label>Event Year : </label> {{obj.EventManagementYear}}<br />
+                            <label>Subject : </label> {{obj.SubjectName}}({{obj.EventCode}})
+                        </div>
+                        <table class="table table-striped responsive" wt-responsive-table>
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Receipt No</th>
+                                    <th>Receipt Date</th>
+                                    <th>Net Balance</th>
+                                    <th>Payment</th>
+                                    <th>Balance</th>
+                                    <th>Mode</th>
+                                    <th>Letter Mode</th>
+                                    <th>Type</th>
+                                    <th>Entered By</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="data in obj.MiniStatement">
+                                    <td>{{$index+1}}</td>
+                                    <td ng-bind="data.ReceiptNo"></td>
+                                    <td ng-bind="data.ReceiptDate|date:'dd-MMM-yyyy'"></td>
+                                    <td ng-bind="data.NetBalance"></td>
+                                    <td ng-bind="data.Payment"></td>
+                                    <td ng-bind="data.Balance"></td>
+                                    <td ng-bind="data.Mode"></td>
+                                    <td ng-bind="data.LetterMode"></td>
+                                    <td ng-bind="data.Type"></td>
+                                    <td ng-bind="data.CreatedBy"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-12" ng-if="obj.IsFavour">
+                            <span class="pull-right">
+                                <button type="button"
+                                        ng-if="obj.NetBalance>0"
+                                        ng-click="Refund(3,obj)"
+                                        class="btn btn-default">
+                                    ({{obj.NetBalance}}) Adjust
+                                </button>
+                                <button type="button"
+                                        ng-if="obj.NetBalance<0"
+                                        ng-click="Refund(2,obj)"
+                                        class="btn btn-default">
+                                    ({{obj.NetBalance*-1}}) Refund
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

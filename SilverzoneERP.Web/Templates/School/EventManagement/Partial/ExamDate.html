@@ -1,0 +1,26 @@
+﻿<div class="sz_section">
+    <strong> Olympiad Exam Date</strong>
+</div>
+
+<div class="form-group col-md-6">
+    <label>Select Exam Date :</label>
+    <select class="form-control"
+            name="ExaminationDateId"
+            ng-model="EnrollmentOrder.ExaminationDateId">
+        <option value="">----------Select Exam Date----------</option>        
+        <option value="{{obj.ExaminationDateId}}" ng-repeat="obj in ExamDateList">{{obj.ExamDateFormated}}</option>
+        <option value=-1>Change Exam Date</option>
+        <option value=-2 ng-if="ExaminationDetails.IsUnknown">Unknown</option>
+    </select>
+</div>
+<div class="form-group col-md-6" ng-if="EnrollmentOrder.ExaminationDateId==-1">
+    <label>Change Exam Date :</label>
+    <input type='text'
+           name="ChangeExamDate"
+           class="form-control"
+           exam-date-picker                                  
+           ng-model="EnrollmentOrder.ChangeExamDate" />
+</div>
+
+
+

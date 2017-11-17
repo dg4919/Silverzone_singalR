@@ -1,0 +1,84 @@
+﻿
+<div class="panel panel-default">    
+    <div class="panel-heading" style="height:auto !important">
+        <div class="col-lg-12">
+            <div class="col-md-1">                
+                <img ng-src="{{UserInfo.ImgPrefix}}{{selectedItem.ProfilePic==null?'ProfilePic/placeholderImage.png':selectedItem.ProfilePic}}" class="img-circle" alt="User IMG" style="height:70px;width:70px;" />
+            </div>
+            <div class="col-md-8">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <p class="control-label col-md-1">Name</p>
+                        <div class="col-md-4">
+                            : <span>{{selectedItem.UserName}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <p class="control-label col-md-1">Email</p>
+                        <div class="col-md-4">
+                            : <span>{{selectedItem.EmailID}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <p class="control-label col-md-1">Role</p>
+                        <div class="col-md-4">
+                            : <span>{{selectedItem.RoleName}}</span>
+                        </div>
+                    </div>
+                </div>                                
+            </div>                     
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="col-lg-12">
+            <uib-tabset active="active">
+                <uib-tab index="$index + 1"
+                         ng-repeat="data in UserPermissionList"
+                         heading="{{data.FormName}}"
+                         disable="tab.disabled">
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>Form Name</th>
+                                <th>Add</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>View</th>
+                                <th>Print</th>
+                                <th><p><input type="checkbox" ng-model="data.isAll" ng-click="All(data)">All</p></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="form in data.Forms">
+                                <td>{{form.FormName}}</td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.Permission.Add" ng-click="Checked_Unchecked(data,$index)">
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.Permission.Edit" ng-click="Checked_Unchecked(data,$index)">
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.Permission.Delete" ng-click="Checked_Unchecked(data,$index)">
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.Permission.Read" ng-click="Checked_Unchecked(data,$index)">
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.Permission.Print" ng-click="Checked_Unchecked(data,$index)">
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="form.isChecked" ng-click="Checked_Unchecked_GroupWise(data,$index,true)">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </uib-tab>
+            </uib-tabset>            
+        </div>
+    </div>
+</div>

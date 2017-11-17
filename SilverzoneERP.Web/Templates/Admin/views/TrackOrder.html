@@ -1,0 +1,132 @@
+﻿<style>
+    .ulStyle {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 0px;
+        position: absolute;
+        width: 183px;
+        margin-top: -5px;
+        height: 150px;
+        overflow: hidden;
+        overflow-y: scroll;
+        z-index: 10;
+    }
+
+    .divStyle {
+        margin: 5px;
+        padding: 4px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+    }
+
+    .divStyle:hover {
+        background: aliceblue;
+    }
+</style>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Track Orders</div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row text-center" style="margin-top: -20px;padding: 25px;">
+
+                        <div class="col-sm-offset-2 col-md-3">
+                            <div class="input-group date" id="myDatepicker" data-provide="datepicker">
+                                <input type="text" class="form-control1" ng-model="_date">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" ng-click="searchPacket()">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>S.NO</th>
+                                    <th>Packet Number</th>
+                                    <th>Courier Name</th>
+                                    <th>Dispatch Date</th>
+                                    <th>Tack Order</th>
+                                    <th>Dispatch Status</th>
+                                    <th>Remarks</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="order in tracking_orderList">
+                                    <td>{{ ::$index+1 }}</td>
+                                    <td>
+                                        <span uib-tooltip="Order number : {{ order.OrderNumber }}
+                                               Consignment : {{ order.Packet_Consignment }}"
+                                              tooltip-placement="top">
+                                            {{ ::order.Packet_Id }}
+                                        </span>
+                                    </td>
+                                    <td>{{ ::order.Courier_Name }}</td>
+                                    <td>{{ ::order.Dispatch_Date | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td ng-show="order.trackLink">
+                                        <span uib-tooltip="{{ order.orderHistory_Info }}"
+                                              tooltip-placement="top">
+                                            <a href="{{order.trackLink}}" target="_blank"> Track Order </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="order.dispatch_Status"
+                                                ng-options="::source.Id as ::source.Name for source in orderStatusList">
+                                            <!--  ng-change="order.dispatch_Status && change_orderStatus(order.dispatch_Status, order.Id)"  -->
+                                            <option selected="selected"> --- Select Source --- </option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div style="position: relative;">
+                                            <textarea rows="2"
+                                                      ng-model="order.remarks"
+                                                      ng-keyup="onKeyUp(order)"></textarea>
+                                            
+                                            <ul class="ulStyle"
+                                                ng-if="order.remarks && order.showRemarks">
+                                                <div class="divStyle"
+                                                     ng-repeat="entity in OrderStatus_Reasons | filter: order.remarks"
+                                                     ng-click="onClik(order, entity.Reason)">
+                                                    {{ entity.Reason }}
+                                                </div>
+                                            </ul>
+
+                                        </div>
+                                    </td>
+                                    <td>    <!--ng-disabled="order.dispatch_Status === 5 || order.dispatch_Status === 11"-->
+                                        <input type="button"
+                                               class="btn btn-warning btn-sm"
+                                               value="Submit"                                               
+                                               ng-click="change_orderStatus(order)" />  
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

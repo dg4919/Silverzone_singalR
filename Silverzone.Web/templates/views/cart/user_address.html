@@ -1,0 +1,57 @@
+﻿<style>
+    .panel_color:hover {
+        border: 1px solid #ff8787 !important;
+    }
+
+    .mrgTop {
+        margin-top: 50px;
+    }
+</style>
+
+<div id="cart_detailContainer">
+
+    
+    <div class="row" ng-class="{ 'mrgTop' : bindClass }">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shipping Address</h3>
+                    <button type="button" class="btn btn-info pull-right btn-xs btn-close" style="margin-top: -20px;" ng-click="show_userAdress_modal()">
+                        <strong> + ADD NEW ADDRESS</strong>
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <!--<button class="btn btn-info" ng-click="getdata()"> Click me to get Data </button>-->
+                    
+                    <div class="container-fluid" style="height: 60%;" ng-if="user_adressList.length === 0">
+                    <h2> Oops! we did not find any shipping address :(  </h2>
+                    </div>
+
+                    <div class="row" style="padding: 12px;" ng-repeat="list in user_adressList">
+                        <!--ng-repeat="shiping_addressInfo in list | orderBy: '-create_date'"-->
+                        <div class="panel_color" ng-repeat="shiping_addressInfo in list track by $index" style="border: 1px solid #ddd; padding: 16px; margin: 10px; width:31% !important; float: left; position:relative;">
+                            <div class="fa fa-check fa-lg" style="position: absolute;margin-top: -10px;right: 5px; color: #5bc0de;" ng-if="$index === 0 &&  $parent.$index === 0"></div>
+                            <div class="fa fa-trash fa-lg" style="margin-top: -10px;right: 5px;color: #5c5c5c;cursor: pointer;" ng-click="remove_adress(shiping_addressInfo.Id)" ng-style="isHover" ng-mouseover="isHover = {'color': '#23a0de'}" ng-mouseleave="isHover = {'color': '#333'}"></div>
+                            <h4> {{ ::shiping_addressInfo.Username }} </h4>
+                            <p style="margin-bottom: 10px;">
+                                {{ ::shiping_addressInfo.Address}} - {{ ::shiping_addressInfo.PinCode}} , {{ ::shiping_addressInfo.City }} <br /> {{ ::shiping_addressInfo.State }}
+                            </p>
+
+                            <p style="color: #565656;padding: 10px 0;margin: 10px 0 20px;border-top: #e6e6e6 solid 1px;border-bottom: #e6e6e6 solid 1px;">
+                                <i class="fa fa-envelope"></i><span style="margin-left: 5px;" ng-bind="::shiping_addressInfo.Email"></span>
+                                <br />
+                                <i class="fa fa-phone"></i><span style="margin-left: 5px;"><strong> {{ ::shiping_addressInfo.Mobile }} </strong></span>
+                            </p>
+
+                            <input type="button" class="btn btn-default" value="Edit" ng-click="show_userAdress_modal(shiping_addressInfo)">
+                            <a href="#" class="btn btn-default pull-right" ui-sref="cart_summary({shipping_adress : shiping_addressInfo})" ng-if="show_selectAdressBtn"> Select </a>
+                        </div>
+                    </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>    
+
+</div>
+

@@ -1,0 +1,49 @@
+﻿<div class="header-section">
+    <div class="menu-right">
+        <div class="user-panel-top">
+            <div class="col-lg-12">
+                <div class="col-md-3">
+                    <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                    <strong>Location</strong>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+                <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="sz_card">
+    <uib-tabset active="active">
+        <uib-tab index="1" heading="Country" disable="tab.disabled">    
+            <!--Start Add Fields-->
+            <div ng-include="'/Templates/School/Location/Country.html'"></div>
+            <!--End Add Fields-->      
+        </uib-tab>
+        <uib-tab index="2" heading="Zone" disable="tab.disabled">
+            <!--Start Add Fields-->
+            <div ng-include="'/Templates/School/Location/Zone.html'"></div>
+            <!--End Add Fields-->
+        </uib-tab>
+        <uib-tab index="3" heading="State" disable="tab.disabled">
+            <!--Start Add Fields-->
+            <div ng-include="'/Templates/School/Location/State.html'"></div>
+            <!--End Add Fields-->
+        </uib-tab>
+        <uib-tab index="4" heading="District" disable="tab.disabled">
+            <!--Start Add Fields-->
+            <div ng-include="'/Templates/School/Location/District.html'"></div>
+            <!--End Add Fields-->
+        </uib-tab>
+        <uib-tab index="5" heading="City" disable="tab.disabled">
+            <!--Start Add Fields-->
+            <div ng-include="'/Templates/School/Location/City.html'"></div>
+            <!--End Add Fields-->
+        </uib-tab>        
+    </uib-tabset>
+</div>

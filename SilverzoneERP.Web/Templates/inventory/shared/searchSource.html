@@ -1,0 +1,33 @@
+﻿
+<div ng-transclude></div>
+
+<div class="form-group" ng-class="$ctrl.clastype">
+    <label for="inputEmail3" class="control-label col-sm-12">{{ $ctrl.label || 'From' }}</label>
+    <div class="col-sm-12">
+        <select class="form-control1"
+                name="to"
+                ng-model="$ctrl.model.SourceId"
+                ng-options="::source.Id as ::source.SourceName for source in inventory_sources"
+                ng-change="$ctrl.model.SourceId && get_inventorySource_details()"
+                ng-disabled="$ctrl.disabl">
+
+            <option value=""> --- Select Source --- </option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group" ng-class="$ctrl.clastype">
+    <label for="inputEmail3" class="control-label col-sm-12">Inventory Source</label>
+    <div class="col-sm-12">
+
+        <select class="form-control1"
+                name="source"
+                ng-model="$ctrl.model.SourceInfo_Id"
+                ng-options="::source.Id as ::source.SourceName for source in inventory_sourceDetail_List"
+                ng-disabled="$ctrl.disabl">
+
+            <option value=""> --- Select Source --- </option>
+        </select>
+    </div>
+</div>
+

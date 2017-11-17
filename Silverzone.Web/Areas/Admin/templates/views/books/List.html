@@ -1,0 +1,108 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Books List</div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default pull-right" ui-sref="book_create"> Add Book </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-sm-12" style="padding: 20px;">
+                        <div class="col-sm-3">
+                            <select class="form-control form-group col-md-12" ng-model="book_searchModel.subjectId"
+                                    ng-options="::subject.subjectId as ::subject.subjectName for subject in subjectList"
+                                    ng-change="book_searchModel.subjectId && get_class(book_searchModel.subjectId)">
+
+                                <option value=""> ---- Select Subject ---- </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <select class="form-control form-group col-md-12" ng-model="book_searchModel.classId"
+                                    ng-options="::class.Id as ::class.className for class in classList">
+
+                                <option value=""> ---- Select Class ---- </option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div isteven-multi-select input-model="book_categorys"
+                                 output-model="book_searchModel.bookCategoryId" button-label="name"
+                                 item-label="name" tick-property="ticked"
+                                 helper-elements="" output-properties="id ticked"
+                                 placeholder="Select Book Category">
+                            </div>
+
+                            <!--<select class="form-control form-group col-md-12" ng-model="book_searchModel.bookCategoryId"
+                                    ng-options="::category.id as ::category.name for category in book_categorys"
+                                    ng-disabled="!book_searchModel.classId">
+
+                                <option value=""> ---- Select Book Category ---- </option>
+                            </select>-->
+                        </div>
+
+                        <div class="col-sm-3 text-center">
+                            <button type="button" class="btn btn-info" ng-click="searchBook()"> 
+                            <i class="fa fa-search" style="margin-right: 10px;"></i> 
+                            Search 
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table" ng-if="bookList.length !== 0">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Book Image</th>
+                                    <th>Title</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Book Category</th>
+                                    <th>In Stock</th>
+                                    <th>CreatedBy</th>
+                                    <th>UpdatedBy</th>
+                                    <th>UpdationDate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="book in bookList">
+                                    <td>{{ book.bookId }}</td>
+                                    <td>
+                                        <img class="img-responsive" style="width:85px;height:100px;border:1px solid #ddd" ng-src="{{ book.bookImage || 'Images/No-Photo-Available.jpg' }}">
+                                    </td>
+                                    <td><a ui-sref="book_edit({ bookId : book.bookId })" ng-bind="book.bookTitle"></a></td>
+                                    <td>{{ book.className }}</td>
+                                    <td>{{ book.subject }}</td>
+                                    <td>{{ book.bookCategory }}</td>
+                                    <td> <switch class="green" ng-model="book.inStock" ng-change="changeCallback(book)" ></switch> </td>
+                                    <td>{{ book.CreatedBy }}</td>
+                                    <td>{{ book.UpdatedBy }}</td>
+                                    <td>{{ book.UpdationDate | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td>
+                                        <a ui-sref="book_edit({ bookId : book.bookId })" class="btn btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <button type="button" ng-click="Show_deleteModal(book.bookId)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,142 @@
+﻿<style>
+    .ng-hide {
+        display: none;
+    }
+
+    .disbleBtn {
+        color: #ccc;
+        cursor: default;
+        text-decoration: none;
+    }
+    
+    td > span {
+        color: #337ab7;
+        cursor:pointer;
+        text-decoration: underline;
+    }
+
+     td > a:hover{
+        cursor:pointer;
+    }
+
+</style>
+
+<!-- All Class r depend to this Id  -->
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="row">
+                        <div class="space-6"></div>
+
+                        <div class="col-lg-7 col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">Update Email/Mobile</div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">                                           <!--  validation on click of btn  -->
+                                        <form id="myForm" name="user_emailMobile_ChangeForm" class="form-group" ng-submit="saveInfo()" ng-validate="validationOptions" novalidate="novalidate">
+                                            <div class="col-md-12 col-lg-12">
+                                                <table class="table table-user-information">
+                                                    
+                                                        <tbody>
+
+                                                            <tr>
+                                                                <td>Email</td>
+                                                                
+                                                                <td>
+                                                                    <p ng-show="email_hasTxt && !is_emailEdit || Is_show_EmailOTP" ng-bind="model.EmailID"></p>
+                                                                    <div ng-show="!email_hasTxt || is_emailEdit && !Is_show_EmailOTP"><input name="email" class="form-control userEmail" placeholder="Enter Email Id" ng-model="model.EmailID"></div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <span ng-show="!email_hasTxt || (is_emailEdit && !Is_show_EmailOTP)" ng-click="!user_emailMobile_ChangeForm.email.$pristine && sendOTP('email', user_emailMobile_ChangeForm)" ng-class="{'disbleBtn' : user_emailMobile_ChangeForm.email.$pristine || model.EmailID.length === 0 }"> Add </span>
+                                                                    <a ng-show="email_hasTxt && !is_emailEdit && !Is_show_EmailOTP" ng-click="chang_sts('email')"> Edit </a>
+
+                                                                    <a ng-show="Is_show_EmailOTP" ng-click="chang_sts('email')"> Change </a>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a ng-show="Is_show_EmailOTP" ng-click="cancel_sts('email')"> Cancel </a>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr ng-show="Is_show_EmailOTP">
+                                                                <td></td>
+                                                                <td><input class="form-control userMobile" placeholder="Enter OTP" ng-model="model.email_OTP" maxlength="6" ng-keyup="model.email_OTP.length === 6 ? validate_OTP('email') : ''" ng-disabled="Is_emailOTP_matched" number-Only></td>
+                                                                <td ng-hide="Is_emailOTP_matched" ng-click="sendOTP('email', user_emailMobile_ChangeForm)"> <a href="#">Resend?</a> </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>Mobile</td>
+
+                                                                <td>
+                                                                    <p ng-show="mobile_hasTxt && !is_mobileEdit || Is_show_mobileOTP" ng-bind="'+91 ' + model.MobileNumber"></p>
+                                                                    <div ng-show="!mobile_hasTxt || is_mobileEdit && !Is_show_mobileOTP" style="position: relative;">
+                                                                        <input name="mobile" class="form-control" placeholder="Enter Mobile Number" ng-model="model.MobileNumber" style="padding-left: 32px;" number_only maxlength="10">
+                                                                        <span style="position: absolute;left: 7px;top: 8px;color: #333;font-size: smaller;">+91</span>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <span ng-show="!mobile_hasTxt || (is_mobileEdit && !Is_show_mobileOTP)" ng-click="!user_emailMobile_ChangeForm.mobile.$pristine && sendOTP('mobile', user_emailMobile_ChangeForm)" ng-class="{'disbleBtn' : user_emailMobile_ChangeForm.mobile.$pristine || model.MobileNumber.length === 0 }"> Add </span>
+                                                                    <a ng-show="mobile_hasTxt && !is_mobileEdit && !Is_show_mobileOTP" ng-click="chang_sts('mobile')"> Edit </a>
+
+                                                                    <!--<span ng-show="is_mobileEdit && !Is_show_mobileOTP" ng-click="!user_emailMobile_ChangeForm.mobile.$pristine && sendOTP('mobile')" ng-class="{'disbleBtn' : user_emailMobile_ChangeForm.mobile.$pristine}"> Save </span>-->
+                                                                    <a ng-show="Is_show_mobileOTP" ng-click="chang_sts('mobile')"> Change </a>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a ng-show="Is_show_mobileOTP" ng-click="cancel_sts('mobile')"> Cancel </a>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr ng-show="Is_show_mobileOTP">
+                                                                <td></td>
+                                                                <td><input class="form-control" placeholder="Enter OTP" ng-model="model.mobile_OTP" maxlength="6" ng-keyup="model.mobile_OTP.length === 6 ? validate_OTP('mobile') : ''" ng-disabled="Is_mobileOTP_matched" number-Only></td>
+                                                                <td ng-hide="Is_mobileOTP_matched" ng-click="sendOTP('mobile', user_emailMobile_ChangeForm)"> <a href="#">Resend?</a> </td>
+                                                            </tr>
+                                                            
+
+                                                        </tbody>
+                                                </table>
+
+                                                <div class="col-md-12 text-center" style="margin-top:15px;">
+                                                    <button type="submit" class="btn btn-primary" ng-disabled="is_disableBtn" ng-style="is_disableBtn && { 'cursor': 'default' }">Save Changes</button>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

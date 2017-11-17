@@ -1,0 +1,44 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>Total Student</strong>
+            <button type="submit"
+                    class="pull-right btn btn-default">
+                <i class="fa fa-saved"></i> <strong>Save</strong>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">              
+                <div class="col-md-12" ng-repeat="data in ClassWiseList">
+                    <div class="row sz_section" >
+                       {{data.ClassName}}
+                    </div>
+                 
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>Section</th>                                                                
+                                <th>Total</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data.Sections">
+                                <td>{{item.Section}}</td>
+                                <td>{{item.Count}}</td>                                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

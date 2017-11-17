@@ -1,0 +1,173 @@
+﻿
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create Discount Bundle</h3>
+                </div>
+
+                <!-- Model is :   {{ bundleInfo.book_bundle }} -->
+                <!--val:  {{ bundleInfo.Isbook_selected }}  // other-->
+                
+                <!-- bundleInfo is a main controller to add bundle logic > use as Controller -->
+                <form name="bookBundle_form" class="form-horizontal" ng-submit="bundleInfo.submit_data(bookBundle_form)" ng-validate="bundleInfo.validationOptions">
+                    <div class="box-body col-sm-offset-2 col-sm-7">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Bundle Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Bundle Name" name="bundle_name" ng-model="bundleInfo.book_bundle.Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Bundle Description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="4" class="form-control" placeholder="Bundle Description" name="bundle_description" ng-model="bundleInfo.book_bundle.Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Bundle Price</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Bundle Price" name="bundle_price" ng-model="bundleInfo.book_bundle.newPrice" number:only>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Book Total Price" ng-model="bundleInfo.book_bundle.totalPrice" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 2 controller r using on a same page, so use parent controler with as keyword :) -->
+                    <div class="row" ng-controller="bundle_bookSearch">
+
+                        <div class="col-sm-offset-1 col-sm-11" style="padding: 20px;">
+                                <div class="col-sm-3">
+                                    <select class="form-control form-group col-md-12" ng-model="book_searchModel.selected_class"
+                                            ng-options="::class.Id as ::class.className for class in classList"
+                                            ng-change="book_searchModel.selected_class && get_subjects(book_searchModel.selected_class)"
+                                            ng-disabled="bundleInfo.book_bundle.totalPrice">
+
+                                        <option value=""> ---- Select Class ---- </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <select class="form-control form-group col-md-12" ng-model="book_searchModel.subjectId"
+                                            ng-options="::subject.subjectId as ::subject.subjectName for subject in subjectList">
+
+                                        <option value=""> ---- Select Subject ---- </option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div isteven-multi-select input-model="book_categorys"
+                                         output-model="book_searchModel.bookCategoryId" button-label="name"
+                                         item-label="name" tick-property="ticked"
+                                         helper-elements="" output-properties="id ticked"
+                                         placeholder="Select Book Category">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3 text-center">
+                                    <button type="button" class="btn btn-warning"
+                                            ng-click="searchBook(); bundleInfo.changeStatus();"
+                                            ng-disabled="!book_searchModel.subjectId">
+                                        <i class="fa fa-search" style="margin-right: 10px;"></i>
+                                        Search Books
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <!-- for Edit Bundle > Show list of books-->
+                            <div class="table col-md-12" ng-if="bundleInfo.bookInfo.length !== 0
+                                                         && bundleInfo.is_Edit
+                                                         && !bundleInfo.searchBtn_isCliked"
+                                 style="padding: 0px 30px;">
+                                <table datatable="ng" class="row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Select Book</th>
+                                            <th>Book Image</th>
+                                            <th>Title</th>
+                                            <th>Class</th>
+                                            <th>Subject</th>
+                                            <th>Book Category</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="book in bundleInfo.bookInfo">
+                                            <!-- <td>{{ book.bookId }}</td> -->
+                                            <td>
+                                                <input type="checkbox" ng-change="bundleInfo.callfun(book, bundleInfo.Isbook_selected[book.bookId])"
+                                                       ng-model="bundleInfo.Isbook_selected[book.bookId]"
+                                                       style="margin-left: 20px; outline: none;" />
+                                            </td>
+                                            <td>
+                                                <img class="img-responsive" style="width:85px;height:100px;border:1px solid #ddd" ng-src="{{ book.bookImage || 'Images/No-Photo-Available.jpg' }}">
+                                            </td>
+                                            <td><a ui-sref="book_edit({ bookId : book.bookId })" ng-bind="book.bookTitle"></a></td>
+                                            <td>{{ book.className }}</td>
+                                            <td>{{ book.subject }}</td>
+                                            <td>{{ book.bookCategory }}</td>
+                                            <td>{{ book.bookPrice }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- for Create Bundle > Show list of books-->
+                            <div class="table col-md-12" ng-if="bookList.length !== 0" style="padding: 0px 30px;">
+                                <table datatable="ng" class="row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Select Book</th>
+                                            <th>Book Image</th>
+                                            <th>Title</th>
+                                            <th>Class</th>
+                                            <th>Subject</th>
+                                            <th>Book Category</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="book in bookList">
+                                            <!-- <td>{{ book.bookId }}</td> -->
+                                            <td>
+                                                <input type="checkbox" ng-change="bundleInfo.callfun(book, bundleInfo.Isbook_selected[book.bookId])"
+                                                       ng-model="bundleInfo.Isbook_selected[book.bookId]"
+                                                       style="margin-left: 20px; outline: none;" />
+                                            </td>
+                                            <td>
+                                                <img class="img-responsive" style="width:85px;height:100px;border:1px solid #ddd" ng-src="{{ book.bookImage || 'Images/No-Photo-Available.jpg' }}">
+                                            </td>
+                                            <td><a ui-sref="book_edit({ bookId : book.bookId })" ng-bind="book.bookTitle"></a></td>
+                                            <td>{{ book.className }}</td>
+                                            <td>{{ book.subject }}</td>
+                                            <td>{{ book.bookCategory }}</td>
+                                            <td>{{ book.bookPrice }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    <div class="box-footer">
+                        <a class="btn btn-default" ui-sref="book_category_list"> Book Category List </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                            {{ bundleInfo.book_bundle.BundleId ? 'Update' : 'Create' }}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,235 @@
+﻿<style>
+    .form-group .form-control1.has-error {
+        border: 1px solid #dd4b39;
+    }
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+ 
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Create Source
+        </div>
+
+       <!-- {{ sourceInfo }}-->
+
+        <form name="create_inventorySourceForm"
+              ng-submit="submit_data(create_inventorySourceForm)"
+              ng-validate="validationOptions"
+              novalidate="novalidate">
+
+            <div class="panel-body">
+
+                <div class="row">
+                   
+                    <div class="col-md-12">
+
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail3" class="control-label col-sm-12">Inventory Source</label>
+                            <div class="col-sm-9">
+                                <select class="form-control1"
+                                        name="source"
+                                        ng-model="sourceInfo.SourceId"
+                                        ng-options="::source.Id as ::source.SourceName for source in inventory_sources"
+                                        ng-change="sourceInfo.SourceId && get_inventorySources()">
+
+                                    <option value=""> --- Select Source --- </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control1" ng-model="sourceInfo.name">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="address" class="form-control1" ng-model="sourceInfo.address">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div ng-if="sourceInfo.SourceId === 2">
+                        <div class="col-md-12">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail3" class="control-label col-sm-12">Country</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control1"
+                                            name="country"
+                                            ng-model="locationModel.selected_country"
+                                            ng-options="::country.CountryId as ::country.CountryName for country in countrList"
+                                            ng-change="locationModel.selected_country && get_state()">
+
+                                        <option value=""> --- Select Country --- </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail3" class="control-label col-sm-12">State</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control1"
+                                            name="country"
+                                            ng-model="locationModel.selected_state"
+                                            ng-options="::state.StateId as ::state.StateName for state in stateList"
+                                            ng-change="locationModel.selected_country && get_city()">
+
+                                        <option value=""> --- Select State --- </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputEmail3" class="control-label col-sm-12">City</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control1"
+                                            name="city"
+                                            ng-model="sourceInfo.cityId"
+                                            ng-options="::city.CityId as ::city.CityName for city in cityList">
+
+                                        <option value=""> --- Select City --- </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group col-md-4">
+                                <label class="control-label col-sm-12">Pincode</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="pincode" class="form-control1" ng-model="sourceInfo.pincode">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                                        <div class="col-md-12">
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Contact Person Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contactPerson" class="form-control1" ng-model="sourceInfo.contactPerson">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Mobile Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="mobile" class="form-control1" ng-model="sourceInfo.mobile" only:Numbers>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Office Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="landline" class="form-control1" ng-model="sourceInfo.landline" only:Numbers>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Email ID</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="email" class="form-control1" ng-model="sourceInfo.email">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">PAN Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="panNo" class="form-control1" ng-model="sourceInfo.panNo">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">TAN Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="tanNo" class="form-control1" ng-model="sourceInfo.tanNo">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <dealer-book:discount ng-if="sourceInfo.SourceId === 2"
+                                          model_list="sourceInfo.delaerBookDiscounts"
+                                          class="row">
+                    </dealer-book:discount>
+
+                    <dealer_address ng-if="sourceInfo.SourceId === 2"
+                                    model_list="sourceInfo.addressList"
+                                    class="row">
+                    </dealer_address>
+
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <button type="submit" class="btn btn-info pull-right">
+                        {{ isEdit_record ? 'Update Inventory' : 'Add Inventory' }}
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <table ng-if="inventory_sourceDetail_List.length"
+           class="table table-striped responsive"
+           wt-responsive-table>
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Source Name</th>
+                <th>Address</th>
+                <th>Contact Person</th>
+                <th>Mobile</th>
+                <th>Office Number</th>
+                <th>Email</th>
+                <th>PAN</th>
+                <th>TAN</th>
+                <th>Source</th>
+                <th>Create By</th>
+                <th>Create Date</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="sourceInfo in inventory_sourceDetail_List">
+                <td>{{ $index+1 }}</td>
+                <td ng-bind="::sourceInfo.name"></td>
+                <td ng-bind="::sourceInfo.address"></td>
+                <td ng-bind="::sourceInfo.contactPerson"></td>
+                <td ng-bind="::sourceInfo.mobile"></td>
+                <td ng-bind="::sourceInfo.landline"></td>
+                <td ng-bind="::sourceInfo.email"></td>
+                <td ng-bind="::sourceInfo.panNo"></td>
+                <td ng-bind="::sourceInfo.tanNo"></td>
+                <td> <switch class="green" ng-model="sourceInfo.Status" ng-change="changeCallback(sourceInfo)"></switch></td>
+                <td ng-bind="::sourceInfo.CreatedBy"></td>
+                <td ng-bind="::sourceInfo.CreationDate | dateFormat: 'DD/MM/YYYY hh:mm a'"></td>
+                <td>
+                    <a href="#"
+                       ng-click="EditData(sourceInfo)">
+                        <i class="fa fa-edit fa-lg"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

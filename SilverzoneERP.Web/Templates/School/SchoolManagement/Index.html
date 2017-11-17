@@ -1,0 +1,25 @@
+﻿<form name="frm" 
+      ng-submit="Submit(frm)" 
+      ng-validate="validationOptions" 
+      novalidate="novalidate">
+    
+    <div ng-include="'Templates/School/SchoolManagement/Partial/Header.html'"></div>
+
+    <div class="sz_card" style="margin-bottom:50px;">
+        <div class="row">
+            <!--Start Create Section-->
+            <div class="col-lg-12">
+                
+                <div ng-include="'Templates/School/SchoolManagement/Partial/School_Info.html'"></div>
+
+                <div ng-include="'Templates/School/SchoolManagement/Partial/Brochure_Info.html'"></div>
+
+                <div ng-include="'Templates/School/SchoolManagement/Partial/Contact_Info.html'"></div>
+                                          
+                <div ng-include="'Templates/School/SchoolManagement/Partial/Co-Ordinator_Info.html'"></div>
+                                
+            </div>
+            <!--End Create Section-->                     
+        </div>
+    </div>
+</form>

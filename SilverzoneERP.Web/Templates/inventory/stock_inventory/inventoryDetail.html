@@ -1,0 +1,49 @@
+﻿<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Stock Detail
+        </div>
+      
+        <div ng-if="stockDetail.length">
+            <table class="table table-striped responsive"
+                   wt-responsive-table>
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Book</th>
+                        <th>Inward</th>
+                        <th>Outward</th>
+                        <th>Available Stock</th>
+                        <th>Reorder Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entity in stockDetail">
+                        <td>{{ $index+1 }}</td>
+                        <td ng-bind="::entity.BookName"></td>
+                        <td>
+                            <a href="#"
+                               ng-bind="::entity.Total_stockIn"
+                               ng-click="entity.Total_stockIn>0 && getDetail(entity.BookId, 'Inward')">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ng-bind="::entity.Total_stockOut"
+                               ng-click="entity.Total_stockOut>0 && getDetail(entity.BookId, 'Outward')">
+                            </a>
+                        </td>
+                        <td ng-bind="::entity.Available"></td>
+                        <td ng-bind="::entity.ReorderLevel"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

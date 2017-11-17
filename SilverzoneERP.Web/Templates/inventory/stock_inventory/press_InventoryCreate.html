@@ -1,0 +1,125 @@
+﻿<style>
+    label {
+        padding: 3px 0px;
+    }
+
+    .myclass {
+        position: absolute;
+        right: 38px;
+        margin-top: -22px;
+        cursor: pointer;
+    }
+
+    #inventoryBox {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+
+    .form-control1[disabled], .form-control1[readonly] {
+        background-color: #eee;
+        opacity: 1;
+        cursor: not-allowed;
+    }
+
+    .divHover {
+        border: 1px solid #ddd;
+        height: auto;
+        min-height: 100px;
+        cursor: pointer;
+        margin: 20px;
+    }
+
+        .divHover:hover {
+            border: 1px solid #ea9e9e;
+        }
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+    {{ model }}
+    <form name="create_inventoryForm"
+          ng-validate="validationOptions">
+
+        <div class="panel panel-info">
+
+            <div class="panel-heading">
+                Create Press Stock
+
+                <refresh:state></refresh:state>
+            </div>
+
+            <div class="row" style="padding: 20px;margin-right: 40px;">
+                <inventory:type model="model">
+                </inventory:type>
+
+                <source_info model="model.SourceInfo_Id"
+                             clas-type="className"
+                             disabl="disableItem">
+                </source_info>
+
+            </div>
+
+            <div class="row" style="padding-left: 22px;">
+                <challan:info model="model"
+                              disabl="disableChallan">
+                </challan:info>
+
+                <remarks model="model"
+                         clas-type="className"
+                         disabl="disableItem">
+                </remarks>
+
+            </div>
+
+        </div>
+
+        <h3>
+            List of Inventory
+        </h3>
+        
+        <div id="PO_details">
+
+            <div ng-if="!poInfo"
+                 class="text-success">
+                <h3> Great, there is no pending purchase order found here :) </h3>
+            </div>
+
+            <!--  for Inward Stock -->
+            <!-- form-name take to send form name[create_inventoryForm] in component -->
+            <table_inward ng-if="model.InventoryType === 1"
+                          form-name="create_inventoryForm"
+                          po-info="poInfo"
+                          model="model">
+            </table_inward>
+
+            <!--  for Outward Stock -->
+            <table-outward ng-if="model.InventoryType === 2 && poInfo.length"
+                           po-info="poInfo"
+                           form-name="create_inventoryForm"
+                           model="model">
+            </table-outward>
+
+        </div>
+
+    </form>
+
+    <div ng-if="inventoryList.stockInfo.length">
+        <stock:detail stock:item="inventoryList"
+                      show:to-info="false"
+                      clas-type="className">
+        </stock:detail>
+
+        <div class="row text-center"
+             ng-if="model.InventoryType === 2"
+             style="margin: 35px;">
+            <input type="button"
+                   class="btn btn-warning"
+                   value="View/Edit Chaalan"
+                   ng-click="goto_viewChallan()" />
+        </div>
+
+    </div>
+
+
+</div>

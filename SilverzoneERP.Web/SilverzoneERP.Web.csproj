@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F544D803-9202-4818-B174-9D9EA7854DBA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilverzoneERP.Web</RootNamespace>
+    <AssemblyName>SilverzoneERP.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\angular-responsive-tables.css" />
+    <Content Include="Content\angular-ui-switch.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\icon-font.min.css" />
+    <Content Include="Content\isteven-multi-select.css" />
+    <Content Include="Content\jquery-confirm.css" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\pnotify.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\slick.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\1.png" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\lock.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\scissors.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\tick.png" />
+    <Content Include="images\user.png" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\slick.eot" />
+    <Content Include="fonts\slick.ttf" />
+    <Content Include="fonts\slick.woff" />
+    <Content Include="Scripts\App\Admin\admin_silverzone_app.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_book_cateogry_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_book_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_coupons.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_dispatchOrders_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_itemTitle_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_main_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_quiz_Controller.js" />
+    <Content Include="Scripts\App\Admin\Controller\admin_user_controller.js" />
+    <Content Include="Scripts\App\Admin\customdirective.js" />
+    <Content Include="Scripts\App\Admin\Services\hubService.js" />
+    <Content Include="Scripts\App\Admin\Services\admin_book_cateogry_Service.js" />
+    <Content Include="Scripts\App\Admin\Services\admin_book_Service.js" />
+    <Content Include="Scripts\App\Admin\Services\admin_dispatchOrders_Service.js" />
+    <Content Include="Scripts\App\Admin\Services\admin_quiz_Service.js" />
+    <Content Include="Scripts\App\Admin\Services\admin_user_Service.js" />
+    <Content Include="Scripts\App\Admin\Services\commonModal_service.js" />
+    <Content Include="Scripts\App\Global_app\customDirective.js" />
+    <Content Include="Scripts\App\Global_app\Directive.js" />
+    <Content Include="Scripts\App\Global_app\Filters.js" />
+    <Content Include="Scripts\App\Global_app\httpInterceptorService.js" />
+    <Content Include="Scripts\App\Global_app\masterController.js" />
+    <Content Include="Scripts\App\Global_app\Service.js" />
+    <Content Include="Scripts\App\Global_app\SilverzoneERP_App.js" />
+    <Content Include="Scripts\App\Inventory\Component\RegionalCordinator_Component.js" />
+    <Content Include="Scripts\App\Inventory\Component\dispatch_otherItem_master_Component.js" />
+    <Content Include="Scripts\App\Inventory\Component\Inventory_Component.js" />
+    <Content Include="Scripts\App\Inventory\Component\Inventory_Source_Component.js" />
+    <Content Include="Scripts\App\Inventory\Component\purchaseOrder_Component.js" />
+    <Content Include="Scripts\App\Inventory\Component\shared_Component.js" />
+    <Content Include="Scripts\App\Inventory\inventory_App.js" />
+    <Content Include="Scripts\App\Inventory\Services\dispatchService.js" />
+    <Content Include="Scripts\App\Inventory\Services\inventoryService.js" />
+    <Content Include="Scripts\App\Inventory\Services\locationService.js" />
+    <Content Include="Scripts\App\Inventory\Services\Silverzone_modalService.js" />
+    <Content Include="Scripts\App\School\accountController.js" />
+    <Content Include="Scripts\App\School\categoryController.js" />
+    <Content Include="Scripts\App\School\Category\categoryController.js" />
+    <Content Include="Scripts\App\School\Class\classController.js" />
+    <Content Include="Scripts\App\School\courierController.js" />
+    <Content Include="Scripts\App\School\Courier\courierController.js" />
+    <Content Include="Scripts\App\School\Designation\designationController.js" />
+    <Content Include="Scripts\App\School\EventManagement\BookOrderController.js" />
+    <Content Include="Scripts\App\School\EventManagement\EnrollmentOrderController.js" />
+    <Content Include="Scripts\App\School\EventManagement\eventManagementController.js" />
+    <Content Include="Scripts\App\School\EventManagement\OrderService.js" />
+    <Content Include="Scripts\App\School\EventManagement\PaymentController.js" />
+    <Content Include="Scripts\App\School\Event\eventController.js" />
+    <Content Include="Scripts\App\School\Event\eventYearController.js" />
+    <Content Include="Scripts\App\School\examDateController.js" />
+    <Content Include="Scripts\App\School\ExamDate\examDateController.js" />
+    <Content Include="Scripts\App\School\homeController.js" />
+    <Content Include="Scripts\App\School\Location\locationController.js" />
+    <Content Include="Scripts\App\School\Location\locationService.js" />
+    <Content Include="Scripts\App\School\masterFormsController.js" />
+    <Content Include="Scripts\App\School\Role\roleController.js" />
+    <Content Include="Scripts\App\School\Role\roleService.js" />
+    <Content Include="Scripts\App\School\Role\userRoleController.js" />
+    <Content Include="Scripts\App\School\schoolGroupController.js" />
+    <Content Include="Scripts\App\School\SchoolGroup\schoolGroupController.js" />
+    <Content Include="Scripts\App\School\SchoolManagement\schoolManagementController.js" />
+    <Content Include="Scripts\App\School\SchoolManagement\SchoolService.js" />
+    <Content Include="Scripts\App\School\school_App.js" />
+    <Content Include="Scripts\App\School\SearchSchool\SearchSchoolController.js" />
+    <Content Include="Scripts\App\School\StudentEntry\studentEntryController.js" />
+    <Content Include="Scripts\App\School\Title\titleController.js" />
+    <Content Include="Scripts\App\School\User\registrationController.js" />
+    <Content Include="Scripts\App\School\User\userPermissionController.js" />
+    <Content Include="Scripts\App\School\User\userPermissionService.js" />
+    <Content Include="Scripts\App\School\User\userSummaryController.js" />
+    <Content Include="Scripts\App\School\VerifyOrder\verifyOrderController.js" />
+    <Content Include="Scripts\App\School\WebCam\controller.js" />
+    <Content Include="Scripts\App\School\WebCam\webcam.min.js" />
+    <Content Include="Scripts\App\Shared\Silverzone_sharedService.js" />
+    <Content Include="Scripts\Lib\jquery\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-1.5.0.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-1.6.1.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-animate.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-block-ui.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-datatables.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-local-storage.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-moment.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-pnotify.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-responsive-tables.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-sanitize.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-ui-router.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-ui-switch.js" />
+    <Content Include="Scripts\Lib\angularjs\angular-validate.js" />
+    <Content Include="Scripts\Lib\angularjs\isteven-multi-select.js" />
+    <Content Include="Scripts\Lib\angularjs\ui-bootstrap-2.5.0.js" />
+    <Content Include="Scripts\Lib\angularjs\ui-bootstrap-tpls-2.3.1.js" />
+    <Content Include="Scripts\Lib\jquery\bootstrap-3.3.7.js" />
+    <Content Include="Scripts\Lib\jquery\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Lib\jquery\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\Lib\jquery\jquery-3.1.1.js" />
+    <Content Include="Scripts\Lib\jquery\jquery-confirm.js" />
+    <Content Include="Scripts\Lib\jquery\jquery-validate.js" />
+    <Content Include="Scripts\Lib\jquery\jquery.dataTables.js" />
+    <Content Include="Scripts\Lib\jquery\jquery.nicescroll.js" />
+    <Content Include="Scripts\Lib\jquery\moment.js" />
+    <Content Include="Scripts\Lib\jquery\pnotify.js" />
+    <Content Include="Scripts\Lib\jquery\scripts.js" />
+    <Content Include="Scripts\Lib\jquery\underscore.js" />
+    <Content Include="Templates\Admin\modal\book_categoryEdit.html" />
+    <Content Include="Templates\Admin\views\Admin_Create_User.html" />
+    <Content Include="Templates\Admin\views\books\Create.html" />
+    <Content Include="Templates\Admin\views\books\List.html" />
+    <Content Include="Templates\Admin\views\book_category\Create.html" />
+    <Content Include="Templates\Admin\views\book_category\List.html" />
+    <Content Include="Templates\Admin\views\boookBundle\Create.html" />
+    <Content Include="Templates\Admin\views\boookBundle\List.html" />
+    <Content Include="Templates\Admin\views\Coupons.html" />
+    <Content Include="Templates\Admin\views\dispatch\searchDispatch.html" />
+    <Content Include="Templates\Admin\views\itemTitle_master.html" />
+    <Content Include="Templates\Admin\views\dispatch\consignment.html" />
+    <Content Include="Templates\Admin\views\dispatch\printLabel.html" />
+    <Content Include="Templates\Admin\views\dispatch\wheight.html" />
+    <Content Include="Templates\Admin\views\Login.html" />
+    <Content Include="Templates\Admin\views\QuizQuestions\Create.html" />
+    <Content Include="Templates\Admin\views\QuizQuestions\List.html" />
+    <Content Include="Templates\Admin\views\TrackOrder.html" />
+    <Content Include="Templates\Admin\views\Unauthorize.html" />
+    <Content Include="Templates\Common\Home\Index.html" />
+    <Content Include="Templates\Common\Login\Login.html" />
+    <Content Include="Templates\Common\Partial\Pagination.html" />
+    <Content Include="Templates\Common\Partial\PrfileMenu.html" />
+    <Content Include="Templates\Common\Partial\userHeader.html" />
+    <Content Include="Templates\Common\Role\Create.html" />
+    <Content Include="Templates\Common\Role\UserRole.html" />
+    <Content Include="Templates\EmailTemplates\otherItem_orderLabel.html" />
+    <Content Include="Templates\EmailTemplates\orderLabel.html" />
+    <Content Include="Templates\EmailTemplates\PO_Confirmation.html" />
+    <Content Include="Templates\EmailTemplates\packetBundle.html" />
+    <Content Include="Templates\EmailTemplates\stockInvoice.html" />
+    <Content Include="Templates\EmailTemplates\Stock_Confirmation.html" />
+    <Content Include="Templates\inventory\modal\inventory_pendingPO_modal.html" />
+    <Content Include="Templates\inventory\modal\search_pendingPO_modal.html" />
+    <Content Include="Templates\inventory\purchase_order\pendingPO_search.html" />
+    <Content Include="Templates\inventory\purchase_order\counterSale.html" />
+    <Content Include="Templates\inventory\purchase_order\purchaseOrder.html" />
+    <Content Include="Templates\inventory\purchase_order\purchaseOrder_Edit.html" />
+    <Content Include="Templates\inventory\RegionalCordinator\Register.html" />
+    <Content Include="Templates\inventory\shared\bookSearch.html" />
+    <Content Include="Templates\inventory\shared\dealerBookDiscount.html" />
+    <Content Include="Templates\inventory\shared\inventoryCommon.html" />
+    <Content Include="Templates\inventory\shared\searchSource.html" />
+    <Content Include="Templates\inventory\dispatch_otherItem.html" />
+    <Content Include="Templates\inventory\sourceDetail.html" />
+    <Content Include="Templates\inventory\stock_inventory\inventoryDetail.html" />
+    <Content Include="Templates\inventory\stock_inventory\Inventory_Edit.html" />
+    <Content Include="Templates\inventory\stock_inventory\invoice_search.html" />
+    <Content Include="Templates\inventory\stock_inventory\counterSale.html" />
+    <Content Include="Templates\inventory\stock_inventory\press_InventoryCreate.html" />
+    <Content Include="Templates\inventory\stock_inventory\Inventory_Verify.html" />
+    <Content Include="Templates\School\Category\Create.html" />
+    <Content Include="Templates\School\Category\Header.html" />
+    <Content Include="Templates\School\Courier\Create.html" />
+    <Content Include="Templates\School\Courier\Header.html" />
+    <Content Include="Templates\School\Designation\Create.html" />
+    <Content Include="Templates\School\EventManagement\Index.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Class_Details.html" />
+    <Content Include="Templates\School\EventManagement\Partial\CoOrdinating_Teachers.html" />
+    <Content Include="Templates\School\EventManagement\Partial\CoOrdinator.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Courier.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_Book_Order.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_CoOrdinating_Teachers.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_Co_Ordinator.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_Enrollment_Order.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_History.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Dialog_Payment.html" />
+    <Content Include="Templates\School\EventManagement\Partial\ExamDate.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Header.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Instruction.html" />
+    <Content Include="Templates\School\EventManagement\Partial\School_Details.html" />
+    <Content Include="Templates\School\EventManagement\Partial\Teacher_List.html" />
+    <Content Include="Templates\School\Event\Create.html" />
+    <Content Include="Templates\School\Event\YearManage.html" />
+    <Content Include="Templates\School\ExamDate\Index.html" />
+    <Content Include="Templates\School\Location\City.html" />
+    <Content Include="Templates\School\Location\Country.html" />
+    <Content Include="Templates\School\Location\District.html" />
+    <Content Include="Templates\School\Location\Index.html" />
+    <Content Include="Templates\School\Location\State.html" />
+    <Content Include="Templates\School\Location\Zone.html" />
+    <Content Include="Templates\School\SchoolGroup\Create.html" />
+    <Content Include="Templates\School\SchoolGroup\Header.html" />
+    <Content Include="Templates\School\SchoolManagement\Index.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\AddressTo.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Brochure_Info.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\City.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Co-Ordinator_Info.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Contact_Info.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Co_Ordinator.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Header.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\Log.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\SchoolList.html" />
+    <Content Include="Templates\School\SchoolManagement\Partial\School_Info.html" />
+    <Content Include="Templates\School\SearchSchool\Index.html" />
+    <Content Include="Templates\School\StudentEntry\Index.html" />
+    <Content Include="Templates\School\StudentEntry\Partial\Create.html" />
+    <Content Include="Templates\School\StudentEntry\Partial\Dialog_AnsEntry.html" />
+    <Content Include="Templates\School\StudentEntry\Partial\Dialog_ClassWise.html" />
+    <Content Include="Templates\School\StudentEntry\Partial\Header.html" />
+    <Content Include="Templates\School\StudentEntry\Partial\List.html" />
+    <Content Include="Templates\School\Title\Create.html" />
+    <Content Include="Templates\School\User\Create.html" />
+    <Content Include="Templates\School\User\Summary.html" />
+    <Content Include="Templates\School\User\UserPermission.html" />
+    <Content Include="Templates\School\User\UserPermissionList_Partial.html" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\web.config" />
+    <None Include="Scripts\Lib\angular.intellisense.js" />
+    <None Include="Scripts\Lib\angularjs\_references.js" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55604</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55604/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

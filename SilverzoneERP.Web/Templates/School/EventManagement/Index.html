@@ -1,0 +1,24 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div ng-include="'Templates/School/EventManagement/Partial/Header.html'"></div>
+    
+    <div class="sz_card">
+        <div class="row" ng-if="SchMngt.SchId!=undefined">
+            <!--Start Create Section-->
+            <div ng-include="'Templates/School/EventManagement/Partial/School_Details.html'"></div>
+
+            <div class="col-md-12" ng-include="'Templates/School/EventManagement/Partial/CoOrdinator.html'"></div>
+
+            <div class="col-md-12" ng-include="'Templates/School/EventManagement/Partial/Courier.html'"></div>
+            
+            <div class="col-md-12" ng-include="'Templates/School/EventManagement/Partial/Class_Details.html'"></div>
+
+            <div class="col-md-12" ng-include="'Templates/School/EventManagement/Partial/CoOrdinating_Teachers.html'"></div>
+                        
+            <!--End Create Section-->
+        </div>
+    </div>
+</form>

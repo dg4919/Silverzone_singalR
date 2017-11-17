@@ -1,0 +1,211 @@
+﻿<style>
+    .form-group .form-control1.has-error {
+        border: 1px solid #dd4b39;
+    }
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Create Source
+        </div>
+
+        <!-- {{ sourceInfo }}-->
+
+        <form name="create_inventorySourceForm"
+              ng-submit="submit_data(create_inventorySourceForm)"
+              ng-validate="validationOptions"
+              novalidate="novalidate">
+
+            <div class="panel-body">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail3" class="control-label col-sm-12">Inventory Source</label>
+                            <div class="col-sm-9">
+                                <select class="form-control1"
+                                        name="source"
+                                        ng-model="model.sourceType"
+                                        ng-options="::source.Id as ::source.SourceName for source in inventory_sources"
+                                        ng-change="model.sourceType && get_inventorySources()">
+
+                                    <option value=""> --- Select Source --- </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" style="margin-top: 10px;">
+                            <label class="radio">
+                                <input type="radio" name="type" value="1" ng-model="model.ItemType"> Broucher
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="type" value="2" ng-model="model.ItemType"> Other
+                            </label>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail3" class="control-label col-sm-12">Items To Send</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control1" name="Items" ng-model="model.Items"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" style="margin-top: 25px;">
+                            <input type="checkbox" ng-model="model.packet_isOn_Hold" /> Hold Packet
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-5">
+                            <label class="control-label col-sm-12">Code </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control1" ng-model="schCode">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="button" class="btn btn-default" value="Search" ng-click="searchSchool()" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control1" ng-model="model.Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-offset-1 col-md-6">
+                            <label class="control-label col-sm-12">Address</label>
+                            <div class="col-sm-9">
+                                <textarea name="address" class="form-control1" ng-model="model.Address"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <select:location model="model"
+                                         clas:type="className">
+                        </select:location>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Pin Code</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="pincode" class="form-control1" ng-model="model.PinCode" only:Numbers>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Mobile Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="mobile" class="form-control1" ng-model="model.PhoneNo" only:Numbers>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-sm-12">Contact Person Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="contactPerson" class="form-control1" ng-model="model.ContactPerson">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+
+                        <label class="control-label col-sm-12" style="margin-bottom: 18px;">
+                            Print Add on Label
+                        </label>
+                        <div class="col-sm-3">
+                            <label class="radio-inline"><input type="radio" name="Labeltype" ng-model="model.LabelType" ng-value="1" ng-change="setText(1)">Principal</label>
+                            <label class="radio-inline"><input type="radio" name="Labeltype" ng-model="model.LabelType" ng-value="2" ng-change="setText(2)">HM</label>
+
+                            <label class="col-md-offset-12 radio-inline"><input type="radio" name="Labeltype" ng-model="model.LabelType" value="0" ng-change="setText(0)">None</label>
+                            <div class="col-sm-12" style="margin-top: 17px;">
+                                <input class="form-control1" type="text"
+                                       ng-model="model.LabelValue"
+                                       ng-disabled="model.LabelType !== 1"
+                                       ng-if="model.LabelType !== 0">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="radio-inline"><input type="radio" name="Labeltype" ng-model="model.LabelType" ng-value="3" ng-change="setText(3)">Cordinator</label>
+                            <div class="col-sm-12" style="margin-top: 17px;">
+                                <select class="form-control1"
+                                        name="source"
+                                        ng-model="model.LabelCord"
+                                        ng-disabled="model.LabelType !== 3"
+                                        ng-options="::cordinator for cordinator in cordinatorList">
+
+                                    <option value=""> --- Select Source --- </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="radio-inline"><input type="radio" name="Labeltype" ng-model="model.LabelType" ng-value="4" ng-change="setText(4)">Other Name</label>
+                            <div class="col-sm-12" style="margin-top: 17px;">
+                                <input class="form-control1" type="text" 
+                                        ng-disabled="model.LabelType !== 4"                                       
+                                       ng-model="model.LabelOth">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" style="margin-top: 50px;margin-left: -100px;">
+                        <input type="submit" 
+                               value="Save"
+                               class="btn btn-warning pull-right">
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div ng-if="dispatch_itemList.length">
+
+        <table class="table table-striped responsive"
+               wt-responsive-table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Items</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Contact Person</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in dispatch_itemList">
+                    <td>{{ ::$index+1 }}</td>
+                    <td ng-bind="::entity.Name"></td>
+                    <td ng-bind="::entity.Items"></td>
+                    <td ng-bind="::entity.Address"></td>
+                    <td> {{::entity.cityModel.countryName}}, {{entity.cityModel.stateName}}, {{entity.cityModel.cityName}} </td>
+                    <td ng-bind="::entity.ContactPerson"></td>
+                    <td ng-bind="::entity.PhoneNo"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

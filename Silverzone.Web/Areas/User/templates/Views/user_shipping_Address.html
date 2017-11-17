@@ -1,0 +1,25 @@
+﻿<!-- All Class r depend to this Id  -->
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content" ng-include="'templates/views/cart/user_address.html'">
+
+        </div>
+    </div>
+
+</div>

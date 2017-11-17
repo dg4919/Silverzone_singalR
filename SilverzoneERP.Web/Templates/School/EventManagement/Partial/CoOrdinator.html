@@ -1,0 +1,59 @@
+﻿<div class="sz_section">    
+    <strong>School CoOrdinator for <span class="sz_fr_danger">{{SelectedEvent.EventCode}}</span></strong>
+    <span class="pull-right">
+        <a href="#"           
+           style="text-decoration:none;color:white;"
+           ng-click="Add_Co_Ordinator(SelectedEvent.EventId,null)">
+            <i class="fa fa-plus"></i>
+        </a>
+    </span>
+</div>
+
+<div ng-if="SchMngt.Events!=null && SchMngt.Events.CoOrdinator.length!=0">
+    <table class="table table-striped responsive" wt-responsive-table>
+        <thead>
+            <tr>
+                <th><strong><i class="fa fa-user"></i> Name</strong></th>
+                <th><strong><i class="fa fa-earphone"></i> Mobile No.</strong></th>
+                <th><strong><i class="fa fa-earphone"></i> Alt. Mobile No.</strong></th>
+                <th><strong><i class="fa fa-envelope"></i> Email</strong></th>
+                <th><strong><i class="fa fa-envelope"></i> Alt. Email-ID</strong></th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in SchMngt.Events.CoOrdinator">
+                <td>{{data.CoOrdTitle=='N/A'?'':data.CoOrdTitle+' '}}{{data.CoOrdName}}</td>
+                <td>{{data.CoOrdMobile}}</td>
+                <td>
+                    {{data.CoOrdAltMobile1}}
+                    {{data.CoOrdAltMobile1==null || data.CoOrdAltMobile2==null?'':','}}
+                    <br ng-if="data.CoOrdAltMobile1!=null && data.CoOrdAltMobile2!=null?true:false" />
+                    {{data.CoOrdAltMobile2}}
+                </td>
+                <td>{{data.CoOrdEmail}}</td>
+                <td>
+                    {{data.CoOrdAltEmail1}}
+                    {{data.CoOrdAltEmail1==null || data.CoOrdAltEmail2==null?'':','}}
+                    <br ng-if="data.CoOrdAltEmail1!=null && data.CoOrdAltEmail2!=null?true:false" />
+                    {{data.CoOrdAltEmail2}}
+                </td>
+                <td>
+                    <a href="#"
+                       style="text-decoration:none"
+                       ng-click="Add_Co_Ordinator(SelectedEvent.EventId,data)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="#"
+                       style="text-decoration:none"
+                       ng-click="Delete_CoOrdinator($index)">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

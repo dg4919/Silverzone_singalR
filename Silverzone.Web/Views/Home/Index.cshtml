@@ -1,0 +1,196 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+<html ng-app="Silverzone_app">
+<head>
+
+    @*  Use to fetch relative URL & resolve issue of angular client side Routing
+        Suppose we have URL > http://localhost/silverzone/ but it will take http://localhost/ only, if we dont use base href
+        Use href="~/" instead of href="/" bcoz it will return full prefix relative URL
+    *@
+    <base href="~/" />
+
+    @*  Favicon icon  *@
+    <link rel="icon" type="image/png" sizes="96x96" href="Images/favicon-96x96.png">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Silverzone Olympiads </title>
+
+    @Styles.Render("~/Content/Site/Home_css")
+   
+    @Scripts.Render("~/bundles/Site/jqueryBundle")
+    @Scripts.Render("~/bundles/Site/Home_jqueryBundle")
+   
+
+    @Scripts.Render("~/bundles/Site/AngularBundle")
+    @Scripts.Render("~/bundles/Site/AppBundle")
+
+    <script type="text/javascript">
+        $('#datetimepicker1').datepicker();
+    </script>
+
+    <style>
+        .close {
+            outline: none !important;
+        }
+
+        /* this class will apply in Modal setting */
+        .loginModal .modal-dialog {
+            width: 33% !important;
+        }
+
+        .shippingAdressModal .modal-dialog {
+            width: 42% !important;
+        }
+    </style>
+
+    <style type="text/css">
+        .mini-submenu {
+            display: none;
+            background-color #fff;
+            border: 1px solid #2e2e2e;
+            border-radius: 4px;
+            padding: 9px;
+            /*position: relative;*/
+            width: 80px;
+        }
+
+            .mini-submenu:hover {
+                cursor: pointer;
+            }
+
+            .mini-submenu .icon-bar {
+                border-radius: 2px;
+                display: block;
+                height: 2px;
+                width: 22px;
+                margin-top: 3px;
+            }
+
+            .mini-submenu .icon-bar {
+                background-color: #fff;
+            }
+
+        #slide-submenu {
+            background #603;
+            display: inline-block;
+            padding: 0 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <!-- popup end-->
+
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        .slider {
+            width: 100%;
+            margin: 50px auto;
+        }
+
+        .slick-slide {
+            margin: 0px 10px;
+        }
+
+            .slick-slide img {
+                width: 100%;
+            }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+    </style>
+
+
+</head>
+
+<body ng-controller="site_MasterController"
+      data-spy="scroll"
+      data-target=".navbar-collapse"
+      data-offset="50"
+      onload="ChangeIt()">
+
+    <!-- preloader section -->
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+
+    <div id="header"
+         ng-include="'templates/Partials/silverzoneHeader.html'"></div>
+
+    <section id="home">
+        <div class="container" style="background-image:url(Images/NewImages/event_top/IRAO_Banner.jpg)">
+            <div class="row">
+            </div>
+        </div>
+    </section>
+
+    @*  if we use ui-view as attribute in above div then our footer will not bind  *@
+    @*  Use to prevent undesirable flicker effect while take time for retriving & binding data  *@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xs-offset-1 text-center" style="background-color:#fff;">
+                <ui-view ng-cloak block-ui></ui-view>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <!-- Footer -->
+    <div id="footer"
+         ng-include="'templates/Partials/silverzoneFooter.html'">
+    </div>
+    <!--footer end-->
+
+    <script type="text/javascript">
+                    $(document).on('ready', function () {
+                        $(".regular").slick({
+                            dots: true,
+                            autoplay: true,
+                            interval: 100,
+                            infinite: true,
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        });
+
+                    });
+    </script>
+
+
+    <script type="text/javascript">
+
+        function ChangeIt()
+        {
+            var x=['iio_banner.jpg','iom_banner.jpg','ios_banner.jpg','ioel_banner.jpg','iflo_banner.jpg','abho_banner.jpg','itho_banner.jpg','skgko_banner.jpg','isso_banner.jpg','irao_banner.jpg'];
+            var totalCount = x.length;
+            var num = Math.ceil( Math.random() * totalCount );
+
+            // <!--document.getElementById("home").style.backgroundImage ="url('../images/event_top/' + x[num])";-->
+              $('#home').css({'background-image': 'url(Images/NewImages/event_top/' + x[Math.floor(Math.random() * x.length)] + ')'});
+            $('#home').css({'background-size':'100%'});
+            $('#home').css({'background-repeat':'no-repeat'});
+        }
+    </script>
+
+</body>
+</html>

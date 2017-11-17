@@ -1,0 +1,110 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>Co-Ordinator</strong>
+            <button type="submit"
+                    class="pull-right btn btn-default">
+                <i class="fa fa-saved"></i> <strong>Save</strong>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group col-md-12">
+
+                        <label><i class="fa fa-graduation-cap"></i> Designation :</label>
+                        <select class="form-control"
+                                name="EventId"
+                                ng-model="Co_Ord.EventId"
+                                ng-options="obj.EventId as obj.EventName +' ('+obj.EventCode+')' for obj in Related_Object.Event">
+                            <option value="">----------Select Event----------</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-3">
+                        <label><i class="fa fa-black-tie"></i> Title :</label>
+                        <select class="form-control"
+                                name="TitleId"
+                                ng-model="Co_Ord.TitleId"
+                                ng-options="obj.Id as obj.TitleName for obj in Related_Object.Title">
+                            <option value="">Select Title</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-9">
+                        <label><i class="fa fa-user"></i> Co-Ordinator Name :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="CoOrdName"
+                               ng-model="Co_Ord.CoOrdName">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> Email-ID</label>
+                        <input type="email"
+                               name="CoOrdEmail"
+                               class="form-control"
+                               ng-model="Co_Ord.CoOrdEmail">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> (1)Alt.Email-ID</label>
+                        <input type="email"
+                               name="CoOrdAltEmail1"
+                               class="form-control"
+                               ng-model="Co_Ord.CoOrdAltEmail1">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-envelope"></i> (2)Alt.Email-ID</label>
+                        <input type="email"
+                               name="CoOrdAltEmail2"
+                               class="form-control"
+                               ng-model="Co_Ord.CoOrdAltEmail2">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="CoOrdMobile"
+                               ng-model="Co_Ord.CoOrdMobile"
+                               only-numbers>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> (1)Alt.Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="CoOrdAltMobile1"
+                               ng-model="Co_Ord.CoOrdAltMobile1"
+                               only-numbers>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i class="fa fa-phone"></i> (2)Alt.Mobile No. :</label>
+                        <input type="text"
+                               class="form-control"
+                               name="CoOrdAltMobile2"
+                               ng-model="Co_Ord.CoOrdAltMobile2"
+                               only-numbers>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+

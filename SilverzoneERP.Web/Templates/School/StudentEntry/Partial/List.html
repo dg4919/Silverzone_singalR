@@ -1,0 +1,72 @@
+﻿
+<div class="col-md-12" ng-include="'Templates/Common/Partial/Pagination.html'"></div>
+<div ng-if="SchMngt.Events" class="col-md-12 {{StudentEntryList.length==SchMngt.Events.TotalEnrollmentSummary?'bg-primary':'bg-danger'}}">
+    {{StudentEntryList.length==SchMngt.Events.TotalEnrollmentSummary?'Complete':'No. of student is less than your order'}}
+</div>
+<div class="col-md-12">
+    <table class="table table-striped responsive" wt-responsive-table>
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Enrollment No.</th>
+                <th>
+                    <a href="#" ng-click="sortType = 'ClassName'; sortReverse = !sortReverse">
+                        Class
+                        <span ng-show="sortType == 'ClassName' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'ClassName' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a href="#" ng-click="sortType = 'Section'; sortReverse = !sortReverse">
+                        Section
+                        <span ng-show="sortType == 'Section' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'Section' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th>Roll No.</th>
+                <th>Student Name</th>
+                <th>
+                    <a href="#" ng-click="sortType = 'UpdationDate'; sortReverse = !sortReverse">
+                        Date
+                        <span ng-show="sortType == 'UpdationDate' && !sortReverse" class="fa fa-caret-down"></span>
+                        <span ng-show="sortType == 'UpdationDate' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+                <th></th>
+                <!--<th>Delete</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in StudentEntryList | orderBy:sortType:sortReverse">
+                <td>{{$index+1}}</td>
+                <td ng-bind="data.EnrollmentNo"></td>
+                <td ng-bind="data.ClassName"></td>
+                <td ng-bind="data.Section"></td>
+                <td ng-bind="data.RollNo"></td>
+                <td>{{data.StudentName}}</td>
+                <td ng-bind="data.UpdationDate|date:'dd-MMM-yyyy hh:mm:ss'"></td>
+                <td>
+                    <!--<a href="#" ng-click="Edit(data)"> <i class="fa fa-pencil"></i></a>-->
+                    <ul style="list-style:none;left:0px;">
+                        <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu drp-mnu rico">                                
+                                <li> <a href="#" ng-click="Edit(data)"> <i class="fa fa-pencil"> Edit</i></a> </li>
+                                <li> <a href="#" ng-click="ShowAnsEntry(data.Id)"> Shaw Ans. Entry</a> </li>
+                                <li> <a href="#" ng-click="ViewOnly(data)"> View Only</a> </li>
+                            </ul>                         
+                        </li>
+                    </ul>
+                </td>
+                <!--<td>
+                    <a href="#" ng-click="Delete($index)"> <i class="fa fa-remove"></i></a>
+                </td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilverzoneERP.Api</RootNamespace>
+    <AssemblyName>SilverzoneERP.Api</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="api\Web\User\UserProfile\Img\User\profilePic\1\temp\01912572.jpg" />
+    <Content Include="api\Web\User\UserProfile\Img\User\profilePic\1\temp\55215040.jpg" />
+    <Content Include="Global.asax" />
+    <Content Include="Img\Event\abho_banner.jpg" />
+    <Content Include="Img\Event\iflo_banner.jpg" />
+    <Content Include="Img\Event\iio_banner.jpg" />
+    <Content Include="Img\Event\ioel_banner.jpg" />
+    <Content Include="Img\Event\iom_banner.jpg" />
+    <Content Include="Img\Event\ios_banner.jpg" />
+    <Content Include="Img\Event\irmao_banner.jpg" />
+    <Content Include="Img\Event\isso_banner.jpg" />
+    <Content Include="Img\Event\itho_banner.jpg" />
+    <Content Include="Img\Event\skgko_banner.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\00668161.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\01026650.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\01168500.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\01754750.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\02865382.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\04823161.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\04990674.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\05294632.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\06578131.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\11944794.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\14243775.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\14548561.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\15001845.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\15100598.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\16375470.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\17948203.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\20785606.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\22821581.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\25574066.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\26223962.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\26994305.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\28010115.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\28427196.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\29881493.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\31604659.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\31703221.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\34042496.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\34043135.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\34221473.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\35670574.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\36500394.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\36634134.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\36696453.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\36857221.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\36892648.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\38957603.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\39854210.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\40826799.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\41622846.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\41899275.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\41925800.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\42338238.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\43886542.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\44790232.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\45914405.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\46226661.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\48051024.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\49916795.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\50263300.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\53391077.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\55583084.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\56106522.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\57644811.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\57732725.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\58497113.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\58951927.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\59581227.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\61856964.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\62395685.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\62647926.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\63388957.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\64766983.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\67335864.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\68358756.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\68600634.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\69274957.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\70038733.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\70207997.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\73678386.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\74496071.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\78915922.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\79036075.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\79631621.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\80448449.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\84675403.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\86015818.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\86050625.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\86645998.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\87723472.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\90091769.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\94801509.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\94803280.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\95138973.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\95262128.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\96597632.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\97982866.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\99033628.jpg" />
+    <Content Include="Img\Web\Admin\BookImage\99728882.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\00210503.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\00940655.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\01700892.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\01804121.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\02486911.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\02497557.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\02660894.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\02814738.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\03159735.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\04332585.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\04565068.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\05274295.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\05320406.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\05414576.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\06175235.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\06384216.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\06806303.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\07652992.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\08529308.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\08823588.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\09143368.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\09153997.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\09808756.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\10018527.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\10133021.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\11695484.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\11878606.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\12060855.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\13584220.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\14204394.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\14239631.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\14626853.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\15080853.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\15426095.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\15479658.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\16255863.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\19584993.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\19592290.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\20845426.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\20999088.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\21262121.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\21365957.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\21940428.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\22064443.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\22142697.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\22721154.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\22961745.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\23163612.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\23240281.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\24041727.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\24537333.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\26123829.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\27272184.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\29208893.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\29979430.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\30485010.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\31130303.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\31775261.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\32584368.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\33571464.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\35187768.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\35294750.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\35431865.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\36094137.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\36286020.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\36482472.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38053519.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38103654.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38324490.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38472303.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38492838.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38671317.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\38999418.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\39471511.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\40083629.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\42121740.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\42284499.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\42423907.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\44686857.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\45829629.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\47921585.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\48453910.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\48496021.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\49227969.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\50236188.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\50507447.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\50687920.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\51847100.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\52329068.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\52729019.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\53821652.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\53952540.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\54241624.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\54316706.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\54323582.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\54843223.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\55240526.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\56086517.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\56305805.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\56320354.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\56468968.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\57103504.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\57370868.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\57689139.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\59258516.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\59305362.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\59777496.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\61387308.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\62088736.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\62464292.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\63507628.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\64677920.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\64781304.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\65435830.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\65614509.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\66292187.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\66459254.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\67045840.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\67627328.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\67675974.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\67877753.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\68572115.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\68583484.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\69220655.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\69433790.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\71190920.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\71726778.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\72991726.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\73234495.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\73570765.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\74180807.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\75552134.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\75672893.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\75889967.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\76214092.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\77019402.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\77535692.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\78947576.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\79011514.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\80175299.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\81745255.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\82003227.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\82648887.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\82719329.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\82813901.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\83106254.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\83867568.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\83987847.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\84362990.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\84635829.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\84668916.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\86073517.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\86923179.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\87371389.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\87714577.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\89917367.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\90600080.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\92155261.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\92560745.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\92676135.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\94389110.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\95079752.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\96120279.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\98074664.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\98646909.jpg" />
+    <Content Include="Img\Web\Admin\QuizImage\99441483.jpg" />
+    <Content Include="Img\Web\User\profilePic\1\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\20\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\24\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\29\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\2\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\3\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\6\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\80\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\82\profilePic.jpg" />
+    <Content Include="Img\Web\User\profilePic\temp\42325927.jpg" />
+    <Content Include="Img\Web\User\profilePic\temp\71051000.jpg" />
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProfilePic\placeholderImage.png" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="api\Inventory\DispatchController.cs" />
+    <Compile Include="api\Inventory\StockController.cs" />
+    <Compile Include="api\School\accountController.cs" />
+    <Compile Include="api\School\courierController.cs" />
+    <Compile Include="api\School\designationController.cs" />
+    <Compile Include="api\School\eventController.cs" />
+    <Compile Include="api\School\EventManagementController.cs" />
+    <Compile Include="api\School\eventYearController.cs" />
+    <Compile Include="api\School\examDateController.cs" />
+    <Compile Include="api\School\feePaymentController.cs" />
+    <Compile Include="api\School\formManagementController.cs" />
+    <Compile Include="api\School\locationController.cs" />
+    <Compile Include="api\School\roleController.cs" />
+    <Compile Include="api\School\schManagementController.cs" />
+    <Compile Include="api\School\schoolCategoryController.cs" />
+    <Compile Include="api\School\schoolGroupController.cs" />
+    <Compile Include="api\School\studentAttendanceController.cs" />
+    <Compile Include="api\School\studentEntryController.cs" />
+    <Compile Include="api\School\titleController.cs" />
+    <Compile Include="api\School\userController.cs" />
+    <Compile Include="api\Web\Admin\BookController.cs" />
+    <Compile Include="api\Web\Admin\CategoryController.cs" />
+    <Compile Include="api\Web\Admin\DispatchController.cs" />
+    <Compile Include="api\Web\Admin\QuizController.cs" />
+    <Compile Include="api\Web\Admin\UserController.cs" />
+    <Compile Include="api\Web\Site\AccountController.cs" />
+    <Compile Include="api\Web\Site\BannerController.cs" />
+    <Compile Include="api\Web\Site\BookController.cs" />
+    <Compile Include="api\Web\Site\CategoryController.cs" />
+    <Compile Include="api\Web\Site\ExceptionLoggerController.cs" />
+    <Compile Include="api\Web\Site\OrderController.cs" />
+    <Compile Include="api\Web\Site\SubjectController.cs" />
+    <Compile Include="api\Web\TeacherApp\StudentRegistrationController.cs" />
+    <Compile Include="api\Web\TeacherApp\TeacherDetailController.cs" />
+    <Compile Include="api\Web\User\UserProfileController.cs" />
+    <Compile Include="App_Start\GlobalExceptionHandler.cs" />
+    <Compile Include="App_Start\MyAuthorizationServerProvider.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\WebApiNamespaceVersoning.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="hubs\ChatHub.cs" />
+    <Compile Include="Modules\EFModule.cs" />
+    <Compile Include="Modules\RepositoryModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilverzoneERP.Context\SilverzoneERP.Context.csproj">
+      <Project>{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}</Project>
+      <Name>SilverzoneERP.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilverzoneERP.Data\SilverzoneERP.Data.csproj">
+      <Project>{1d8da364-6ecd-4ce4-b686-aa03be6df7e8}</Project>
+      <Name>SilverzoneERP.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilverzoneERP.Entities\SilverzoneERP.Entities.csproj">
+      <Project>{29268da0-b7dd-4c44-bf4a-b25728af5f7c}</Project>
+      <Name>SilverzoneERP.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\Web\User\TeacherApp\" />
+    <Folder Include="Img\School\" />
+    <Folder Include="Img\Web\User\profilePic\5\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55615</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55615/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

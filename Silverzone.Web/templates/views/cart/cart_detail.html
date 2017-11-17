@@ -1,0 +1,145 @@
+﻿<style>
+    #cart_detailContainer a:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div id="cart_detailContainer">
+    <div class="row" style="margin-top: 20px;">
+        <h3>
+            <em>Review</em> your cart:
+        </h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-md-6">
+                <a class="btn btn-default pull-left" href="#" ui-sref="cart_address_detail">Checkout</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-default" href="#" ui-sref="book_list">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+    
+    <hr/>
+
+    <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading panel-primary">
+                        <div class="panel-title">
+                            Your Cart Items- {{ cart.Items.length }} Item(s)
+                            <div class="text-right" style="margin-top:-20px;">Order Total: <i class="fa fa-rupee"> {{ cart.total_Amount | number : 2}} </i></div>
+                        </div>
+                    </div>
+                    <!--cntry typ : {{ cartDetail.country_type }}-->
+
+                    <div class="panel-body">
+                        <table class="table panel-primary">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Book Image
+                                    </th>
+                                    <th>
+                                        Book Name
+                                    </th>
+                                    <th>
+                                        Price (each)
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>SubTotal</th>
+                                    <th></th>
+                                </tr>
+
+                                <tr ng-repeat="item in cart.Items track by $index">
+                                    <td>
+                                        <img ng-src="{{ imgBase + item.bookImage }}" class="img-responsive img-bordered" style="width: 75px;">
+                                    </td>
+                                    <td ng-bind="item.bookTitle" ng-if="item.bookType === 1"></td>
+                                    <td ng-if="item.bookType === 2">
+                                        <!-- for bundle > show anchor tab to get bundle detail -->
+                                        <a href="" show-Bundle:Modal bundleId="{{item.bookId}}">{{ item.bookTitle }}</a>
+                                    </td>
+                                    <td>
+                                        <!--  one time binding bcoz > price qty value is fixed -->
+                                        <i class="fa fa-rupee"></i> {{ item.book_newPrice || item.bookPrice | number : 2 }}
+                                    </td>
+                                    <td id="item-count-id">
+                                        <div class="input-group input-group-lg">
+                                            <button class="btn btn-default pull-left" type="button" ng-click="cartDetail.addCartqty(true, $index)"> <i class="fa fa-plus"></i></button>      <!--  model value is diffrent than showing value -->
+                                            <input class="text-center col-xs-4" maxlength="2" type="text" ng-model="item.bookQty" ng-keyup="cartDetail.updateQty($index)" number_only />        <!--  Here, item.bookQty is very imp means ng-keyup will only run if it has a value/Not null/empty  -->
+                                            <button class="btn btn-default" type="button" ng-click="cartDetail.addCartqty(false, $index)"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td style="width: 120px !important;">
+                                        <i class="fa fa-rupee"></i> {{ item.bookTotalPrice | number : 2 }}
+                                    </td>
+                                    <td>
+                                        <!-- define controllerAs cart in Routing  -->
+                                        <a href="#" class="RemoveLink" data-id="RemoveLink" ng-click="cartDetail.removeItem($index)">
+                                            Remove
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6">
+                                        <hr style="padding: 0px !important; margin: 0 !important;" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Toatal</strong></td>
+                                    <td id="cart-total"><i class="fa fa-rupee"></i> {{ cart.shipping_Amount | number : 2}} </></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6">
+                                        <hr style="padding: 0px !important; margin: 0 !important;" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <strong>
+                                            Shipping Charges
+                                            <div style="font-size: 75% !important;"> (for first unit @ {{ cartDetail.country_type === 1 ? 40 : 1200 }} and rest @ {{ cartDetail.country_type === 1 ? 25 : 200 }} each) </div>
+                                        </strong>
+                                    </td>
+                                    <td><i class="fa fa-rupee"></i> {{ cart.shipping_Charges }} </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="6">
+                                        <hr style="padding: 0px !important; margin: 0 !important;" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Payable Amount</strong></td>
+                                    <td><i class="fa fa-rupee"></i> {{ cart.total_Amount | number : 2 }}</></td>
+                                    <td></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+</div>

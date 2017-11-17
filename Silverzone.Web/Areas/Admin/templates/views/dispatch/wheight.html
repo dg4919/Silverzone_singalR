@@ -1,0 +1,90 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Orders</div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row text-center" style="margin-top: -20px;padding: 25px;">
+                        <div class="col-md-5">
+                            <h4>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.type" value="0">Without Wheight</label>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.type" value="1"> With Wheight</label>
+                            </h4>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="input-group date" id="myDatepicker" data-provide="datepicker">
+                                <input type="text" class="form-control" ng-model="searchModel.orderDate">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" ng-click="searchPacket()">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+
+                        <div class="col-md-2">
+                            <a href="#" class="btn" ng-click="showModal()" style="font-size: 17px;">
+                                <i class="fa fa-plus"></i> Add by Bar Code
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Packet ID</th>
+                                    <th>Create By</th>
+                                    <th>Create Date</th>
+                                    <th>Add Wheight</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="packet in packet_list" ng-init="packet.wheight ? packet.hasAdd = true : packet.hasAdd = false">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ packet.packetNumber }}</td>
+                                    <td>{{ ::packet.createBy }}</td>
+                                    <td>{{ ::packet.createDate | dateFormat: 'DD/MM/YYYY hh:mm a' }}</td>
+                                    <td>
+                                        <span style="margin-left: 35px;"
+                                              ng-show="packet.hasAdd" 
+                                              ng-bind="packet.wheight"></span>
+
+                                        <div class="col-sm-9" ng-show="!packet.hasAdd">
+                                            <input type="text" placeholder="Add Wheight" class="form-control" ng-model="packet.wheight" decimal-only>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" ng-click="(!packet.hasAdd && addWheight(packet)) || (packet.hasAdd = false)" class="btn btn-warning" title="{{ packet.hasAdd ? 'Edit Wheight' : 'Add Wheight' }}">
+                                            <i class="fa" ng-class="packet.hasAdd ? 'fa-edit' : 'fa-plus'"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

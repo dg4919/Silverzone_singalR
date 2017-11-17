@@ -1,0 +1,132 @@
+﻿<style>
+    .disable_continer {
+        opacity: .5;
+        z-index: 10000;
+        pointer-events: none;
+    }
+</style>
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-offset-1 col-md-10" id="stepForm">
+
+            <form name="book_createForm" class="f1" ng-submit="submitForm(book_createForm)" ng-validate="validationOptions">
+                <span class="text-center"> <h3>Create Book</h3> </span>
+
+                <br />
+
+                    <div class="col-sm-12 form-group" style="margin-bottom: 25px;">
+                        <h4><strong> Enter Book Details : </strong></h4>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <div class="col-sm-6" style="margin-top: -20px;">
+                            <img class="img-responsive" style="width:150px;height:190px;border:1px solid #ddd" ng-src="{{ (bookModel.bookInfo.bookImage && bookModel.bookInfo.bookImage) || 'Images/No-Photo-Available.jpg' }}">
+                            <a title="Change Profile Picture" style="cursor: pointer;position: relative;top: -32px;color: #000; margin-left: 67px;" class="fa fa-camera" onclick="$('#img_dialog').click();"></a>
+                            <input id="img_dialog" type="file" onchange="angular.element(this).scope().uploadImage(this)" style="display:none;">
+                        </div>
+
+                        <div class="col-sm-6" style="margin-top: 6px;" ng-class="{ 'disable_continer' : disableSelection }">
+
+                            <select class="form-control form-group col-md-12" ng-model="bookModel.bookInfo.subjectId"
+                                    ng-options="::subject.subjectId as ::subject.subjectName for subject in subjectList"
+                                    ng-change="bookModel.bookInfo.subjectId && get_class(bookModel.bookInfo.subjectId)">
+
+                                <option value=""> ---- Select Subject ---- </option>
+                            </select>
+
+                            <select class="form-control form-group col-md-12" ng-model="bookModel.bookInfo.classId"
+                                    ng-options="::class.Id as ::class.className for class in classList">
+
+                                <option value=""> ---- Select Class ---- </option>
+                            </select>
+
+                            <select class="form-control form-group col-md-12" ng-model="bookModel.bookInfo.bookCategoryId"
+                                    ng-options="::category.id as ::category.name for category in book_categorys"
+                                    ng-change="bookModel.bookInfo.bookCategoryId && check_isBookexist(bookModel.bookInfo.bookCategoryId)"
+                                    ng-disabled="!bookModel.bookInfo.classId">
+
+                                <option value=""> ---- Select Book Category ---- </option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                <div ng-class="{ 'disable_continer' : disableForm }">
+
+                    <div class="form-group col-sm-12">
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Book Titile" class="form-control" ng-model="bookModel.bookInfo.bookTitle" name="bookTitle">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="ISBN" class="form-control" ng-model="bookModel.bookInfo.bookISBN" name="bookISBN">
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control form-group col-md-12" ng-model="bookModel.bookInfo.publisher" name="publisher"
+                                    ng-options="::publisher for publisher in book_publisherList">
+
+                                <option value=""> ---- Select Book Pusblisher ---- </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Book Page" class="form-control" ng-model="bookModel.bookInfo.bookPage" number-only name="bookPage">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Book Wheight" class="form-control" ng-model="bookModel.bookInfo.bookWheight" decimal:Only name="bookWheight">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Book Price" class="form-control" ng-model="bookModel.bookInfo.bookPrice" number_only name="bookPrice">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <div class="col-sm-12">
+                            <textarea placeholder="Enter Book Description" ng-model="bookModel.bookDetail.bookDescription" class="form-control" rows="4" name="bookDescription"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 form-group">
+                        <h4><strong> Enter Book Content : </strong></h4>
+                    </div>
+
+                    <div id="book_ContentDv">
+                        <div class="form-group col-sm-12">
+                            <div class="col-sm-4">
+                                <input type="text" placeholder="Book Content Name" class="form-control bookContent_name" value="{{ bookModel.bookContent[0].Name }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <textarea placeholder="Enter Book Content Description" class="form-control bookContent_description" rows="2">{{ bookModel.bookContent[0].Description }}</textarea>
+                            </div>
+                            <div class="col-sm-2">
+
+                                <button type="button" class="btn btn-warning" add-Book:Content_Html>
+                                    <i class="fa fa-plus" style="margin-right: 5px;"></i>
+                                    Add Content
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <edit_Book:Content-Html model="bookModel.bookContent"
+                                                ng-if="bookModel.bookContent.length !== 0">
+                        </edit_Book:Content-Html>
+                    </div>
+
+                    <div class="row" style="margin-top: 27px;">
+                        <button type="submit" class="btn btn-info pull-right">
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+
+        </form>
+
+    </div>
+    </div>
+</section>
+

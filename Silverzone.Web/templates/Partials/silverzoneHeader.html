@@ -1,0 +1,197 @@
+﻿<script type="text/javascript">
+        $(document).ready(
+            function(){
+                $("#slide-submenu").click(function () {
+                    $("#smenu").fadeToggle();
+                });
+            });
+</script>
+
+<section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+    <div class="container">
+
+        <div style="margin-top:10px;margin-left:10px;float:right;">
+            <button class="navbar-toggle" style="margin-top:0px;" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-header">
+
+            <div style="padding-left:10px;padding-top:10px;">
+
+                <span class="navbarBtn bwsprite nav-icon margin-right25" id="slide-submenu"></span>
+
+                <a href="#" id="bwheader-logo" class="bw-logo" title="Silverzone" alt="Silverzone"><img src="/Images/NewImages/sm-logo.png" style="margin-top:-20px;" /></a>
+            </div>
+
+        </div>
+
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" type="button" data-toggle="dropdown">Download App &nbsp;<i class="fa fa-arrow-circle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://play.google.com/store/apps/details?id=com.webshuttle.silverzoneolympiad" target="_blank" style="color:#408080"><h3>Android App:</h3><img src="/Images/NewImages/googleplay.png" alt="" /></a></li>
+                            <li><a href="https://itunes.apple.com/in/app/silverzone-olympiad-tutor/id1071051104?mt=8" target="_blank" style="color:#408080"><h3>iOS App:</h3><img src="/Images/NewImages/app_store.png" alt="" /></a></li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" type="button" data-toggle="dropdown">Quick Link &nbsp;<i class="fa fa-arrow-circle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group-item"><a href="#" target="_blank" style="color:#408080">Instant Download(Com,Math,Sci,Eng)</a></li>
+                            <li class="list-group-item"><a href="#" target="_blank" style="color:#408080">Instant Download(french,gk,hindi,itho,isso)</a></li>
+                            <li class="list-group-item"><a href="#" target="_blank" style="color:#408080">Register your school</a></li>
+                            <li class="list-group-item"><a href="#" target="_blank" style="color:#408080">Subscribe for updates</a></li>
+                            <li class="list-group-item"><a ui-sref="book_list" style="color:#408080">Books</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#" style="margin-top:-6px;" class="smoothScroll">Results&nbsp;<i class="fa fa-sign-in"></i></a></li>
+                <li class="dropdown" ng-controller="cartDetailsController as cartDetail">
+                    <a class="dropbtn" href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span style="margin-left: 8px;">Item(s) : {{ (!Newshopping && cart.Items.length) || 0 }}</span>
+                    </a>                                                  <!--  if(true) then run > but we r doing opposite > if(false) then Run  -->
+                    <div class="dropdown-content" ng-if="(cart.Items.length > 0) && (!show_cartDetail_popUp())">
+
+                        <div id="cartItemsContainer" ng-scrollbars>
+                            <!-- ng-scrollbars is directive to show scrollbar -->
+                            <!--  cartItemsList is a rootscope variable hence not use cart.cartItemsList  -->
+                            <div style="border-bottom: 1px solid #6f4242;display: table;padding: 10px 0px 10px 0px;" ng-repeat="item in cart.Items track by $index">
+                                <div class="col-sm-3">
+                                    <a ui-sref="book_details({bookId : item.bookId, bookTitle : ((item.bookTitle | split: ':' : 0) | stringFilter) })"
+                                       ng-if="item.bookType === 1"
+                                       class="thumbnail" style="padding: 5px !important;">
+                                        <img ng-src="{{ imgBase + item.bookImage}}" class="img-responsive" style="margin: 0 auto;height: 50px;width: 42px;">
+                                    </a>
+
+                                    <a show-Bundle:Modal bundleId="{{item.bookId}}"
+                                       ng-if="item.bookType === 2"
+                                       class="thumbnail" style="padding: 5px !important;">
+                                        <img ng-src="{{ imgBase + item.bookImage}}" class="img-responsive" style="margin: 0 auto;height: 50px;width: 42px;">
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-7" style="padding: 0 !important; display: table;table-layout: fixed;">
+
+                                    <!-----  For Book  ----->
+                                    <h5 style="color: #848484; font-size: 0.9em; margin: 2px !important; cursor:pointer;" ng-bind="item.bookTitle"
+                                        ng-style="isHover" ng-mouseover="isHover = {'color': '#458ecc'}" ng-mouseleave="isHover = {'color': '#848484'}"
+                                        ng-click="cartDetail.goto_bookDetail(item.bookId)"
+                                        ng-if="item.bookType === 1"></h5>
+
+                                    <!-----  For Bundle  ----->
+                                    <h5 style="color: #848484; font-size: 0.9em; margin: 2px !important; cursor:pointer;" ng-bind="item.bookTitle"
+                                        ng-style="isHover" ng-mouseover="isHover = {'color': '#458ecc'}" ng-mouseleave="isHover = {'color': '#848484'}"
+                                        show-Bundle:Modal bundleId="{{item.bookId}}"
+                                        ng-if="item.bookType === 2"></h5>
+
+                                    <!--  if condison true then only ng-style will apply otherwise or condison  -->
+
+                                    <div style="margin-top: 12px;">
+                                        <button class="btn btn-default btn-guests btn-guests-minus btn-sm" style="font-size: 7px !important;" ng-click="cartDetail.addCartqty(true, $index)">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                                <i class="fa fa-plus fa-stack-1x"></i>
+                                            </span>
+                                        </button>
+                                        <input type="text" id="book_cart_count" style="width: 60px;text-align: center;" maxlength="2" ng-model="item.bookQty" ng-keyup="cartDetail.updateQty($index)">
+                                        <button class="btn btn-default btn-guests btn-guests-plus btn-sm" style="font-size: 7px !important;" ng-click="cartDetail.addCartqty(false, $index)">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                                <i class="fa fa-minus fa-stack-1x"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-2" style="padding: 0; text-align:center;">
+                                    <p><i class="fa fa-inr"></i> {{ item.bookTotalPrice | number : 2 }} </p>
+                                    <p><i class="fa fa-trash" ng-click="cartDetail.removeItem($index)" style="cursor: pointer;color: #00B9F5!important;"></i></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-offset-2" style="padding: 8px;">
+                            <input type="button" class="btn btn-info col-md-12" value="Proceed" ng-click="cartDetail.cart_proceedModal()">
+                        </div>
+
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <!--  click fx 'Show_signInModal' will call only if user is not login  -->
+                    <a href="#" class="dropbtn ng-binding" ng-click="!user.is_login && Show_signInModal()">
+                        <img class="nav-user-photo img-circle" ng-src="{{ imgBase + user.currentUser.ProfilePic || '/Images/profile-img.jpg' }}" alt="Profile Pic" style="height: 40px; width: 40px;" ng-if="user.is_login">
+                        <span class="user-info" style="font-size: 13px; font-weight: bold;" ng-bind="user.is_login ? user.currentUser.UserName || 'My Account' : 'Login'"> </span>
+                    </a>
+
+                    <div class="dropdown-content" style="right: -20px;" ng-if="user.is_login">
+                        <a href="#" ui-sref="user_profile">Account </a>
+                        <a href="#"> Orders </a>
+                        <a href="#"> Dashboard </a>
+                        <a href="#" ng-click="user_logOut()"> logout </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <span>
+        <div class="row" id="smenu" style="display:none;top:0;left:0;position:relative;z-index:99999;">
+            <div class="col-md-3">
+                <!-- column1, Vertical Dropdown Menu -->
+                <span href="#" class="list-group-item active">
+                    Menu
+
+                </span>
+                <div id="main-menu" class="list-group">
+                    <a href="#" class="list-group-item">Home</a>
+                    <a href="#" class="list-group-item">Freelance</a>
+                    <a href="#oly-menu" class="list-group-item" data-toggle="collapse" data-parent="#main-menu">Olympiads <span class="caret"></span></a>
+                    <div class="collapse list-group-level1" id="oly-menu">
+                        <a href="informatics_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iIO(Informatics Olympiad)</a>
+                        <a href="mathematics_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iOM(Mathematics Olympiad)</a>
+                        <a href="science_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iOS(Science Olympiad)</a>
+                        <a href="english_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iOEL(English Language Olympiad)</a>
+                        <a href="french_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iFLO(French Language Olympiad)</a>
+                        <a href="hindi_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">ABHO(Hindi Olympiad)</a>
+                        <a href="gk_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">SKGKO(GK Olympiad)</a>
+                        <a href="talenthunt_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iTHO(Talent Hunt Olympiad)</a>
+                        <a href="socialstudies_olympiad.html" target="_blank" class="list-group-item" data-parent="#sub-menu">iSSO(Social Studies Olympiad)</a>
+                        <!--<a href="#sub-sub-menu" class="list-group-item" data-toggle="collapse" data-parent="#sub-menu">Sub Item 3 <span class="caret"></span></a>
+                        <div class="collapse list-group-level2" id="sub-sub-menu">
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 1</a>
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 2</a>
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 3</a>
+                        </div>-->
+                    </div>
+
+                    <a href="#" class="list-group-item">Downloads</a>
+                    <a href="#" class="list-group-item">Media</a>
+                    <a href="#" class="list-group-item">Gallery</a>
+                    <a href="#sub-menu" class="list-group-item" data-toggle="collapse" data-parent="#main-menu">Winners<span class="caret"></span></a>
+                    <div class="collapse list-group-level1" id="sub-menu">
+                        <a href="#" class="list-group-item" data-parent="#sub-menu">First Level</a>
+                        <a href="#" class="list-group-item" data-parent="#sub-menu">Second  Level</a>
+                        <a href="#" class="list-group-item" data-parent="#sub-menu">Third Level</a>
+
+                        <!--<a href="#sub-sub-menu" class="list-group-item" data-toggle="collapse" data-parent="#sub-menu">Sub Item 3 <span class="caret"></span></a>
+                        <div class="collapse list-group-level2" id="sub-sub-menu">
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 1</a>
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 2</a>
+                            <a href="#" class="list-group-item" data-parent="#sub-sub-menu">Sub Sub Item 3</a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+</section>
+

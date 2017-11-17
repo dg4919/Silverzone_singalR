@@ -1,0 +1,66 @@
+﻿<div class="panel panel-info">
+
+    <div class="panel-heading">
+        Pending Purchase Order List
+    </div>    
+
+    <div class="text-success"
+         ng-if="!poList"
+         style="padding: 15px;height: 300px;">
+        <h3> Great, there is no pending purchase order found here :) </h3>
+    </div>
+
+    <div ng-if="poList">
+        <div class="col-md-12" style="margin-top: 16px; border-bottom: 1px solid #ddd; margin-bottom: 18px;">
+
+            <div class="col-sm-offset-2 col-md-4">
+                <label class="control-label">Source: </label>
+                <h4 ng-bind="poList.srcName"> </h4>
+            </div>
+
+
+            <div class="col-md-4">
+                <label class="control-label">Book: </label>
+                <h4 ng-bind="poList.Book.bookName"> </h4>
+            </div>
+            
+        </div>
+
+            <table class="table table-striped responsive"
+                   wt-responsive-table>
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>PO Number</th>
+                        <th>PO Date</th>
+                        <th>Order Quantity</th>
+                        <th>Recieved Quantity</th>
+                        <th>Pending Quantity</th>
+                        <th>Adjust Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entity in poList.POdetails">
+                        <!--ng-if="entity.poQty - entity.stockQty > 0">-->
+                        <td>{{ $index+1 }}</td>
+                        <td ng-bind="::entity.PO_Number"></td>
+                        <td ng-bind="::entity.PO_Date | dateFormat: 'DD/MM/YYYY'"></td>
+                        <td ng-bind="::entity.poQty"></td>
+                        <td ng-bind="::entity.stockQty"></td>
+                        <td ng-bind="entity.poQty - entity.stockQty"></td>
+                        <td>
+                            <p ng-if="entity.is_Adjusted">Adjusted</p>
+                            <a href="#"
+                               ng-if="entity.poQty - entity.stockQty > 0 && !entity.is_Adjusted"
+                               ng-click="adjustEntry(entity)">
+                                Adjust
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.css" rel="stylesheet" />
+
+    <style>
+        .table > tbody > tr > td {
+            padding-top: 0px !important;
+        }
+
+        .table > tbody > tr > th {
+            padding: 3px !important;
+        }
+
+        p {
+            margin: 0px !important;
+            font-size: 12px !important;
+        }
+
+        .panel-heading {
+            border-bottom: 1px solid #333 !important;
+            padding-left: 6px !important;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid" id="myId" style="padding: 0px !important;">
+
+        <div class="row text-center">
+            <h3> Invoice </h3>
+            <div id="companyInfo"></div>
+        </div>
+
+        <div id="divCopy">
+            <h3>
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+            </h3>
+            
+            <div style="margin-top: 20px;width: 900px;display: inline-block;">
+                <div style="width:485px; float: left;">
+                    <div class="panel panel-default" style="border: 1px solid #333;">
+                        <div class="panel-body" style="padding: 5px !Important;">
+                            <div class="col-md-12 col-sm-2" style="padding: 0px;" id="AdressInfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 385px;float: left;margin-left: 10px" id="packetDetail">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-9">
+                    <div class="panel panel-primary" style="border: 1px solid #000;">
+
+                        <div class="panel-body" style="padding: 5px !important">
+                            <table class="table panel-primary" style="margin-bottom: 0px !important">
+                                <tbody id="item_container" style="font-size: 12px;"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="divCopy">
+            <h3>
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+            </h3>
+            <div style="margin-top: 20px;width: 900px;display: inline-block;">
+                <div style="width:485px; float: left;">
+                    <div class="panel panel-default" style="border: 1px solid #333;">
+                        <div class="panel-body" style="padding: 5px !Important;">
+                            <div class="col-md-12 col-sm-2" style="padding: 0px;" id="AdressInfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 385px;float: left;margin-left: 10px" id="packetDetail">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-9">
+                    <div class="panel panel-primary" style="border: 1px solid #000;">
+
+                        <div class="panel-body" style="padding: 5px !important">
+                            <table class="table panel-primary" style="margin-bottom: 0px !important">
+                                <tbody id="item_container" style="font-size: 12px;"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="divCopy">
+            <h3>
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ---------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+                <img src="/images/scissors.png" style="height: 10px;">
+                ----------
+            </h3>
+            <div style="margin-top: 20px;width: 900px;display: inline-block;">
+                <div style="width:485px; float: left;">
+                    <div class="panel panel-default" style="border: 1px solid #333;">
+                        <div class="panel-body" style="padding: 5px !Important;">
+                            <div class="col-md-12 col-sm-2" style="padding: 0px;" id="AdressInfo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 385px;float: left;margin-left: 10px" id="packetDetail">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-9">
+                    <div class="panel panel-primary" style="border: 1px solid #000;">
+
+                        <div class="panel-body" style="padding: 5px !important">
+                            <table class="table panel-primary" style="margin-bottom: 0px !important">
+                                <tbody id="item_container" style="font-size: 12px;"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="div_schoolPending_POs" style="margin-top: 30px; display: none;">
+            <div class="row" style="margin-top: 20px;">
+                <p> Hi, we have some pending order of your, we will provide it you ASAP :) </p>
+                <p> Below is list of your pending orders.. </p>
+                <div class="col-md-9">
+                    <div class="panel panel-primary" style="border: 1px solid #000;">
+
+                        <div class="panel-body" style="padding: 5px !important">
+                            <table class="table panel-primary" style="margin-bottom: 0px !important">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>          
+                                        <th>Book</th>           
+                                        <th>PO Number</th>      
+                                        <th>Quantity</th> 
+                                    </tr>
+                                </thead>    
+                                <tbody id="pending_item_container" style="font-size: 12px;">
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+</body>
+</html>

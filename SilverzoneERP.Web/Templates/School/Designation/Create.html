@@ -1,0 +1,102 @@
+﻿<form name="frm" ng-submit="frm.$valid && Submit()" >
+    <div class="header-section">
+        <div class="menu-right">
+            <div class="user-panel-top">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                        <strong>Designation</strong>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="pull-right">
+                            <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                <i class="fa fa-saved"></i>
+                                <strong>{{Designation.Id==undefined?'Save':'Update'}}</strong>
+                            </button>
+                            <button class="btn btn-default" ng-click="Active_Deactive()" ng-if="Changed" type="button">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>
+
+
+                            <select ng-hide="isEdit" style="color:black;" ng-model="selectedIndex" ng-change="SelectedIndexChanged(selectedIndex)">
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                            </select>
+                            <a ng-if="Permission.Add" ng-hide="isEdit" href="#" style="text-decoration:none;" ng-click="Add()"><i class="fa fa-plus"></i></a>
+                        </span>
+                    </div>
+                    <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="sz_card">
+        <div class="row">
+            <!--Start Create Section-->
+            <div ng-show="isEdit">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group col-md-6">
+                            <label>Designation Name:</label>
+                            <input type="text"
+                                   name="DesgName"
+                                   ng-model="Designation.DesgName"
+                                   maxlength="100"
+                                   class="form-control"
+                                   required
+                                   autofocus>
+                            <span ng-if="frm.DesgName.$invalid && frm.DesgName.$dirty && !frm.DesgName.$pristine" class="error">
+                                Designation Name is required.
+                            </span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Designation Description:</label>
+                            <textarea type="text"
+                                      name="DesgDescription"
+                                      ng-model="Designation.DesgDescription"
+                                      maxlength="500"
+                                      class="form-control">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Create Section-->
+                        
+            <!--Start List Section-->
+            <div ng-hide="isEdit">
+                <div class="col-md-12">
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Designation Name</th>
+                                <th>Designation Description</th>                                
+                                <th ng-if="Permission.Edit">Edit</th>
+                                <th ng-if="Permission.Edit">IsActive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in DesignationList">
+                                <td>{{$index+1}}</td>
+                                <td>{{data.DesgName}}</td>
+                                <td>{{data.DesgDescription}}</td>                                
+                                <td ng-if="Permission.Edit">
+                                    <a href="#" ng-click="Edit(data)"> <i class="fa fa-pencil"></i></a>
+                                </td>
+                                <td ng-if="Permission.Edit">
+                                    <input type="checkbox" ng-model="data.Status" ng-change="IsActive(data.Id)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--End List Section-->
+        </div>
+    </div>   
+</form>

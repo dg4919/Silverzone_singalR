@@ -1,0 +1,100 @@
+﻿
+<div class="panel-default">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Add a new shipping address</h3>
+        <button type="button" class="close" style="margin-top: -20px;">
+            <span aria-hidden="true" ng-click="close()">× </span>
+        </button>
+    </div>
+
+    <div class="panel-body">
+        <form name="user_shipping_Form" class="form-horizontal" ng-submit="save_user_shipping_Address(user_shipping_Form)" ng-validate="validationOptions">
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="userName" ng-model="shippingInfo.Username">
+                </div>
+            </div>
+
+            <div class="form-group" style="position: relative;">
+                <label class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="email" ng-model="shippingInfo.Email" style="padding-right: 70px" ng-disabled="shippingInfo.is_disableEmail">
+                </div>
+                <span style="position: absolute;right: 16%;top: 6px;">
+                    <a href="#" ng-click="shippingInfo.is_disableEmail = false" ng-show="shippingInfo.is_disableEmail">Change?</a>
+                </span>
+            </div>
+
+            <div class="form-group" style="position: relative;">
+                <label class="col-sm-4 control-label">Mobile</label>
+
+                <div class="col-sm-8">
+                    <label style="position: absolute;top: 7px;left: 23px;">+91</label>
+                    <input type="text" class="form-control" style="padding-right: 70px;padding-left: 36px;" name="mobile" ng-model="shippingInfo.Mobile" number:Only maxlength="10" ng-disabled="shippingInfo.is_disableMobile">
+                    <span style="position: absolute;right: 24%;top: 6px;">
+                        <!--  Use ng-click="!shippingInfo.is_disableMobile" for toggle disable option  -->
+                        <a href="#" ng-click="shippingInfo.is_disableMobile = false" ng-show="shippingInfo.is_disableMobile">Change?</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Pincode</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="shipping_pincode" ng-model="shippingInfo.PinCode" number-Only ng-blur="get_userLocation_by_pinCode(shippingInfo.PinCode)" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Address</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="4" style="resize: none;" name="shipping_adress" ng-model="shippingInfo.Address"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Country</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="shipping_country"
+                           value="{{ shippingInfo.Country === 1 ? 'India' : 'Outside India' }}"
+                           disabled ng-show="bindClass" />
+                    <div ng-show="!bindClass">
+                        <label class="radio-inline col-sm-6">
+                            <input type="radio" name="optradio" ng-model="shippingInfo.Country" value="1">India
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" ng-model="shippingInfo.Country" value="2">Outside India
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="is_show">
+                <label class="col-sm-4 control-label">City</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="shipping_city" ng-model="shippingInfo.City" />
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="is_show">
+                <label class="col-sm-4 control-label">State</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="shipping_state" ng-model="shippingInfo.State" />
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 35px;">
+                <div class="pull-right" style="margin-right: 15px;">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+

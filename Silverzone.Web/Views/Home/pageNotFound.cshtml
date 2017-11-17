@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="Silverzone_app">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>page_notfound</title>
+    @*  Favicon icon  *@
+    <link rel="icon" type="image/png" sizes="96x96" href="/Images/favicon-96x96.png">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> My ASP.NET Application </title>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    @Styles.Render("~/Content/Site/css")
+
+    @Scripts.Render("~/bundles/Site/jqueryBundle")
+    @Scripts.Render("~/bundles/Site/AngularBundle")
+    @Scripts.Render("~/bundles/Site/AppBundle")
+
+</head>
+<body ng-controller="site_MasterController">
+    <div id="header" ng-include="'/templates/Partials/silverzoneHeader.html'"></div>
+
+    <div class="container">
+        <div class="row" style="height: 420px; margin-top: 32px;border: 1px solid #ddd;">
+            <div style="margin: 10% 41% 3%;">
+                <h1> Oops !</h1>
+                <h3> page is not found :(</h3>
+            </div>
+
+            <div style="text-align: center;">
+                <a ui-sref="book_list" class="btn btn-warning">Go to HOME</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

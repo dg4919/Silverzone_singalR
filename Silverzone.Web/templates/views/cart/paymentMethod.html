@@ -1,0 +1,73 @@
+﻿<div id="cart_detailContainer">
+  
+      <div class="row" 
+           ng-if="cart.quizPoints >= 100"
+           ng-init="quizPrice = cart.quizPoints/10">
+        <h4>            <!-- Add new property to rootscope value -->
+          <input type="checkbox" ng-model="cart.quizPoint_isChecked" />
+           Congrats! you have ₹{{ quizPrice }} <small>( {{cart.quizPoints}}/10 of quiz points )</small>
+        </h4>         
+          <div> Total Amount: 
+          <b ng-bind="(cart.quizPoint_isChecked ? (cart.total_Amount - quizPrice) : cart.total_Amount) | number : 2"> 250 </b>
+          </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <h3>Payment Method  <i class="fa fa-arrow-circle-o-right"></i></h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-10 col-sm-2">
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Online</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-sm-2">
+                                <h3>You can pay online using:</h3>
+                                <p>
+                                    <strong>Debit Card</strong><br>
+                                    <strong>Credit Card</strong><br>
+                                    <strong>Net Banking</strong><br>
+
+                                </p>
+                                <div class="text-right"><input type="button" value="Pay Now" class="btn btn-primary"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Offline</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-sm-2">
+                                <h3>You can pay Offline through:</h3>
+                                <p>
+                                    <strong>Cheque</strong><br>
+                                    <strong>Demand Draft</strong><br>
+                                    <strong>Cash Deposit</strong><br>
+
+                                </p>
+                                <div class="text-right">
+                                    <a href="#" class="btn btn-primary" ui-sref="payment_summary({payment_mode : 2})"> Proceed </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+  
+</div>

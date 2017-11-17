@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilverzoneERP.Entities</RootNamespace>
+    <AssemblyName>SilverzoneERP.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="enums\Inventory\inventoryType.cs" />
+    <Compile Include="enums\School\EventType.cs" />
+    <Compile Include="enums\School\ModeType.cs" />
+    <Compile Include="enums\Web\bookType.cs" />
+    <Compile Include="enums\Web\countryType.cs" />
+    <Compile Include="enums\Web\CouponType.cs" />
+    <Compile Include="enums\Web\genderType.cs" />
+    <Compile Include="enums\Web\orderSourceType.cs" />
+    <Compile Include="enums\Web\orderStatusType.cs" />
+    <Compile Include="enums\Web\orderType.cs" />
+    <Compile Include="enums\Web\quizType.cs" />
+    <Compile Include="enums\Web\resultLevel.cs" />
+    <Compile Include="enums\Web\roleType.cs" />
+    <Compile Include="enums\Web\verficationType.cs" />
+    <Compile Include="enums\Web\verificationMode.cs" />
+    <Compile Include="image_urlResolver.cs" />
+    <Compile Include="Models.Common\AuditableEntity.cs" />
+    <Compile Include="Models.Common\Entity.cs" />
+    <Compile Include="Models.Common\IAuditableEntity.cs" />
+    <Compile Include="Models.Common\IEntity.cs" />
+    <Compile Include="Models\Common\Class.cs" />
+    <Compile Include="Models\Common\Courier.cs" />
+    <Compile Include="Models\Common\ErrorLogs.cs" />
+    <Compile Include="Models\Common\Event.cs" />
+    <Compile Include="Models\Common\Permission.cs" />
+    <Compile Include="Models\Common\Role.cs" />
+    <Compile Include="Models\Common\RolePermission.cs" />
+    <Compile Include="Models\Common\UserCommon.cs" />
+    <Compile Include="Models\Common\UserLogs.cs" />
+    <Compile Include="Models\Inventory\InventorySourceDetail.cs" />
+    <Compile Include="Models\Inventory\InventorySource.cs" />
+    <Compile Include="Models\Inventory\PurchaseOrder.cs" />
+    <Compile Include="Models\Inventory\Stock.cs" />
+    <Compile Include="Models\School\BlackListedSchool.cs" />
+    <Compile Include="Models\School\City.cs" />
+    <Compile Include="Models\School\Contact.cs" />
+    <Compile Include="Models\School\CoOrdinatingTeacher.cs" />
+    <Compile Include="Models\School\CoOrdinator.cs" />
+    <Compile Include="Models\School\Country.cs" />
+    <Compile Include="Models\School\Designation.cs" />
+    <Compile Include="Models\School\DipositOnBank.cs" />
+    <Compile Include="Models\School\District.cs" />
+    <Compile Include="Models\School\DrownOnBank.cs" />
+    <Compile Include="Models\School\EnrollmentOrder.cs" />
+    <Compile Include="Models\School\ERPuser.cs" />
+    <Compile Include="Models\School\EventManagement.cs" />
+    <Compile Include="Models\School\EventYear.cs" />
+    <Compile Include="Models\School\EventYearClass.cs" />
+    <Compile Include="Models\School\ExaminationDate.cs" />
+    <Compile Include="Models\School\FeePayment.cs" />
+    <Compile Include="Models\School\FormManagement.cs" />
+    <Compile Include="Models\School\InFavourOf.cs" />
+    <Compile Include="Models\School\School.cs" />
+    <Compile Include="Models\School\SchoolCategory.cs" />
+    <Compile Include="Models\School\SchoolEvent.cs" />
+    <Compile Include="Models\School\SchoolGroup.cs" />
+    <Compile Include="Models\School\SchoolLog.cs" />
+    <Compile Include="Models\School\SchoolRemarks.cs" />
+    <Compile Include="Models\School\SchoolShippingAddress.cs" />
+    <Compile Include="Models\School\State.cs" />
+    <Compile Include="Models\School\StudentAttendance.cs" />
+    <Compile Include="Models\School\StudentEntry.cs" />
+    <Compile Include="Models\School\Title.cs" />
+    <Compile Include="Models\School\UserPermission.cs" />
+    <Compile Include="Models\School\Zone.cs" />
+    <Compile Include="Models\Web\OrderStatusReason.cs" />
+    <Compile Include="Models\Web\Packet_BundleInfo.cs" />
+    <Compile Include="Models\Web\Package_Master.cs" />
+    <Compile Include="Models\Web\Banner.cs" />
+    <Compile Include="Models\Web\Book.cs" />
+    <Compile Include="Models\Web\BookBundle.cs" />
+    <Compile Include="Models\Web\BookBundleDetails.cs" />
+    <Compile Include="Models\Web\BookCategory.cs" />
+    <Compile Include="Models\Web\BookContent.cs" />
+    <Compile Include="Models\Web\BookDetail.cs" />
+    <Compile Include="Models\Web\BookDispatch.cs" />
+    <Compile Include="Models\Web\BookReview.cs" />
+    <Compile Include="Models\Web\ItemTitle_Master.cs" />
+    <Compile Include="Models\Web\classSubject.cs" />
+    <Compile Include="Models\Web\Coupons.cs" />
+    <Compile Include="Models\Web\CourierMode.cs" />
+    <Compile Include="Models\Web\Dispatch.cs" />
+    <Compile Include="Models\Web\Enquiry.cs" />
+    <Compile Include="Models\Web\EventCodeImagePath.cs" />
+    <Compile Include="Models\Web\FeedBack.cs" />
+    <Compile Include="Models\Web\ForgetPassword.cs" />
+    <Compile Include="Models\Web\Freelance.cs" />
+    <Compile Include="Models\Web\GenericOTP.cs" />
+    <Compile Include="Models\Web\MasterAcademicYear.cs" />
+    <Compile Include="Models\Web\MedalImage.cs" />
+    <Compile Include="Models\Web\MetaTag.cs" />
+    <Compile Include="Models\Web\OlympiadList.cs" />
+    <Compile Include="Models\Web\Olympiads.cs" />
+    <Compile Include="Models\Web\Order.cs" />
+    <Compile Include="Models\Web\OrderDetail.cs" />
+    <Compile Include="Models\Web\Profile.cs" />
+    <Compile Include="Models\Web\QPDispatch.cs" />
+    <Compile Include="Models\Web\Query.cs" />
+    <Compile Include="Models\Web\QuickLink.cs" />
+    <Compile Include="Models\Web\QuizQuestion.cs" />
+    <Compile Include="Models\Web\QuizQuestionOptions.cs" />
+    <Compile Include="Models\Web\Result.cs" />
+    <Compile Include="Models\Web\StudentRegistration.cs" />
+    <Compile Include="Models\Web\Subject.cs" />
+    <Compile Include="Models\Web\TeacherDetail.cs" />
+    <Compile Include="Models\Web\TeacherEvent.cs" />
+    <Compile Include="Models\Web\UpdateSection.cs" />
+    <Compile Include="Models\Web\User.cs" />
+    <Compile Include="Models\Web\UserQuizPoints.cs" />
+    <Compile Include="Models\Web\UserShippingAddress.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Inventory\DispatchViewModel.cs" />
+    <Compile Include="ViewModel\Inventory\InventoryViewModel.cs" />
+    <Compile Include="ViewModel\School\AccessTokenViewModel.cs" />
+    <Compile Include="ViewModel\School\StudentAttendanceViewModel.cs" />
+    <Compile Include="ViewModel\School\UserViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\bookViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\CounponsViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\dispatchViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\QuizViewModel.cs" />
+    <Compile Include="ViewModel\Web\Admin\userViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\AccessTokenViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\AccountViewModels.cs" />
+    <Compile Include="ViewModel\Web\Site\BannerViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\BookViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\emailViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\orderDetailViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\OrderViewModel.cs" />
+    <Compile Include="ViewModel\Web\Site\UserProfileViewModel.cs" />
+    <Compile Include="ViewModel\Web\TeacherApp\QueryViewModel.cs" />
+    <Compile Include="ViewModel\Web\TeacherApp\TeacherAppViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

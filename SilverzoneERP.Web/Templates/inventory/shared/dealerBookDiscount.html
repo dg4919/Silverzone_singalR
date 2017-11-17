@@ -1,0 +1,60 @@
+﻿
+    <div class="col-sm-5">
+       
+         <div class="form-group col-md-6" style="padding-right: 0px !important;">
+            <label for="inputEmail3" class="control-label col-sm-12">Book Category</label>
+            <div class="col-sm-12">
+                <select class="form-control1" name="category"
+                        ng-model="discountModel.category"
+                        ng-options="::category.name for category in categoryList">
+                    <option value=""> --- Select Source --- </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3" style="padding: 0px !important;">
+            <label class="control-label col-sm-12">Discount</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control1" 
+                       ng-model="discountModel.amount">
+            </div>
+        </div>
+
+        <div class="form-group col-md-3" style="margin-top: 27px;">
+            <a href="#"
+               class="btn btn-primary btn-sm"
+               ng-click="discountModel.category && discountModel.amount && addDsicount()"
+               ng-disabled="!discountModel.category || !discountModel.amount"
+               ng-bind="isEdit ? 'UPDATE' : 'ADD'">
+            </a>
+        </div>
+
+    </div>
+
+    <div class="col-sm-6">
+        <table ng-if="$ctrl.modelList.length"
+               class="table table-striped responsive"
+               wt-responsive-table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Book Category</th>
+                    <th>Percentage</th>
+                    <th>Actions</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in $ctrl.modelList">
+                    <td>{{ $index+1 }}</td>
+                    <td ng-bind="entity.category.name"></td>
+                    <td ng-bind="entity.amount"></td>
+                    <td>
+                        <action-icons entity="entity"
+                                      on_update="EditData(entity)"
+                                      on-delete="DeleteData(entity)">
+                        </action-icons>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

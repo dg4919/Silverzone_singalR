@@ -1,0 +1,100 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Orders</div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row text-center" style="margin-top: -20px;padding: 25px;">
+                        <div class="col-md-7">
+                            <h4>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.type" value="0">Without Wheight</label>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.type" value="1"> Without Verified</label>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.type" value="2"> Verified Wheight</label>
+                            </h4>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="input-group date" id="myDatepicker" data-provide="datepicker">
+                                <input type="text" class="form-control1" ng-model="searchModel.orderDate">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" ng-click="searchPacket()">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+                      
+                    </div>
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Packet ID</th>
+                                    <th>Create By</th>
+                                    <th>Create Date</th>
+                                    <th>Net Wheight</th>
+                                    <th>Bundle Wheight</th>
+                                    <th>Detail</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="packet in packet_list" ng-init="packet.wheight ? packet.hasAdd = true : packet.hasAdd = false">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ packet.packetNumber }}</td>
+                                    <td>{{ ::packet.createBy }}</td>
+                                    <td>{{ ::packet.createDate | dateFormat: 'DD/MM/YYYY hh:mm a' }}</td>
+                                    <td ng-bind="::packet.bookWheight"></td>
+                                    <td ng-bind="::packet.bundleWheight"></td>
+                                    <td>
+                                        <p ng-repeat="packetInfo in packet.packet_bundleList">
+                                        {{ packetInfo.Name }} ({{ packetInfo.Netwheight }})
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                ng-click="addWheight(packet)"
+                                                ng-show="srchType === 0">
+                                            {{ packet.packet_bundleList.length ? 'Edit' : 'Add' }} Wheight
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-default"
+                                                ng-click="verifyOrder(packet.Id)"
+                                                ng-show="srchType === 1">
+                                            Verify Packet
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-warning"
+                                                ng-click="printBundle(packet)"
+                                                ng-show="srchType === 2">
+                                            <i class="fa fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

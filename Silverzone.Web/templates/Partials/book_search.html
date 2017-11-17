@@ -1,0 +1,41 @@
+﻿
+<div class="panel panel-default filterable" ng-controller="book_search_Controller">
+    <div class="panel-heading">
+        <h3 class="panel-title">Search Books</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <select class="form-control" ng-model="search_model.selected_class"
+                    ng-options="::class.Id as ::class.className for class in classList"
+                    ng-change="search_model.selected_class && get_subjects(search_model.selected_class)">
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">            <!--  track by use to assign in value of option  -->
+            <select class="form-control" ng-model="search_model.selected_subject"
+                    ng-options="::subject.subjectId as ::subject.subjectName for subject in subjectList">
+                    <!--ng-change="search_model.selected_subject && get_books(search_model.selected_subject)"-->
+
+                <option value="">Select Subject</option>
+            </select>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div isteven-multi-select input-model="book_categorys"
+                 output-model="search_model.book_category_listId" button-label="name"
+                 item-label="name" tick-property="ticked"
+                 helper-elements="" output-properties="id ticked"
+                 placeholder="Select Book Category">
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12" style="margin-left: -10px;">
+            <button class="btn btn-danger" ng-click="searchBooks(); selecteBookType = 0">
+                <i class="fa fa-search"></i>
+                Search
+            </button>
+        </div>
+    </div>
+
+</div>

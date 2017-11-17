@@ -1,0 +1,46 @@
+﻿
+        <div class="modal-header">
+            <h3 class="box-title">Add Books Category</h3>
+        </div>
+
+        <div class="modal-body">
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="Category Name" ng-model="book_category.Name" />
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-3 control-label">Category Description</label>
+                    <div class="col-sm-9">
+                        <textarea rows="4" class="form-control" placeholder="Category Description" ng-model="book_category.Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Coupon Name</label>
+                    <div class="col-sm-9">
+                        <!-- coupon.Id as will return Id only instead of coupon model  -->
+                        <select class="form-control" ng-model="book_category.CouponId"
+                                ng-options="::coupon.Id as ::coupon.Coupon_name for coupon in couponList">
+
+                            <option value=""> --- Select Coupon --- </option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-3 control-label">Status</label>
+                    <div class="col-sm-9">
+                        <switch class="green" ng-model="book_category.Status"></switch>
+                        <!--<switch id="enabled" name="enabled" ng-model="enabled" on="On" off="Off" class="green"></switch>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="submit_data(book_category)">Save</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>

@@ -1,0 +1,53 @@
+﻿
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-offset-2 col-md-8">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Books Category</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form name="book_categoryForm" class="form-horizontal" ng-submit="submit_data(book_categoryForm)" ng-validate="validationOptions">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Category Name" name="category_name" ng-model="book_category.Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Category Description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="4" class="form-control" placeholder="Category Description" name="category_description" ng-model="book_category.Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Discount Code</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-model="book_category.CouponId"
+                                        ng-options="::coupon.Id as ::coupon.Coupon_name for coupon in couponList track by ::coupon.Id">
+
+                                    <option value=""> --- Select Coupon --- </option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <a class="btn btn-default" ui-sref="book_category_list"> Book Category List </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                        
+                            Add Cateogry
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

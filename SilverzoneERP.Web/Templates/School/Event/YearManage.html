@@ -1,0 +1,146 @@
+﻿<form name="frm"
+      ng-submit="frm.$valid && Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="header-section">
+        <div class="menu-right">
+            <div class="user-panel-top">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                        <strong>Event Year</strong>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="pull-right">
+                            <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                <i class="fa fa-saved"></i>
+                                <strong>{{EventYear.Id==undefined?'Save':'Update'}}</strong>
+                            </button>
+                            <button class="btn btn-default" ng-click="Active_Deactive()" ng-if="Changed" type="button">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>
+
+
+                            <select ng-hide="isEdit" style="color:black;" ng-model="selectedIndex" ng-change="SelectedIndexChanged(selectedIndex,selectedEventYear)">
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                            </select>
+                            <select ng-model="selectedEventYear"
+                                    ng-hide="isEdit"
+                                    style="color:black;"
+                                    ng-change="SelectedIndexChanged(selectedIndex,selectedEventYear)"
+                                    ng-options="data.EventYear as data.EventYear for data in EventYearList_Year | unique:'EventYear'"></select>
+
+                            <a ng-if="Permission.Add" ng-hide="isEdit" href="#" style="text-decoration:none;" ng-click="Add()"><i class="fa fa-plus"></i></a>
+                        </span>
+                    </div>
+                    <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>    
+    <div class="sz_card">
+        <div class="row">
+           
+            <!--Start Create Section-->
+            <div ng-show="isEdit">
+                <div class="col-lg-12">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-6">
+                            <label>Event:</label>
+                            <select class="form-control"
+                                    name="EventId"
+                                    ng-model="EventYear.EventId"
+                                    ng-options="obj.Id as obj.EventName +' ('+obj.EventCode+')' for obj in Event_Class_List.Event">
+                                <option value="">------------Select Event------------</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Event Year:</label>
+                            <select class="form-control"
+                                    name="Event_Year"
+                                    ng-model="EventYear.Event_Year"
+                                    ng-options="obj as obj for obj in YearList"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group col-md-3">
+                            <label>Event Fee:</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="EventFee"
+                                   ng-model="EventYear.EventFee"
+                                   only-numbers />
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label>Retain Fee:</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="RetainFee"
+                                   ng-model="EventYear.RetainFee"
+                                   only-numbers />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2" ng-repeat="data in Event_Class_List.Class">
+                            <label>
+                                <input type="checkbox" ng-model="data.IsChecked" />
+                                {{data.className}}
+                            </label>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!--End Create Section-->
+
+            <!--Start List Section-->
+            
+            <div ng-hide="isEdit">                
+                <div class="col-lg-12">
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Event Name</th>
+                                <th>Event Fee</th>
+                                <th>Retain Fee</th>
+                                <th>Class</th>                                
+                                <th ng-if="Permission.Edit">Edit</th>
+                                <th ng-if="Permission.Edit">IsActive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in EventYearList">
+                                <td>{{$index+1}}</td>
+                                <td>{{data.EventName}}</td>
+                                <td>{{data.EventFee}}</td>
+                                <td>{{data.RetainFee}}</td>
+                                <td>
+                                    <p ng-repeat="item in data.Class">{{item.ClassName}}{{$last ? '' : ', '}}</p>
+                                </td>
+                                
+                                <td ng-if="Permission.Edit">
+                                    <a href="#" ng-click="Edit(data)"> <i class="fa fa-pencil"></i></a>
+                                </td>
+                                <td ng-if="Permission.Edit">
+                                    <input type="checkbox" ng-model="data.Status" ng-change="IsActive(data.EventYearId)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--End List Section-->
+        </div>
+    </div>
+</form>

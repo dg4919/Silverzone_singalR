@@ -1,0 +1,74 @@
+﻿<div class="panel panel-info">
+
+    <div class="panel-heading">
+        Pending Purchase Order List
+    </div>    
+
+    <div class="text-success"
+         ng-if="!poList"
+         style="padding: 15px;height: 300px;">
+        <h3> Great, there is no pending purchase order found here :) </h3>
+    </div>
+
+    <div ng-if="poList">
+        <div class="col-md-12" style="margin-top: 16px; border-bottom: 1px solid #ddd; margin-bottom: 18px;">
+
+            <div class="col-md-4">
+                <label class="control-label">From: </label>
+                <h4 ng-bind="poList.From"> </h4>
+            </div>
+
+
+            <div class="col-md-4">
+                <label class="control-label">To: </label>
+                <h4 ng-bind="poList.To"> </h4>
+            </div>
+
+            <div class="col-md-4">
+                <label class="control-label">Source: </label>
+                <h4 ng-bind="poList.Source"> </h4>
+            </div>
+        </div>
+
+        <div ng-repeat="pomaster in poList.PO_Masters"
+             ng-if="show_pendingPO(pomaster.PO_detail)"
+             style="margin-bottom:18px; border-bottom: 1px solid #ddd;">
+            <div class="col-md-offset-1 col-md-3">
+                <label class="control-label">Order Number: </label>
+                <h4 ng-bind="pomaster.PO_Number"> </h4>
+            </div>
+
+            <div class="col-md-3">
+                <label class="control-label">Order Date: </label>
+                <h4 ng-bind="pomaster.PO_Date | dateFormat: 'DD/MM/YYYY hh:mm a'"> </h4>
+            </div>
+
+            <table class="table table-striped responsive"
+                   wt-responsive-table>
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Book</th>
+                        <th>Pending Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entity in pomaster.PO_detail" ng-if="entity.pendingQty > 0">
+                        <td>{{ $index+1 }}</td>
+                        <td ng-bind="::entity.Book.bookName"></td>
+                        <td ng-bind="::entity.pendingQty"></td>
+                        <td>
+                            <a href="#"
+                               ng-click="EditData(entity.Book, pomaster.PO_Number)">
+                                Select
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

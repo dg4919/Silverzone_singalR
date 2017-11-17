@@ -1,0 +1,45 @@
+
+Log: 
+02/02/2017 17:53:07
+Error Message:System.Exception: Image File Log
+Message = 960-jeff-bezos-really-wants-amazoncom-to-snag-an-oscar.jpg
+
+Log: 
+03/30/2017 16:07:52
+Error Message:System.Exception: Image File Log
+Message = DL.jpg
+
+Log: 
+03/30/2017 16:08:14
+Error Message:System.Exception: Image File Log
+Message = 16795428_154836248359440_885406919659880448_n.mp4
+
+Log: 
+03/30/2017 16:08:27
+Error Message:System.Exception: Image File Log
+Message = Learning is a treasure that will follow its owner everywhere..png
+
+Log: 
+03/31/2017 10:20:49
+Error Message:System.Exception: Image File Log
+Message = 16795428_154836248359440_885406919659880448_n.mp4
+
+Log: 
+03/31/2017 10:21:00
+Error Message:System.Exception: Image File Log
+Message = Learning is a treasure that will follow its owner everywhere..png
+
+Log: 
+03/31/2017 11:03:48
+Error Message:System.Exception: Image File Log
+Message = 17098431_10155058353462498_3600108704559586742_n.png
+
+Log: 
+04/05/2017 11:38:35
+Error Message:System.Exception: Image File Log
+Message = 17553948_10155135682467498_5445718040079208667_n.png
+
+Log: 
+04/14/2017 10:16:59
+Error Message:System.Exception: Image File Log
+Message = 14721753_1118043644977928_6995476644767658574_n.jpg

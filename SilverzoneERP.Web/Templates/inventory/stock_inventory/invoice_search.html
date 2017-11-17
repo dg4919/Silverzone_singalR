@@ -1,0 +1,134 @@
+﻿<style>
+        label {
+            padding: 3px 0px;
+        }
+
+        .myclass {
+            position: absolute;
+            right: 38px;
+            margin-top: -22px;
+            cursor: pointer;
+        }
+
+        #inventoryBox {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .form-control1[disabled], .form-control1[readonly] {
+            background-color: #eee;
+            opacity: 1;
+            cursor: not-allowed;
+        }
+
+        .form-group .has-error {
+        color: #dd4b39;
+    }
+
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Search Invoice
+        </div>
+
+        <form name="search_poForm"
+              ng-submit="search(search_poForm)"
+              ng-validate="validationOptions"
+              novalidate="novalidate">
+
+            <div class="row" style="padding: 20px;">
+
+                <sourc model="model.SourceId"
+                       clas-type="classsName">
+                </sourc>
+
+                <source_info model="model.dealerId"
+                             src-id="model.SourceId"
+                             clas-type="classsName">
+                </source_info>
+
+                <invoice:number model="model.invoiceNo"
+                                clas-type="classsName">
+                </invoice:number>
+
+            </div>            
+
+            <div class="row" style="margin-top: 10px; margin-left: 19px;">
+                <from_date model="model"
+                           clas-type="classsName">
+                </from_date>
+
+                <to:date model="model"
+                         clas-type="classsName">
+                </to:date>
+            </div>
+
+            <div class="panel-footer" style="margin-top: 40px;">
+                <div class="row">
+                    <button type="submit"
+                            class="btn btn-info pull-right">
+                        Search Invoice
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <h3>
+        List of Invoices
+    </h3>
+
+    <div class="row"
+         ng-if="!invoiceDetails.length"
+         style="padding: 22px;">
+        <h2 class="text-success"> There is no record found :( </h2>
+    </div>
+
+    <div ng-if="invoiceDetails.length">
+
+        <table class="table table-striped responsive"
+               wt-responsive-table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Dealer</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in invoiceDetails">
+                    <td>{{ ::$index+1 }}</td>
+                    <td ng-bind="::entity.SourceName"></td>
+                    <td>
+                        <a href="#"
+                           ng-bind="::entity.totalPrice"
+                           ng-click="get_invoiceInfo(entity.source_infoId)">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        // date class also required with the class of picker
+        //$('#datepicker').datepicker();
+        $('.datepicker').datepicker(
+          //'update', get_TodayDate()
+          'setEndDate', moment(new Date()).format('MM/DD/YYYY')
+        );
+    });
+</script>

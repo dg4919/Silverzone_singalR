@@ -1,0 +1,123 @@
+﻿
+<!-- All Class r depend to this Id  -->
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="row">
+                        <div class="space-6"></div>
+
+                        <div class="col-sm-12">
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-center"
+                                         ng-bind="quizType === 1 ? 'Today Quiz' : 'Mega Quiz'"></div>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="col-sm-12" style="height: 200px;" ng-if="!quizInfo && quizType === 1">
+                                        <h1>We have not found any quiz question for you.. ! </h1>
+                                    </div>
+
+                                    <div class="col-sm-12" style="height: 200px;" 
+                                         ng-if="!quizInfo && quizType === 2"
+                                         ng-switch="reason">
+                                        <div ng-switch-when="notallow">
+                                            <h2>You are not eleigible for mega quiz due to insufficient quiz points :( </h2>
+                                            <h3>You need atleast 100 points to eligible for Mega Quiz </h3>
+                                        </div>
+                                        <h1 ng-switch-when="notfound">
+                                            We have not found any mega quiz question for you.. !
+                                        </h1>
+                                        <h2 ng-switch-when="exist">
+                                            You have already given answer of Mega Quiz, Try next Month :)
+                                        </h2>
+                                    </div>
+
+                                    <div class="row" ng-if="quizInfo">
+                                       
+                                         <div class="col-sm-12" ng-if="quizType === 2">
+                                            <div class="col-sm-4">
+                                                <h4> Prize for this mega quiz </h4>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p ng-bind="quizInfo.Prize" style="font-size: large;"></p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <img class="img-responsive" alt="Prize Image" style="height: 85px;width: 85px;"
+                                                      ng-src="{{ quizInfo.PrizeImage }}"
+                                                      ng-if="quizInfo.PrizeImage">
+                                            </div>
+                                        </div>
+
+                                            <form class="form-group" ng-submit="saveInfo(quizInfo.Id, quizInfo.answerId)">
+
+                                                <div class="col-md-12 col-lg-12">
+                                                    <span style="FONT-SIZE: 1.5em;"> Qes. </span>
+                                                    <span ng-bind="quizInfo.Question"></span>
+                                                    <div style="margin-left: 49px;" ng-if="quizInfo.ImageUrl">
+                                                        <img class="img-responsive" alt="Question Image"
+                                                             style="height: 85px;width: 85px;"
+                                                             ng-src="{{ quizInfo.ImageUrl }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6"
+                                                     style="margin-top: 25px;"
+                                                     ng-repeat="quiz in quizInfo.options">
+                                                    <!--{{ quizInfo.answerId }}-->
+                                                    <div class="col-sm-2">
+                                                        <span style="FONT-SIZE: 1.2em;">{{ charsArr[$index] }}.</span>
+                                                        <input type="radio" name="answerRadio" value="{{ quiz.Id }}" ng-model="quizInfo.answerId" style="margin-left: 6px;">
+                                                    </div>
+
+                                                    <div class="col-sm-10" style="padding: 0;">
+                                                        <img class="img-responsive" alt="Question Image"
+                                                             style="height: 85px;width: 85px;position: initial;"
+                                                             ng-src="{{ quiz.ImageUrl }}"
+                                                             ng-if="quiz.ImageUrl" />
+
+                                                        <div ng-if="quiz.Option"
+                                                             ng-bind="quiz.Option"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 text-center" style="margin-top: 35px;">
+                                                    <button type="submit" class="btn btn-primary" ng-disabled="!quizInfo.answerId || disableBtn" ng-style="!quizInfo.answerId && { 'cursor': 'default' }">Submit Answer</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                  
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

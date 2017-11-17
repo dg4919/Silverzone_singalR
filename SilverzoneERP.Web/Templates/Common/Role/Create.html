@@ -1,0 +1,223 @@
+﻿
+
+<form class="form-horizontal" name="frm" ng-submit="frm.$valid && Submit()">
+    <div class="header-section">
+        <div class="menu-right">
+            <div class="user-panel-top">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                        <strong>Role</strong>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="pull-right">
+                            <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                <i class="fa fa-saved"></i>
+                                <strong>{{Role.Id==undefined?'Save':'Update'}}</strong>
+                            </button>
+                            <button class="btn btn-default" ng-click="Active_Deactive(false)" ng-if="Changed" type="button">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>
+
+
+                            <select ng-hide="isEdit" style="color:black;" ng-model="selectedIndex" ng-change="SelectedIndexChanged(selectedIndex)">
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                            </select>
+                            <a ng-if="Permission.Add" ng-hide="isEdit" href="#" style="text-decoration:none;" ng-click="Add()"><i class="fa fa-plus"></i></a>
+                        </span>
+                    </div>
+                    <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="sz_card">
+        <!--Start Create Section-->
+        <div ng-show="isEdit">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Name:</label>
+                <div class="col-sm-5">
+                    <input type="text"
+                           name="RoleName"
+                           ng-show="isEdit"
+                           class="form-control"
+                           ng-model="Role.RoleName"
+                           required
+                           autofocus />
+                    <span ng-if="frm.RoleName.$invalid && !frm.RoleName.$pristine"
+                          class="error">
+                        Name is required.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Description:</label>
+                <div class="col-md-5">
+                    <textarea class="form-control"
+                              ng-model="Role.RoleDescription"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Role Permission:</label>
+                <div class="col-md-10">
+                    <ul class="nav nav-tabs">
+                        <li class="{{$index==0?'active':''}}" ng-repeat="data in Role.FormDetails"><a data-toggle="tab" href="#menu{{$index}}">{{data.Header}}</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="menu{{$index}}" class="tab-pane fade {{$index==0?'in active':''}}" ng-repeat="data in Role.FormDetails">
+                            <div class="panel panel-default">
+                                <!--<div class="panel-heading text-center">
+                                    <div class="row">
+                                        <div class="topHeader" style="margin-top:-11px;"><strong>{{data.Header}}</strong></div>
+                                        <div class="col-lg-12">
+                                            <div class="col-md-5"><strong>Form Name</strong></div>
+                                            <div class="col-md-5"><strong>Permission</strong></div>
+                                            <div class="col-md-2">
+                                                <div class="text-right">
+                                                    <label><input type="checkbox" ng-model="data.isAll" ng-click="All(data)">All</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="panel-body" ng-class-odd="'odd'" ng-class-even="'even'">
+
+                                    <table class="table table-striped responsive" wt-responsive-table>
+                                        <thead>
+                                            <tr>
+                                                <th>Form Name</th>
+                                                <th>
+                                                    <input type="checkbox" ng-model="data.isAdd" ng-click="All_Add(data)">Add
+                                                </th>
+                                                <th>
+                                                    <input type="checkbox" ng-model="data.isEdit" ng-click="All_Edit(data)">Edit
+                                                </th>
+                                                <th>
+                                                    <input type="checkbox" ng-model="data.isDelete" ng-click="All_Delete(data)">Delete
+                                                </th>
+                                                <th>
+                                                    <input type="checkbox" ng-model="data.isRead" ng-click="All_Read(data)">View
+                                                </th>
+                                                <th>
+                                                    <input type="checkbox" ng-model="data.isPrint" ng-click="All_Print(data)">Print
+                                                </th>
+                                                <th>
+                                                    <input type="checkbox"
+                                                           ng-model="data.isAll"
+                                                           ng-click="All(data)">All
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="form in data.Forms">
+                                                <td>{{form.FormName}}</td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.Permission.Add" ng-click="Checked_Unchecked(data,$index)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.Permission.Edit" ng-click="Checked_Unchecked(data,$index)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.Permission.Delete" ng-click="Checked_Unchecked(data,$index)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.Permission.Read" ng-click="Checked_Unchecked(data,$index)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.Permission.Print" ng-click="Checked_Unchecked(data,$index)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="form.isChecked" ng-click="Checked_Unchecked_GroupWise(data,$index,true)">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Create Section-->
+
+        <!--Start List Section-->
+        <div  ng-hide="isEdit">   
+            <div class="panel panel-default" ng-repeat="data in RolePermissionList">
+                <div class="panel-heading">
+                    <div class="col-lg-12">
+                        <div class="form-group col-md-5">
+                            <p class="col-md-4 text-right">Name:</p>
+                            <div class="col-md-8">
+                                {{data.RoleName}}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <p class="col-md-4 text-right">Description:</p>
+                            <div class="col-md-8">
+                                <p>{{data.RoleDescription}}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a ng-if="Permission.Edit" href="#" class="pull-right" ng-click="Edit($index)"><i class="fa fa-pencil"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <uib-tabset active="active">
+                            <uib-tab index="$index + 1"
+                                     ng-repeat="(key, value) in data.Forms | groupBy: 'Header'"
+                                     heading="{{key}}"
+                                     disable="tab.disabled">
+                                <table class="table table-striped responsive" wt-responsive-table>
+                                    <thead>
+                                        <tr>
+                                            <th>Form Name</th>
+                                            <th>Add</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                            <th>View</th>
+                                            <th>Print</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="form in value">
+                                            <td>{{form.FormName}}</td>
+                                            <td>
+                                                <i ng-class="form.Permission.Add==true?'fa fa-check text-success':'fa fa-remove text-danger'"></i>                                                
+                                            </td>
+                                            <td>
+                                                <i ng-class="form.Permission.Edit==true?'fa fa-check text-success':'fa fa-remove text-danger'"></i>
+                                            </td>
+                                            <td>
+                                                <i ng-class="form.Permission.Delete==true?'fa fa-check text-success':'fa fa-remove text-danger'"></i>
+                                            </td>
+                                            <td>
+                                                <i ng-class="form.Permission.Read==true?'fa fa-check text-success':'fa fa-remove text-danger'"></i>                                                                                                
+                                            </td>
+                                            <td>                                               
+                                                <i ng-class="form.Permission.Print==true?'fa fa-check text-success':'fa fa-remove text-danger'"></i>                                               
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </uib-tab>
+                        </uib-tabset>                                    
+                    </div>
+                </div>
+            </div>                            
+        </div>
+        <!--End List Section-->
+    </div>
+</form>

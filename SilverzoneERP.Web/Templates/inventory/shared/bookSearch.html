@@ -1,0 +1,47 @@
+﻿<!-- $ctrl use to access value of parent ctroller -->
+<!--<span> Hello {{ $ctrl.clastype }}</span>-->
+
+<div class="form-group" ng-class="$ctrl.clastype">
+    <label class="control-label col-sm-12">Subject</label>
+    <div class="col-sm-12">
+        <select class="form-control1"
+                name="Subject"
+                ng-model="$ctrl.model.subjectId"
+                ng-options="::subjects.subject.Id as ::subjects.subject.Name for subjects in subjectList"
+                ng-change="$ctrl.model.subjectId && get_class()">
+
+            <option value=""> ---- Select Subject ---- </option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group" ng-class="$ctrl.clastype">
+    <label class="control-label col-sm-12">Class</label>
+    <div class="col-sm-12">
+        <select class="form-control1"
+                name="Class"
+                ng-model="$ctrl.model.classId"
+                ng-options="::class.Id as ::class.Name for class in classList"
+                ng-change="$ctrl.model.classId && get_bookCategorys()">
+
+            <option value=""> ---- Select Class ---- </option>
+        </select>
+    </div>
+</div>
+
+
+<!--  Book Id will be pass from here  -->
+<div class="form-group" ng-class="$ctrl.clastype">
+    <label class="control-label col-sm-12"> Book Category </label>
+    <div class="col-sm-12">
+        <select class="form-control1"
+                name="Categoory"
+                ng-model="$ctrl.model.BookId"
+                ng-options="::category.BookId as category.Name for category in book_categoryList">
+
+            <option value=""> ---- Select Book Category ---- </option>
+        </select>
+    </div>
+</div>
+
+

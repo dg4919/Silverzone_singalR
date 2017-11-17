@@ -1,0 +1,79 @@
+﻿<!-- All Class r depend to this Id  -->
+
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    
+                    <div class="row">
+                        <div class="space-6"></div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        My Orders
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <table id="simple-table" class="table  table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width: 300px;"> Order Number</th>
+                                                <th class="text-center" style="width: 90px;"> Amount</th>
+                                                <th class="text-center"> Order Date</th>
+                                                <th class="text-center"> Order Status</th>
+                                                <th class="text-center"> Payment Mode </th>
+                                                <th class="text-center"> Payment Status</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr ng-repeat="order in orderList | orderBy: '-OrderDate'">
+                                                <td class="center">
+                                                    <div class="action-buttons">
+                                                        <a href="#" class="blue" ng-bind="order.OrderNumber" ui-sref="user_orderDetail({ orderId: order.Id })">
+                                                        </a>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-left"><i class="fa fa-rupee"></i> {{ order.Quiz_Points_Deduction ? (order.orderAmount - order.Quiz_Points_Deduction) : order.orderAmount }}</td>
+                                                <td class="center">{{ order.OrderDate | dateFormat: 'DD/MM/YYYY' }}</td>
+                                                <td class="center" ng-bind="order.Order_Deliver_Status"></td>
+                                                <td class="center" ng-bind="order.Payment_Mode"></td>
+                                                <td class="center" ng-bind="order.Payment_Status"></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

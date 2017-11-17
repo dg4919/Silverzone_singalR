@@ -1,0 +1,62 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Books Category List</div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default pull-right" ui-sref="book_category_add"> Add Book Category </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <h4> <a href="#" ng-click="get_all_bookCategory()">Get All Records</a></h4>
+                    </div>
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category Name</th>
+                                    <th>Description</th>
+                                    <th>Discount Code</th>
+                                    <th>Status</th>
+                                    <th>CreatedBy</th>
+                                    <th>UpdatedBy</th>
+                                    <th>UpdationDate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="category in book_category_list">
+                                    <td>{{ category.Id }}</td>
+                                    <td>{{ category.Name }}</td>
+                                    <td>{{ category.Description }}</td>
+                                    <td>{{ category.Coupon_name || '-- No Code --' }}</td>
+                                    <td>{{ category.Status ? 'Active' : 'InActive' }}</td>
+                                    <td>{{ category.CreatedBy }}</td>
+                                    <td>{{ category.UpdatedBy }}</td>
+                                    <td>{{ category.UpdationDate | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td>
+                                        <button type="button" ng-click="Show_editModal(category)" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                                        <button type="button" ng-click="Show_deleteModal($index)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

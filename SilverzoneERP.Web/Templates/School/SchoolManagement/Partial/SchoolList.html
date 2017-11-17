@@ -1,0 +1,43 @@
+﻿<div class="modal-content">
+    <div class="modal-header sz_section">
+        <a href="#"
+           ng-click="Back()"
+           style="color:white;">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <strong><strong>School already exists in which your location</strong></strong>        
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped responsive" wt-responsive-table>
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>School Name</th>
+                            <th>School Code</th>
+                            <th>Email-ID</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in SchoolList">
+                            <td>{{$index+1}}</td>
+                            <td>{{data.SchName}}</td>
+                            <td>{{data.SchCode}}</td>
+                            <td>{{data.SchEmail}}</td>
+                            <td>
+                                <a href="#"
+                                   class="pull-right"
+                                   ng-click="Edit(data.SchCode)">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>
+    </div>
+</div>
+

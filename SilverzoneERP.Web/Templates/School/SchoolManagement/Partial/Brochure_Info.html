@@ -1,0 +1,36 @@
+﻿<div class="col-md-12 sz_section">
+    Brochure Information
+</div>
+
+<div class="col-md-12">   
+    <div class="form-group col-md-4">
+        <label><input type="checkbox"
+       name="IsBlocked"
+       ng-model="SchMngt.BlackListed.IsBlocked">Black Listed School</label>        
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>Black Listed By</label>
+        <span class="form-control"
+              ng-bind="SchMngt.BlackListed.BlackListedBy">
+        </span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>Black Listed Date</label>
+        <span class="form-control"              
+              ng-bind="SchMngt.BlackListed.BlackListedOn | date:'dd-MMM-yyyy'">
+        </span>
+    </div>    
+</div>
+<div class="col-md-12">  
+    <div class="form-group">
+        <label>Remarks :</label>
+        <textarea name="BlackListedRemarks"
+               ng-model="SchMngt.BlackListed.BlackListedRemarks"
+               class="form-control"
+               placeholder="Remarks" >
+        </textarea>
+    </div>
+</div>
+

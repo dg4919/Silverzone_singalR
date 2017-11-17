@@ -1,0 +1,91 @@
+﻿<style>
+    .QuestionAnswer{
+        width:100px;float:left;padding-right:10px;
+    }
+
+    .QuestionAnswer-border{
+        border:dotted 1px red;
+    }
+</style>
+<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            
+            <div class="col-md-4">
+                <a href="#"
+                   ng-click="Back()"
+                   style="color:white;">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <strong>Answer Marked</strong>
+            </div>
+            <div class="col-md-4 text-center">
+                <label>Inhouse</label>
+            </div>
+            <div class="col-md-4">
+                <span class="pull-right">
+                    <button type="button"
+                            ng-click="Reset()"
+                            class="btn btn-default">
+                        <i class="fa fa-refresh"></i> <strong>Reset</strong>
+                    </button>
+                    <button type="button"
+                            ng-hide="Edit"             
+                            ng-click="Edit=true"
+                            class="btn btn-default">
+                        <i class="fa fa-pencil"></i> <strong>Edit</strong>
+                    </button>
+
+                    <button type="submit"
+                            ng-if="Edit"
+                            class="btn btn-default">
+                        <i class="fa fa-saved"></i> <strong>Save</strong>
+                    </button>
+                </span>
+            </div>                                                           
+        </div>
+        <div class="modal-body">
+            <div class="row">                  
+                <div class="col-md-11 col-md-offset-1">
+                    <div class="form-group QuestionAnswer" ng-repeat="data in QuestionAnswer.AnswerJSON">
+                        <div class="input-group" style="width:0px;margin-left:0em;">
+                            <span class="input-group-addon" style="width:45px;">
+                                <label>
+                                    Q {{data.Question}}
+                                </label>
+                            </span>
+                           
+                            <input class="form-control {{data.Answer==''?'QuestionAnswer-border':''}}" 
+                                   maxlength="2" 
+                                   answer-option
+                                   ng-disabled="!Edit"
+                                   ng-model="data.Answer" />
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+        <div class="modal-footer sz_section row">
+        <div class="col-md-12">
+            <div class="col-md-2 text-right">
+                <label>Created By :</label>
+            </div>
+            <div class="col-md-4 text-left">
+                {{QuestionAnswer.Createdby}}
+            </div>
+            <div class="col-md-3">
+                Created Date :
+            </div>
+            <div class="col-md-3 text-left">
+                {{QuestionAnswer.CreatedDate}}
+            </div>
+        </div>
+        </div>
+    </div>
+</form>
+

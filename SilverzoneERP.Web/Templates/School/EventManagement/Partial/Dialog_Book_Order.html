@@ -1,0 +1,55 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>Book Order</strong>
+            <button type="submit"
+                    class="pull-right btn btn-default">
+                <i class="fa fa-saved"></i> <strong>Done</strong>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                  <table class="table table-striped responsive" wt-responsive-table>
+                      <thead>
+                          <tr>
+                              <th>Class</th>
+                              <th>No. Of Students</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="data in ClassList">
+                              <td>{{data.ClassName<10?'0'+data.ClassName:data.ClassName}}</td>
+                              <td>
+                                  <input type="text"
+                                         ng-change="No_Of_Student_Change()"
+                                         ng-model="data.No_Of_Student" />
+                              </td>
+                          </tr>
+                      </tbody>
+                      <tfoot style="border-top:1px solid;">
+                          <tr>
+                              <td><strong>Total</strong></td>
+                              <td ng-bind="EnrollmentOrder.TotlaEnrollment"></td>
+                          </tr>
+                      </tfoot>
+                  </table>
+              </div>
+
+                <div class="col-md-12" ng-include="'Templates/School/EventManagement/Partial/ExamDate.html'"></div>
+
+            </div>
+        </div>
+    </div>
+</form>
+

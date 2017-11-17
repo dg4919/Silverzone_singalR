@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SilverzoneERP.Data</RootNamespace>
+    <AssemblyName>SilverzoneERP.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.1.3.0, Culture=neutral, PublicKeyToken=55aa52d3c3c0d2b2, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.1.3\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGridMail, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2ae73662c35d80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.3.0.0\lib\SendGridMail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\Common\IAccountRepository.cs" />
+    <Compile Include="Interface\Common\IClassRepository.cs" />
+    <Compile Include="Interface\Common\ICourierRepository.cs" />
+    <Compile Include="Interface\Common\IErrorLogsRepository.cs" />
+    <Compile Include="Interface\Common\IEventRepository.cs" />
+    <Compile Include="Interface\Common\IEventYearClassRepository.cs" />
+    <Compile Include="Interface\Common\IRepository.cs" />
+    <Compile Include="Interface\Common\IRoleRepository.cs" />
+    <Compile Include="Interface\Common\IUserLogsRepository.cs" />
+    <Compile Include="Interface\Inventory\IPurchaseOrder_MasterRepository.cs" />
+    <Compile Include="Interface\Inventory\IPurchaseOrderRepository.cs" />
+    <Compile Include="Interface\Inventory\IinventorySourceDetailRepository.cs" />
+    <Compile Include="Interface\Inventory\IinventorySourceRepository.cs" />
+    <Compile Include="Interface\Inventory\IStockRepository.cs" />
+    <Compile Include="Interface\School\IBlackListedRepository.cs" />
+    <Compile Include="Interface\School\ICityRepository.cs" />
+    <Compile Include="Interface\School\IContactRepository.cs" />
+    <Compile Include="Interface\School\ICoOrdinatingTeacherRepository.cs" />
+    <Compile Include="Interface\School\ICoOrdinatorRepository.cs" />
+    <Compile Include="Interface\School\ICountryRepository.cs" />
+    <Compile Include="Interface\School\IDesignationRepository.cs" />
+    <Compile Include="Interface\School\IDistrictRepository.cs" />
+    <Compile Include="Interface\School\IDrownOnBankRepository.cs" />
+    <Compile Include="Interface\School\IEnrollmentOrderRepository.cs" />
+    <Compile Include="Interface\School\IEventManagementRepository.cs" />
+    <Compile Include="Interface\School\IEventYearRepository.cs" />
+    <Compile Include="Interface\School\IExaminationDateRepository.cs" />
+    <Compile Include="Interface\School\IFeePaymentRepository.cs" />
+    <Compile Include="Interface\School\IFormManagementRepository.cs" />
+    <Compile Include="Interface\School\IRolePermissionRepository.cs" />
+    <Compile Include="Interface\School\ISchoolCategoryRepository.cs" />
+    <Compile Include="Interface\School\ISchoolGroupRepository.cs" />
+    <Compile Include="Interface\School\ISchoolRepository.cs" />
+    <Compile Include="Interface\School\IStateRepository.cs" />
+    <Compile Include="Interface\School\IStudentAttendanceRepository.cs" />
+    <Compile Include="Interface\School\IStudentEntryRepository.cs" />
+    <Compile Include="Interface\School\ITitleRepository.cs" />
+    <Compile Include="Interface\School\IUserPermissionRepository.cs" />
+    <Compile Include="Interface\School\IUserRepository.cs" />
+    <Compile Include="Interface\School\IZoneRepository.cs" />
+    <Compile Include="Interface\Web\IOrderStatusReasonRepository.cs" />
+    <Compile Include="Interface\Web\IPacket_BundleInfoRepository.cs" />
+    <Compile Include="Interface\Web\IPackage_MasterRepository.cs" />
+    <Compile Include="Interface\Web\IBannerRepository.cs" />
+    <Compile Include="Interface\Web\IBookCategoryRepository.cs" />
+    <Compile Include="Interface\Web\IBookContentRepository.cs" />
+    <Compile Include="Interface\Web\IBookDetailRepository.cs" />
+    <Compile Include="Interface\Web\IBookDispatchRepository.cs" />
+    <Compile Include="Interface\Web\IBookRepository.cs" />
+    <Compile Include="Interface\Web\IBundleDetailRepository.cs" />
+    <Compile Include="Interface\Web\IBundleRepository.cs" />
+    <Compile Include="Interface\Web\IclassSubjectRepository.cs" />
+    <Compile Include="Interface\Web\ICouponRepository.cs" />
+    <Compile Include="Interface\Web\ICourierModeRepository.cs" />
+    <Compile Include="Interface\Web\IDispatchRepository.cs" />
+    <Compile Include="Interface\Web\IEventCodeImagePathRepository.cs" />
+    <Compile Include="Interface\Web\IForgetPasswordRepository.cs" />
+    <Compile Include="Interface\Web\IitemTitle_MasterRepository.cs" />
+    <Compile Include="Interface\Web\IGenericOTPRepository.cs" />
+    <Compile Include="Interface\Web\IMasterAcademicYearRepository.cs" />
+    <Compile Include="Interface\Web\IMedalImageRepository.cs" />
+    <Compile Include="Interface\Web\IOlympiadListRepository.cs" />
+    <Compile Include="Interface\Web\IOlympiadsRepository.cs" />
+    <Compile Include="Interface\Web\IOrderDetailRepository.cs" />
+    <Compile Include="Interface\Web\IOrderRepository.cs" />
+    <Compile Include="Interface\Web\IProfileRepository.cs" />
+    <Compile Include="Interface\Web\IQPDispatchRepository.cs" />
+    <Compile Include="Interface\Web\IQueryRepository.cs" />
+    <Compile Include="Interface\Web\IQuickLinkRepository.cs" />
+    <Compile Include="Interface\Web\IQuizQuestionOptionsRepository.cs" />
+    <Compile Include="Interface\Web\IQuizQuestionRepository.cs" />
+    <Compile Include="Interface\Web\IResultRepository.cs" />
+    <Compile Include="Interface\Web\ISchoolEventRepository.cs" />
+    <Compile Include="Interface\Web\IStudentRegistrationRepository.cs" />
+    <Compile Include="Interface\Web\ITeacherDetailRepository.cs" />
+    <Compile Include="Interface\Web\ITeacherEventRepository.cs" />
+    <Compile Include="Interface\Web\IUserQuizPointsRepository.cs" />
+    <Compile Include="Interface\Web\IUserShippingAddressRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Common\AccountRepository.cs" />
+    <Compile Include="Repositories\Common\BaseRepository.cs" />
+    <Compile Include="Repositories\Common\ClassRepository.cs" />
+    <Compile Include="Repositories\Common\CourierRepository.cs" />
+    <Compile Include="Repositories\Common\ErrorLogsRepository.cs" />
+    <Compile Include="Repositories\Common\EventRepository.cs" />
+    <Compile Include="Repositories\Common\EventYearClassRepository.cs" />
+    <Compile Include="Repositories\Common\RoleRepository.cs" />
+    <Compile Include="Repositories\Common\UserLogsRepository.cs" />
+    <Compile Include="Repositories\Inventory\PurchaseOrder_MasterRepository.cs" />
+    <Compile Include="Repositories\Inventory\PurchaseOrderRepository.cs" />
+    <Compile Include="Repositories\Inventory\InventorySourceDetailRepository.cs" />
+    <Compile Include="Repositories\Inventory\InventorySourceRepository.cs" />
+    <Compile Include="Repositories\Inventory\StockRepository.cs" />
+    <Compile Include="Repositories\School\BlackListedRepository.cs" />
+    <Compile Include="Repositories\School\CityRepository.cs" />
+    <Compile Include="Repositories\School\ContactRepository.cs" />
+    <Compile Include="Repositories\School\CoOrdinatingTeacherRepository.cs" />
+    <Compile Include="Repositories\School\CoOrdinatorRepository.cs" />
+    <Compile Include="Repositories\School\CountryRepository.cs" />
+    <Compile Include="Repositories\School\DesignationRepository.cs" />
+    <Compile Include="Repositories\School\DistrictRepository.cs" />
+    <Compile Include="Repositories\School\DrownOnBankRepository.cs" />
+    <Compile Include="Repositories\School\EnrollmentOrderRepository.cs" />
+    <Compile Include="Repositories\School\EventManagementRepository.cs" />
+    <Compile Include="Repositories\School\EventYearRepository.cs" />
+    <Compile Include="Repositories\School\examinationDateRepository.cs" />
+    <Compile Include="Repositories\School\FeePaymentRepository.cs" />
+    <Compile Include="Repositories\School\FormManagementRepository.cs" />
+    <Compile Include="Repositories\School\RolePermissionRepository.cs" />
+    <Compile Include="Repositories\School\SchoolCategoryRepository.cs" />
+    <Compile Include="Repositories\School\SchoolGroupRepository.cs" />
+    <Compile Include="Repositories\School\SchoolRepository.cs" />
+    <Compile Include="Repositories\School\StateRepository.cs" />
+    <Compile Include="Repositories\School\StudentAttendanceRepository.cs" />
+    <Compile Include="Repositories\School\StudentEntryRepository.cs" />
+    <Compile Include="Repositories\School\TitleRepository.cs" />
+    <Compile Include="Repositories\School\UserPermissionRepository.cs" />
+    <Compile Include="Repositories\School\UserRepository.cs" />
+    <Compile Include="Repositories\School\ZoneRepository.cs" />
+    <Compile Include="Repositories\Web\OrderStatusReasonRepository.cs" />
+    <Compile Include="Repositories\Web\Packet_BundleInfoRepository.cs" />
+    <Compile Include="Repositories\Web\Package_MasterRepository.cs" />
+    <Compile Include="Repositories\Web\BannerRepository.cs" />
+    <Compile Include="Repositories\Web\BookCategoryRepository.cs" />
+    <Compile Include="Repositories\Web\BookContentRepository.cs" />
+    <Compile Include="Repositories\Web\BookDetailRepository.cs" />
+    <Compile Include="Repositories\Web\BookDispatchRepository.cs" />
+    <Compile Include="Repositories\Web\BookRepository.cs" />
+    <Compile Include="Repositories\Web\BundleDetailRepository.cs" />
+    <Compile Include="Repositories\Web\BundleRepository.cs" />
+    <Compile Include="Repositories\Web\classSubjectRepository.cs" />
+    <Compile Include="Repositories\Web\CouponRepository.cs" />
+    <Compile Include="Repositories\Web\CourierModeRepository.cs" />
+    <Compile Include="Repositories\Web\DispatchRepository.cs" />
+    <Compile Include="Repositories\Web\EventCodeImagePathRepository.cs" />
+    <Compile Include="Repositories\Web\ForgetPasswordRepository.cs" />
+    <Compile Include="Repositories\Web\ItemTitle_MasterRepository.cs" />
+    <Compile Include="Repositories\Web\GenericOTPRepository.cs" />
+    <Compile Include="Repositories\Web\MasterAcademicYearRepository.cs" />
+    <Compile Include="Repositories\Web\MedalImageRepository.cs" />
+    <Compile Include="Repositories\Web\OlympiadListRepository.cs" />
+    <Compile Include="Repositories\Web\OlympiadsRepository.cs" />
+    <Compile Include="Repositories\Web\OrderDetailRepository.cs" />
+    <Compile Include="Repositories\Web\OrderRepository.cs" />
+    <Compile Include="Repositories\Web\ProfileRepository.cs" />
+    <Compile Include="Repositories\Web\QPDispatchRepository.cs" />
+    <Compile Include="Repositories\Web\QueryRepository.cs" />
+    <Compile Include="Repositories\Web\QuickLinkRepository.cs" />
+    <Compile Include="Repositories\Web\QuizQuestionOptionsRepository.cs" />
+    <Compile Include="Repositories\Web\QuizQuestionRepository.cs" />
+    <Compile Include="Repositories\Web\ResultRepository.cs" />
+    <Compile Include="Repositories\Web\SchoolEventRepository.cs" />
+    <Compile Include="Repositories\Web\StudentRegistrationRepository.cs" />
+    <Compile Include="Repositories\Web\TeacherDetailRepository.cs" />
+    <Compile Include="Repositories\Web\TeacherEventRepository.cs" />
+    <Compile Include="Repositories\Web\UserQuizPointsRepository.cs" />
+    <Compile Include="Repositories\Web\UserShippingAddressRepository.cs" />
+    <Compile Include="Utility\ClassUtility.cs" />
+    <Compile Include="Utility\Constants\emailSender.cs" />
+    <Compile Include="Utility\Constants\smsTemplates.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SilverzoneERP.Context\SilverzoneERP.Context.csproj">
+      <Project>{2e286ef7-03ec-4caf-aa9e-c53d6f180f22}</Project>
+      <Name>SilverzoneERP.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SilverzoneERP.Entities\SilverzoneERP.Entities.csproj">
+      <Project>{29268da0-b7dd-4c44-bf4a-b25728af5f7c}</Project>
+      <Name>SilverzoneERP.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

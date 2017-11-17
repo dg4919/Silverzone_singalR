@@ -1,0 +1,63 @@
+﻿
+<style>
+    /* space b/w 2 class > if go to parent to child class  */ 
+    /* don't space b/w 2 class > when both class r together  */ 
+
+    .form-group .form-control.has-error {
+       border-color: #dd4b39;
+        box-shadow: none;
+    }
+
+    .form-group .has-error {
+        color: #dd4b39;
+    }
+</style>
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-offset-2 col-md-8" ng-controller="bookCategory_create">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Books Category</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form name="book_categoryForm" class="form-horizontal" ng-submit="submit_data(book_categoryForm)" ng-validate="validationOptions">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Category Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="Category Name" name="category_name" ng-model="book_category.Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label">Category Description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="4" class="form-control" placeholder="Category Description" name="category_description" ng-model="book_category.Description"></textarea>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                        <div class="col-sm-3">
+                            <button type="submit" class="form-inline btn btn-info pull-right">Add Cateogry</button>
+                            </div>
+                        </div>*@
+
+                    </div>
+
+                    <div class="box-footer">
+                        <a href="/Admin/books/List" class="btn btn-default"> Book Category List </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                            @*<i class="fa fa-plus"></i> &nbsp;*@
+                            Add Cateogry
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+</div>
+</section>
+

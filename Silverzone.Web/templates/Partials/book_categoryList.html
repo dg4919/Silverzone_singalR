@@ -1,0 +1,16 @@
+﻿    <div class="col-sm-12" ng-controller="book_category_Controller">
+       <div class="panel panel-primary">
+           <div class="panel-heading">
+               <div class="panel-title text-center">Select Category</div>
+           </div>
+           <div class="panel-body">
+                 <div class="list-group">
+                   <!-- one time binding > if ::book_categorys contains a value & bind then, unbind it and any Model updates won’t affect the View  -->
+                   <a ng-repeat="category in book_categorys" class="list-group-item" id="{{ category.id }}" style="border:none !important; border-top: 1px solid #ddd !important">
+                       {{ category.name }}
+                   </a>
+               </div>
+           </div>
+       </div>
+       
+    </div>

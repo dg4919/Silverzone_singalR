@@ -1,0 +1,58 @@
+﻿<div class="col-md-12 sz_section">
+    Contact Information
+    <span class="pull-right">
+        <a href="#"
+           style="text-decoration:none; color:white;"
+           ng-click="Add_Address_To(null,false)">
+            <i class="fa fa-plus"></i> Contact Person
+        </a>
+
+        <a ng-hide="SchMngt.IsOtherContact" href="#" ng-click="Add_Address_To(null,true)" style="text-decoration:none; color:white;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-plus"></i> Other Contact Person
+        </a>
+    </span>
+</div>
+
+<div class="col-md-12">   
+    <table class="table table-striped responsive" wt-responsive-table>
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Designation</th>
+                <th>Name</th>
+                <th>Mobile No.</th>
+                <th>Alt. Mobile No.</th>
+                <th>Email</th>
+                <th>Alt. Email-ID</th>
+                <th>Address To</th>                
+                <th></th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in SchMngt.Contact_List">
+                <td>{{$index+1}}</td>
+                <td>{{data.DesgName}}</td>
+                <td>{{data.Title}} {{data.ContactName}}</td>
+                <td>{{data.ContactMobile}}</td>
+                <td>{{data.ContactAltMobile1}}
+                {{data.ContactAltMobile1==null || data.ContactAltMobile2==null?'':','}}
+                <br ng-if="data.ContactAltMobile1==null || data.ContactAltMobile2==null?true:false" />
+                {{data.ContactAltMobile2}}</td>
+                <td>{{data.ContactEmail}}</td>
+                <td>{{data.ContactAltEmail1}}
+                    {{data.ContactAltEmail1==null || data.ContactAltEmail2==null?'':','}}
+                    <br ng-if="data.ContactAltEmail1==null || data.ContactAltEmail2==null?true:false" />
+                {{data.ContactAltEmail2}}</td>
+                <td><input type="radio" name="Address" ng-model="data.AddressTo" value="true" ng-change="ChangeAddressTo($index)" /></td>
+                <td>
+                    <a href="#" class="pull-right" ng-click="Add_Address_To(data,false)"><i class="fa fa-pencil"></i></a>                    
+                </td>                
+                <td>                    
+                    <a href="#" class="pull-right" ng-click="Delete_Address_To(data.AddressGuid)"><i class="fa fa-remove"></i></a>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+</div>

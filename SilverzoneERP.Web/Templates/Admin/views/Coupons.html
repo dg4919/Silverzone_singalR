@@ -1,0 +1,60 @@
+﻿<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Coupons List</div>
+                        <div class="col-sm-6">
+                            <input type="button" value="Add Coupon" class="btn btn-default pull-right" ng-click="show_create_copuonModal()" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Coupon Code</th>
+                                    <th>Description</th>
+                                    <th>Discount Amount</th>
+                                    <th>Coupon Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="coupon in couponsList">
+                                    <td>{{ ::coupon.Id }}</td>
+                                    <td>{{ ::coupon.Coupon_name }}</td>
+                                    <td>{{ ::coupon.Description }}</td>
+                                    <td>{{ ::coupon.Coupon_amount }}</td>
+                                    <td>{{ ::coupon.DiscountName }}</td>
+                                    <td>{{ ::coupon.Start_time | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td>{{ ::coupon.End_time | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td> <switch class="green" ng-model="coupon.Status" ng-change="changeCallback(coupon)"></switch></td>
+                                    <td>
+                                        <button type="button" ng-click="Show_editModal(coupon)" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                                        <button type="button" ng-click="Show_deleteModal(coupon.Id)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

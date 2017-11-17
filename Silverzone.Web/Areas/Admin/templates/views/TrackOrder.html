@@ -1,0 +1,75 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Orders</div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row text-center" style="margin-top: -20px;padding: 25px;">
+
+                        <div class="col-sm-offset-2 col-md-3">
+                            <div class="input-group date" id="myDatepicker" data-provide="datepicker">
+                                <input type="text" class="form-control" ng-model="_date">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" ng-click="searchPacket()">
+                                <i class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>S.NO</th>
+                                    <th>Order Number</th>
+                                    <th>Order Source</th>
+                                    <th>Order Price</th>
+                                    <th>Packet ID</th>
+                                    <th>Consignment Number</th>
+                                    <th>Courier Name</th>
+                                    <th>Dispatch Date</th>
+                                    <th>Dispatch Status</th>
+                                    <th>Tack Order</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="order in tracking_orderList">
+                                    <td>{{ ::$index+1 }}</td>
+                                    <td>{{ ::order.OrderNumber }}</td>
+                                    <td>{{ ::order.order_Source }}</td>
+                                    <td>{{ ::order.total_Amount }}</td>
+                                    <td>{{ ::order.Packet_Id }}</td>
+                                    <td>{{ ::order.Packet_Consignment }}</td>
+                                    <td>{{ order.Courier_name + ' - ' + order.Courier_Mode }}</td>
+                                    <td>{{ ::order.Dispatch_Date | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td>{{ ::order.dispatch_Status }}</td>
+                                    <td ng-show="order.trackLink">
+                                        <a href="{{order.trackLink}}" target="_blank"> Track Order </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

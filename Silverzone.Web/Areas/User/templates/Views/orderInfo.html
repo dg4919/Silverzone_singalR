@@ -1,0 +1,157 @@
+﻿<!-- All Class r depend to this Id  -->
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content" style="border: 1px solid #ddd; padding-left: 30px;">
+
+            <div class="row">
+                <h4><strong>Order Number: </strong> {{ orderInfo.OrderNumber }} </h4>
+                <h4><strong>Order Date: </strong>{{ orderInfo.OrderDate | dateFormat: 'DD/MM/YYYY' }} </h4>
+                <h4><strong>Your Status:</strong>Order Placed</h4>
+                <h4><strong>Payment Method:</strong>Cheque/Draft/Cash Deposit</h4>
+            </div>
+
+            <div class="row" style="margin-top: 45px;">
+                <div class="col-md-6 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Shipping Address</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12 col-sm-2">
+                                <h4> {{ orderInfo.shipingAdres.Username }} </h4>
+                                <p style="margin-bottom: 10px;">
+                                    {{orderInfo.shipingAdres.Address}} - {{orderInfo.shipingAdres.PinCode}} , {{ orderInfo.shipingAdres.City }} <br /> {{ orderInfo.shipingAdres.State }}
+                                </p>
+
+                                <p style="color: #565656;padding: 10px 0;margin: 10px 0 20px;border-top: #e6e6e6 solid 1px;border-bottom: #e6e6e6 solid 1px;">
+                                    <i class="fa fa-envelope"></i><span style="margin-left: 5px;" ng-bind="orderInfo.shipingAdres.Email"></span>
+                                    <br />
+                                    <i class="fa fa-phone"></i><span style="margin-left: 5px;"><strong> {{ orderInfo.shipingAdres.Mobile }} </strong></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading panel-primary">
+                            <div class="panel-title">
+                                Your Cart Items- {{ orderInfo.books.length }} Item(s)
+                                <div class="text-right" style="margin-top:-20px;">Order Total: <i class="fa fa-rupee"> {{ orderInfo.Total_Shipping_Amount + orderInfo.Total_Shipping_Charges }} </i></div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <table class="table panel-primary">
+                                <tbody>
+
+                                    <tr>
+                                        <th>
+                                            Book Image
+                                        </th>
+                                        <th>
+                                            Book Name
+                                        </th>
+                                        <th>
+                                            Price (each)
+                                        </th>
+                                        <th>
+                                            Quantity
+                                        </th>
+                                        <th>SubTotal</th>
+
+                                    </tr>
+
+                                    <tr ng-repeat="item in orderInfo.books track by $index">
+                                        <td>
+                                            <img ng-src="{{ item.bookImage }}" class="img-responsive img-bordered" style="width: 75px;">
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <!--  splitting data using custom filter to get info from title -->
+                                                <strong ng-bind="item.bookTitle"> </strong><br />
+                                                <strong>Publisher: </strong>{{ item.bookPublisher }} <br />
+                                                <strong>BookType: </strong> {{ item.bookCategory }} <br />
+                                                <strong>Class: </strong> {{ item.className }} <br />
+                                            </p>
+                                        </td>
+
+                                        <td>
+                                            <i class="fa fa-rupee"></i> {{ item.bookPrice }}
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-lg">
+                                                <lable ng-bind="item.bookQuantity"></lable>
+                                            </div>
+                                        </td>                               <!-- 'number' is > Angularjs built in filter -->
+                                        <td><i class="fa fa-rupee"></i> {{ (item.bookPrice * item.bookQuantity) | number : 2 }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>Toatal</strong></td>
+                                        <td id="cart-total"><i class="fa fa-rupee"></i> {{ orderInfo.Total_Shipping_Amount }} </></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>Shipping Charges</strong></td>
+                                        <td id="cart-total"><i class="fa fa-rupee"></i> {{ orderInfo.Total_Shipping_Charges }} </></td>
+                                    </tr>
+
+
+                                    <tr ng-if="orderInfo.Quiz_Points_Deduction">
+                                        <td colspan="3"></td>
+                                        <td> <strong>Redeem Quiz Points (-)</strong> </td>
+                                        <td><i class="fa fa-rupee"></i> {{ orderInfo.Quiz_Points_Deduction }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>Payable Amount</strong></td>
+                                        <td>
+                                            <i class="fa fa-rupee"></i>
+                                            {{ (orderInfo.Quiz_Points_Deduction ? (orderInfo.Total_Shipping_Amount + orderInfo.Total_Shipping_Charges - orderInfo.Quiz_Points_Deduction) : orderInfo.Total_Shipping_Amount + orderInfo.Total_Shipping_Charges) | number : 2 }}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

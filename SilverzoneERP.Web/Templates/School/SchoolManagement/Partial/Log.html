@@ -1,0 +1,36 @@
+﻿<div class="modal-content">
+    <div class="modal-header sz_section">
+        <a href="#"
+           ng-click="Back()"
+           style="color:white;">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <strong>School Log</strong>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12" ng-include="'Templates/Common/Partial/Pagination.html'"></div>
+            <div class="col-md-12">
+                <table class="table table-striped responsive" wt-responsive-table>
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>User Name</th>                            
+                            <th>Email-ID</th>
+                            <th>Date</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="LogObj in SchoolLog">
+                            <td>{{$index+1}}</td>
+                            <td>{{LogObj.UserName}}</td>
+                            <td>{{LogObj.EmailID}}</td>
+                            <td>{{LogObj.CreationDate|date:'dd-MMM-yyyy hh:mm:ss a'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,156 @@
+﻿
+
+<form name="frm" ng-submit="frm.$valid && Submit('district')">
+
+    <!--Start Create Section-->
+    <div class="panel panel-default" ng-hide="isAdd_District">
+        <div class="panel-heading">
+            <a href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back('district')"></a>
+            <span><strong style="color:#317eac;">Create</strong></span>
+            <button class="pull-right btn btn-default" style="margin-top:-8px;margin-right:-13px;" type="submit"><i class="fa fa-saved"></i><strong>{{District.Id==undefined?'Save':'Update'}}</strong></button>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="form-group col-md-4">
+                        <label>Country:</label>
+                        <select class="form-control"
+                                name="CountryId"
+                                ng-model="District.CountryId"
+                                ng-options="CountryObj.CountryId as CountryObj.CountryName for CountryObj in CountryList"
+                                ng-change="ChangeCountry('district')"
+                                required>
+                            <option value="">------------Select Country------------</option>
+                        </select>
+                        <span ng-if="frm.CountryId.$invalid && frm.CountryId.$dirty && !frm.CountryId.$pristine"
+                              class="error">
+                            Please select country
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Zone:</label>
+                        <select class="form-control"
+                                name="ZoneId"
+                                ng-model="District.ZoneId"
+                                ng-options="zoneObj.ZoneId as zoneObj.ZoneName for zoneObj in District_SelectedZone_Arr"
+                                ng-change="ChangeZone('district')"
+                                required>
+                            <option value="">------------Select Zone------------</option>
+                        </select>
+                        <span ng-if="frm.ZoneId.$invalid && frm.ZoneId.$dirty && !frm.ZoneId.$pristine"
+                              class="error">
+                            Please select Zone
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>State:</label>
+                        <select class="form-control"
+                                name="StateId"
+                                ng-model="District.StateId"
+                                ng-options="stateObj.StateId as stateObj.StateName for stateObj in District_SelectedState_Arr"
+                                required>
+                            <option value="">------------Select State------------</option>
+                        </select>
+                        <span ng-if="frm.StateId.$invalid && frm.StateId.$dirty && !frm.StateId.$pristine"
+                              class="error">
+                            Please select Zone
+                        </span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>District Name:</label>
+                        <input type="text"
+                               name="DistrictName"
+                               ng-model="District.DistrictName"
+                               maxlength="100"
+                               class="form-control"
+                               required
+                               autofocus>
+                        <span ng-if="frm.DistrictName.$invalid && frm.DistrictName.$dirty && !frm.DistrictName.$pristine" class="error">
+                            District name is required.
+                        </span>
+                    </div>
+
+                </div>               
+            </div>
+        </div>
+    </div>
+    <!--End Create Section-->
+
+    <!--Start List Section-->
+    <div class="panel panel-default" ng-if="isAdd_District">
+        <div class="panel-heading">
+            <span><strong style="color:#317eac;">No. of Country ({{CountryList.length}})</strong></span>
+            <a href="#" class="pull-right" style="text-decoration:none;" ng-click="Add('district')"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="panel-body">
+            <!--Start Country Section -->
+            <div class="panel-group" id="accordion">                
+                <div class="panel panel-default" ng-repeat="countryObj in  CountryList">
+                    <div class="panel-heading" data-toggle="collapse" href="#District_{{countryObj.Guid}}">
+                        <span style="color:#317eac;">
+                            <strong>{{countryObj.CountryName}}</strong>
+                            <span class="pull-right">
+                                No. of Zone:({{countryObj.Zones.length}})
+                            </span>
+                        </span>                       
+                    </div>
+                    <div id="District_{{countryObj.Guid}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <!--Start Zone Section-->
+                            <div class="panel panel-default" ng-repeat="zoneObj in  countryObj.Zones">
+                                <div class="panel-heading" data-toggle="collapse" href="#District_{{zoneObj.Guid}}">
+                                    <span style="color:#317eac;">
+                                        <strong>{{zoneObj.ZoneName}}</strong>
+                                        <span class="pull-right">
+                                            No. of State:({{zoneObj.States.length}})
+                                        </span>
+                                    </span>                                   
+                                </div>
+                                <div id="District_{{zoneObj.Guid}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <!--Start State Section-->
+                                        <div class="panel panel-default" ng-repeat="stateObj in  zoneObj.States">
+                                            <div class="panel-heading" data-toggle="collapse" href="#District_{{stateObj.Guid}}">
+                                                <span style="color:#317eac;">
+                                                    <strong>{{stateObj.StateName}}</strong>
+                                                    <span class="pull-right">
+                                                        No. of District:({{stateObj.Districts.length}})
+                                                    </span>
+                                                </span>                                               
+                                            </div>
+                                            <!--Start District Section-->
+                                            <div id="District_{{stateObj.Guid}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="panel panel-default" ng-repeat="districtObj in stateObj.Districts">
+                                                        <div class="panel-heading">
+                                                            <span style="color:#317eac;">
+                                                                <strong>{{districtObj.DistrictName}}</strong>
+                                                                <i class="pull-right">
+                                                                    <a href="#" style="text-decoration:none;" ng-click="Edit(countryObj,zoneObj,stateObj,districtObj,null,'district')"><i class="fa fa-pencil"></i></a>
+                                                                    <a href="#" class="pull-right" style="text-decoration:none;" ng-click="Remove()"><i class="fa fa-remove"></i></a>
+                                                                </i>
+                                                            </span>                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--End District Section-->
+                                        </div>
+                                        <!--End State Section-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End Zone Section-->
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <!--End Country Section -->
+        </div>
+    </div>
+    <!--Start List Section-->
+</form>

@@ -1,0 +1,141 @@
+﻿<style>
+    .form-group .form-control1.has-error {
+        border: 1px solid #dd4b39;
+    }
+
+    .form-control1[disabled], .form-control1[readonly] {
+        background-color: #eee;
+        opacity: 1;
+        cursor: not-allowed;
+    }
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card" style="margin: 40px 0px;">
+
+    <form name="challan_form"
+          ng-submit="AddChallan(challan_form)"
+          ng-validate="validationOptions">
+
+        <div class="panel panel-info">
+
+            <div class="panel-heading">
+                Verify Challan
+                <refresh:state></refresh:state>
+            </div>
+
+            <div class="row" style="margin-top: 16px; margin-bottom:10px;">
+
+                <div class="form-group col-md-4">
+                    <label class="control-label col-sm-12">Challan Number </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="ChallanNo" class="form-control1" ng-model="ChallanNo">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="challanDiv">
+
+            <div class="panel-body">
+
+                <collapse:div></collapse:div>
+
+                <div class="row" style="border: 1px solid #ddd; padding: 20px; margin-bottom:10px;">
+
+                    <div class="col-md-12">
+                        
+                        <quantity model="model"
+                                  clas-type="className">
+                        </quantity>
+
+                        <book:isbn model="model"
+                                   clas-type="className">
+                        </book:isbn>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <book-Search model="model"
+                                     clas="col-sm-4">
+                        </book-Search>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <button type="submit"
+                            class="btn btn-info pull-right">
+                        Add Challan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div ng-if="challanList.length">
+
+        <table class="table table-striped responsive"
+               wt-responsive-table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Book</th>
+                    <th>Challan Quantity</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in challanList" style="border: 1px solid;" 
+                    ng-style="{ 'border-color' : (entity.Status | color : 1 ) }">
+                    <td>{{ $index+1 }}</td>
+                    <td ng-bind="::entity.BookName"></td>
+                    <td ng-bind="::entity.challanQty"></td>
+                    <td>
+                            <span ng-bind="entity.Quantity" ng-hide="clikIndex === $index && showSts"></span>
+                            <input type="text" class="form-control1" ng-model="txtIndex[$index]"
+                                   ng-show="clikIndex === $index && showSts" />
+                    </td>
+                    <td ng-bind="entity.Status | color : 2"> </td>
+                    <td>
+                        <a href="#" ng-click="showBtn($index, true)" style="margin: 0 5px;"
+                           ng-hide="clikIndex === $index && showSts">
+                            <i class="fa fa-edit fa-lg"></i>
+                        </a>
+                        <a href="#" ng-click="showBtn($index, false, false)"
+                           style="margin: 0 5px;"
+                           ng-show="clikIndex === $index && showSts">
+                            <i class="fa fa-plus fa-lg"></i>
+                        </a>
+                        <a href="#" ng-click="showBtn($index, false, true)" style="margin: 0 5px;"
+                           ng-show="clikIndex === $index && showSts">
+                            <i class="fa fa-close fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-danger" ng-click="Delete($index)" style="margin: 0 5px;">
+                            <i class="fa fa-trash fa-lg"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row"
+             ng-hide="isDisableChallan">
+            <input type="button"
+                   class="btn btn-warning pull-right"
+                   value="Verify Challan"
+                   ng-click="verifyChallan()" 
+                   style="margin-right: 30px;" />
+        </div>
+
+    </div>
+
+</div>
+

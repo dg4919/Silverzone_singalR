@@ -1,0 +1,243 @@
+﻿  <!--  START > user control panel css start from here  -->
+<link href="Content/fonts.googleapis.com.css" rel="stylesheet" />               <!-- Use 'Content/' insetad of '/Content/' bcoz base href define suffix '/' --> 
+<link href="Content/ace.min.css" rel="stylesheet" />
+<link href="Content/bootstrap-datepicker.css" rel="stylesheet" />
+
+<!--  END  -->
+
+<style>
+    .form-group .has-error {
+        color: #dd4b39;
+    }
+</style>
+
+
+<div class="sidebar responsive ace-save-state">
+
+    <ul class="nav nav-list">
+
+        <li class="active">
+            <a ui-sref="user_profile">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> My Account </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li>
+            <a ui-sref="user_order">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text">  My Orders </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li>
+            <a ui-sref="user_profileAdress">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Manage Address </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li>
+            <a ui-sref="user_profileManagePassword">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Change Password </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li>
+            <a ui-sref="user_profile_updateEmailorMobile">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Update Email/Mobile </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+
+        <li>
+            <a ui-sref="user_quiz_history">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Quiz History </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        
+        <li>
+            <a ui-sref="user_mega_quiz">
+                <i class="menu-icon fa fa-tachometer"></i>
+                <span class="menu-text"> Mega Quiz </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+
+        <!--<li>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">
+                    ORDERS
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li>
+                    <a href="#" class="dropdown-toggle" ui-sref="user_order">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        My Orders
+
+                    </a>
+
+                </li>
+
+            </ul>
+        </li>-->
+        <li>
+            <a ui-sref="user_quiz" class="dropdown-toggle">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">
+                    Quiz
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li>
+                    <a href="CurrentQuiz.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Today's Quiz
+                    </a>
+                </li>
+                <li>
+                    <a href="MyQuiz.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        My Quizzes
+                    </a>
+                <li>
+                    <a href="MyQuizPoints.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        My Quiz Points
+                    </a>
+
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">
+                    Mega Quiz
+                </span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li>
+                    <a href="CurrentMegaQuiz.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Current Mega Quiz
+                    </a>
+                </li>
+                <li>
+                    <a href="MyMegaQuiz.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        My Mega Quizzes
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-user"></i>
+                <span class="menu-text">
+                    SETTINGS
+                </span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li>
+                    <a href="PersonalInformation.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Personal Information
+
+                    </a>
+
+                </li>
+                <li>
+                    <a href="ChangePassword.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Change Password
+
+                    </a>
+
+                </li>
+                <li>
+                    <a href="YourAddress.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Addresses
+
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="DeActivateAccount.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Deactivate Account
+
+                    </a>
+
+                </li>
+                <li>
+                    <a href="Notifications.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Notifications
+
+                    </a>
+
+                </li>
+                <li>
+                    <a href="EmailPreference.html" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-caret-right"></i>
+
+                        Email Preferences
+
+                    </a>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+   
+</div>

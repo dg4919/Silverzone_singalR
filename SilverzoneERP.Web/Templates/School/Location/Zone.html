@@ -1,0 +1,94 @@
+﻿
+
+<form name="frm" ng-submit="frm.$valid && Submit('zone')">
+    <!--Start Create Section-->
+    <div class="panel panel-default" ng-hide="isAdd_Zone">
+        <div class="panel-heading">
+            <a href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back('zone')"></a>
+            <span><strong style="color:#317eac;">Create</strong></span>
+            <button class="pull-right btn btn-default" style="margin-top:-8px;margin-right:-13px;" type="submit"><i class="fa fa-saved"></i><strong>{{Zone.Id==undefined?'Save':'Update'}}</strong></button>            
+        </div>
+        <div class="panel-body">
+            <div class="row">                                
+                <div class="form-group col-md-6">
+                    <label class="control-label col-sm-3">Country:</label>
+                    <div class="col-sm-9">
+                        <select class="form-control"
+                                name="CountryId"
+                                ng-model="Zone.CountryId"
+                                ng-options="CountryObj.CountryId as CountryObj.CountryName for CountryObj in CountryList"
+                                required>
+                            <option value="">------------Select Country------------</option>
+                        </select>
+                        <span ng-if="frm.CountryId.$invalid && frm.CountryId.$dirty && !frm.CountryId.$pristine"
+                              class="error">
+                            Please select country
+                        </span>
+                    </div>
+                </div>            
+                
+                <div class="form-group col-md-6">
+                    <label class="control-label col-sm-3">Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text"
+                               name="ZoneName"
+                               ng-model="Zone.ZoneName"
+                               maxlength="100"
+                               class="form-control"
+                               required
+                               autofocus>
+                        <span ng-if="frm.ZoneName.$invalid && frm.ZoneName.$dirty && !frm.ZoneName.$pristine"
+                              class="error">
+                            Zone name is required.
+                        </span>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </div>
+    <!--End Create Section-->
+
+    <!--Start List Section-->
+
+    <div class="panel panel-default" ng-if="isAdd_Zone">
+        <div class="panel-heading">
+            <span><strong style="color:#317eac;">No. of Country ({{CountryList.length}})</strong></span>
+            <a href="#" class="pull-right" style="text-decoration:none;" ng-click="Add('zone')"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="panel-body">
+            <!--Start Country Section -->
+            <div class="panel-group" id="accordion">               
+                <div class="panel panel-default" ng-repeat="countryObj in  CountryList">
+                    <div class="panel-heading" data-toggle="collapse" href="#Zone_{{countryObj.Guid}}">
+                        <span style="color:#317eac;">
+                            <strong>{{countryObj.CountryName}}</strong>
+                            <span class="pull-right">
+                                No. of Zone:({{countryObj.Zones.length}})
+                            </span>
+                        </span>
+                    </div>
+                    <div id="Zone_{{countryObj.Guid}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <!--Start Zone Section-->
+                            <div class="panel panel-default" ng-repeat="zoneObj in  countryObj.Zones">
+                                <div class="panel-heading">
+                                    <span style="color:#317eac;">
+                                        <strong>{{zoneObj.ZoneName}}</strong>
+                                        <i class="pull-right">
+                                            <a href="#" style="text-decoration:none;" ng-click="Edit(countryObj,zoneObj,null,null,null,'zone')"><i class="fa fa-pencil"></i></a>
+                                            <a href="#" class="pull-right" style="text-decoration:none;" ng-click="Remove()"><i class="fa fa-remove"></i></a>
+                                        </i>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--End Zone Section-->
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <!--End Country Section -->
+        </div>
+    </div>
+    <!--End List Section-->                      
+</form>
+

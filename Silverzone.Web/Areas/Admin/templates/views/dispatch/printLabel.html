@@ -1,0 +1,81 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Orders</div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    
+                    <div class="row text-center" style="margin-top: -20px;padding: 25px;">
+                        <div class="col-md-6">
+                            <h4>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.printType" value="0" > Not Printed</label>
+                                <label class="radio-inline"> <input type="radio" name="optradio" ng-model="searchModel.printType" value="1"> Printed</label>
+
+                            </h4>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="input-group date" id="myDatepicker" data-provide="datepicker">
+                                <input type="text" class="form-control" ng-model="searchModel.orderDate">
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" ng-click="searchOrder()"> 
+                            <i class="fa fa-search"></i> Search
+                             </button>
+                        </div>
+                        </div>
+
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Packet ID</th>
+                                    <th>Customer Nmae</th>
+                                    <th>Order No</th>
+                                    <th>Order Date</th>
+                                    <th>Amount</th>
+                                    <th>Payment Mode</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="order in order_list">
+                                    <td>{{ ::order.Id }}</td>
+                                    <td>{{ order.packetNumber }}</td>
+                                    <td>{{ ::order.custmer_name }}</td>
+                                    <td>{{ ::order.OrderNumber }}</td>
+                                    <td>{{ ::order.OrderDate | dateFormat: 'DD/MM/YYYY hh:mm a' }}</td>
+                                    <td>{{ ::order.orderAmount }}</td>
+                                    <td>{{ ::order.Payment_Mode }}</td>
+                                    <td>
+                                        <button type="button" ng-click="printLabel($index)" class="btn btn-warning" title="Print Label">
+                                        <i class="fa fa-print"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

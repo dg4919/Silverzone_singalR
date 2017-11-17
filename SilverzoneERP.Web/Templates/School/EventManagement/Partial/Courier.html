@@ -1,0 +1,34 @@
+﻿<div class="sz_section">
+    <strong>Postal Communication :-</strong>    
+</div>
+
+<div class="form-group col-md-4">
+    <label>Postal Communication :</label>
+    <select class="form-control"
+            name="CommunicationId"
+            ng-model="SchMngt.Events.PostalCommunication">
+        <option value="">----------Select Postal Communication----------</option>        
+        <option value=1>Courier Services</option>
+        <option value=2>Speed Post</option>
+        <option value=3>Registered Post</option>
+    </select>
+</div>
+
+<div class="form-group col-md-3">
+    <label>Select Courier :</label>
+    <select class="form-control"
+            name="CourierId"
+            ng-model="SchMngt.Events.CourierId">
+        <option value="">----------Select Courier Name----------</option>
+        <option value="{{obj.CourierId}}" ng-repeat="obj in CourierList">{{obj.Courier_Name}}</option>
+        <option value=-1>Other</option>
+    </select>
+</div>
+
+<div class="form-group col-md-4" ng-if="SchMngt.Events.CourierId==-1">
+    <label>Other Courier :</label>
+    <input type='text'
+           name="OtherCourier"
+           class="form-control"           
+           ng-model="SchMngt.Events.OtherCourier" />
+</div>

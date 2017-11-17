@@ -1,0 +1,207 @@
+﻿
+<form name="frm" 
+      ng-submit="frm.$valid && Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+        <div class="header-section">
+            <div class="menu-right">
+                <div class="user-panel-top">
+                    <div class="col-lg-12">
+                        <div class="col-md-3">
+                            <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                            <strong>Registration</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="pull-right">
+                                <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                    <i class="fa fa-saved"></i>
+                                    <strong>{{User.Id==undefined?'Save':'Update'}}</strong>
+                                </button>
+
+                                <button class="btn btn-default" ng-click="Active_Deactive(false)" ng-if="Changed" type="button">
+                                    <i class="fa fa-saved"></i>
+                                    <strong>Save Change</strong>
+                                </button>
+
+
+                                <select ng-hide="isEdit" style="color:black;" ng-model="selectedIndex" ng-change="SelectedIndexChanged(selectedIndex)">
+                                    <option value="0">All</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Deactive</option>
+                                </select>
+                                
+                                <a ng-if="Permission.Add" ng-hide="isEdit" href="#" style="text-decoration:none;" ng-click="Add()"><i class="fa fa-plus"></i></a>
+                            </span>
+                        </div>
+                        <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="sz_card">
+            <!--Start Create Section-->
+            <div ng-show="isEdit">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label><i class="fa fa-user"></i> Name :</label>
+                                <input type="text"
+                                       name="UserName"
+                                       class="form-control"
+                                       ng-model="User.UserName"
+                                       autofocus />
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Date of Birth :</label>
+                                <input type='text'
+                                       name="DOB"
+                                       class="form-control"
+                                       id='datepicker'
+                                       data-provide="datepicker"
+                                       ng-model="User.DOB" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label><i class="fa fa-envelope"></i> Email:</label>
+                                <input type="email"
+                                       name="EmailID"
+                                       class="form-control"
+                                       ng-model="User.EmailID" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-sm-4">Image:</label>
+                                <div class="col-sm-8">
+                                    <img ng-src="{{User.ProfilePic}}" class="img-thumbnail" alt="Alternate Text" style="height:100px;width:80px;" />
+                                    <input type="file" accept=".png,.jpg,.jpeg" ng-file-select="onFileSelect($files)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>Role:</label>
+                                <select name="RoleId"
+                                        ng-model="User.RoleId"
+                                        class="form-control"
+                                        ng-options="obj.RoleId as obj.RoleName for obj in Role">
+                                    <option value="">---------------Select Role---------------</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>Gender:</label>
+                                <select ng-model="User.GenderType" class="form-control">
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>Password :</label>
+                                <!--required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"-->
+                                <input type="password"
+                                       name="Password"
+                                       class="form-control"
+                                       ng-model="User.Password" />
+                                <!--<span  ng-if="userForm.Password.$error.pattern" class="help-block">
+                                    Password should be atleast 8 characters long
+                                    and should contain one number,one character and one special
+                                    character
+                                </span>-->
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>Confirm-Password :</label>
+                                <input type="password"
+                                       class="form-control"
+                                       name="ConfirmPassword"
+                                       ng-model="User.ConfirmPassword"
+                                       password-match="User.Password" />
+
+                                <span ng-if='frm.ConfirmPassword.$error.unique'
+                                      class="error">
+                                    Passwords don't match.!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label>Address :</label>
+                                <textarea name="UserAddress"
+                                          class="form-control"
+                                          ng-model="User.UserAddress"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                <label><i class="fa fa-mobile-phone"></i> Mobile No. :</label>
+                                <input type="text"
+                                       name="MobileNumber"
+                                       ng-model="User.MobileNumber"
+                                       class="form-control"
+                                       only-numbers />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Create Section-->
+            <!--Start List Section-->
+            <div ng-hide="isEdit">                
+                <div class="col-md-12" ng-include="'Templates/Common/Partial/Pagination.html'"></div>
+                <table class="table table-striped responsive" wt-responsive-table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Address</th>
+                            <th>Image</th>
+                            <th ng-if="Permission.Edit">Edit</th>
+                            <th ng-if="Permission.Edit">IsActive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in UserList">
+                            <td>{{item.UserName}}</td>
+                            <td>{{item.EmailID}}</td>
+                            <td>{{item.MobileNumber}}</td>
+                            <td>{{item.UserAddress}}</td>
+                            <td>
+                                <img ng-src="{{UserInfo.ImgPrefix}}{{item.ProfilePic==null?'ProfilePic/placeholderImage.png':item.ProfilePic}}"
+                                     class="img-circle" alt="Alternate Text" style="height:50px;width:50px;" />
+                            </td>
+                            <td ng-if="Permission.Edit">
+                                <a href="#" ng-click="Edit(item)"> <i class="fa fa-pencil"></i></a>
+                            </td>
+                            <td ng-if="Permission.Edit">
+                                <input type="checkbox" ng-model="item.Status" ng-change="IsActive(item.Id)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--End List Section-->
+        </div>
+    </form>

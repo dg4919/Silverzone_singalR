@@ -1,0 +1,105 @@
+﻿<div class="sz_section">
+    <strong> Class Details :-</strong>
+    <span class="pull-right">
+        <a href="#"
+           ng-if="isOrder"
+           style="text-decoration:none;color:white;"
+           ng-click="Add_Order(null)">
+            <i class="fa fa-plus"></i>
+        </a>
+    </span>
+</div>
+
+<div class="col-md-12">
+    <uib-tabset active="active">
+        <uib-tab index="1" heading="Enrollment Order" disable="tab.disabled" ng-click="Tab(true,false)">
+            <!--Start Add Fields-->
+            <table class="table table-striped responsive" wt-responsive-table>
+                <thead>
+                    <tr>
+                        <th>Order No.</th>
+                        <th>Order Date</th>
+                        <th>Enrollments</th>
+                        <th>Exam Date</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in SchMngt.Events.EnrollmentOrder">
+                        <td ng-bind="data.OrderNo"></td>
+                        <td ng-bind="data.OrderDate|date:'dd-MMM-yyyy'"></td>
+                        <td ng-bind="data.TotlaEnrollment"></td>
+                        <td ng-bind="data.ExamDate|date:'dd-MMM-yyyy'"></td>
+                        <td>
+                            <a href="#"
+                               style="text-decoration:none;color:white;"
+                               ng-click="Add_Order(data)">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End Add Fields-->
+        </uib-tab>
+        <uib-tab index="2" heading="Summary" disable="tab.disabled" ng-click="Tab(false,false)">
+            <!--Start Add Fields-->
+            <table class="table table-striped responsive" wt-responsive-table>
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>No. Of Students</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in ClassList">
+                        <td>{{data.ClassName<10?'0'+data.ClassName:data.ClassName}}</td>
+                        <td ng-bind="data.No_Of_Student"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End Add Fields-->
+        </uib-tab>
+        <uib-tab index="3" heading="Book Order" disable="tab.disabled" ng-click="Tab(true,true)">
+            <!--Start Add Fields-->
+            
+            <!--End Add Fields-->
+        </uib-tab>
+    </uib-tabset>
+    
+</div>
+
+<div class="col-md-12">
+    <div class="col-md-3" style="width: 22% !important;">
+        <strong>Total No. of Participants :</strong>
+    </div>
+    <div class="col-md-1">
+        <span class="form-control"
+              style="width:100%;"
+              ng-bind="No_Of_Participants">
+        </span>
+    </div>
+    <div class="col-md-3">
+        <strong>Registration Amount Rs./USD$:</strong>
+    </div>
+    <div class="col-md-1">
+        <span class="form-control"
+              style="width:100%;"
+              ng-bind="Total_Amt">
+        </span>
+    </div>
+    <div class="col-md-4">
+        <strong>[No. of Participants X Fee per participant]</strong>
+    </div>
+</div>
+
+<div class="sz_section col-md-12" ng-if="SchMngt.Events.ExamDate!=null">
+    <strong> Olympiad Exam Date</strong>
+</div>
+
+<div class="col-md-12" ng-if="SchMngt.Events.ExamDate!=null">    
+    <div class="col-md-6">
+        <label>Exam Date :</label>
+        <span ng-bind="SchMngt.Events.ExamDate"></span>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Books Bundle List</div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default pull-right" ui-sref="bundle_create"> Add Bundle </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>S.NO</th>
+                                    <th>Bundle Name</th>
+                                    <th>Description</th>
+                                    <th>Bundle Price </th>
+                                    <th>Books Price </th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="bundle in bundles_List">
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ bundle.Name }}</td>
+                                    <td>{{ bundle.Description }}</td>
+                                    <td>{{ bundle.bundle_totalPrice }}</td>
+                                    <td>{{ bundle.books_totalPrice }}</td>
+                                    <td> <switch class="green" ng-model="bundle.Status" ng-change="changeCallback(bundle)"></switch> </td>
+                                    <td>
+                                        <a ui-sref="bundle_edit({ bundleId : bundle.Id })" class="btn btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

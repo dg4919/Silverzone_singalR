@@ -1,0 +1,179 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>Search School</strong>
+            <button class="pull-right btn btn-default"
+                    type="submit"
+                    ng-click="Search_School()">
+                <i class="fa fa-search"></i> <strong> Search</strong>
+            </button>          
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-10">
+                        <label>Anything :</label>
+                        <input type="text"
+                               name="Anything"
+                               class="form-control"
+                               ng-model="Search.Anything" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>School Code :</label>
+                        <input type="text"
+                               name="SchCode"
+                               class="form-control"
+                               only-numbers
+                               maxlength="6"
+                               ng-model="Search.SchCode" />
+                    </div>
+                </div>
+                <div class="col-md-12">                    
+                    <div class="col-md-6">
+                        <label>School name :</label>
+                        <input type="text"
+                               name="SchName"
+                               class="form-control"
+                               ng-model="Search.SchName" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Country :</label>
+                        <select class="form-control"
+                                name="CountryId"
+                                ng-model="Search.CountryId"
+                                ng-change="CountryChange(Search.CountryId)"
+                                ng-options="obj.CountryId as obj.CountryName for obj in CountryList">
+                            <option value="">--------Select Country--------</option>
+                        </select>
+                    </div>                    
+                    <div class="col-md-3">
+                        <label>Zone :</label>
+                        <select class="form-control"
+                                ng-model="Search.ZoneId"
+                                ng-change="ZoneChange(Search.ZoneId)"
+                                ng-options="obj.ZoneId as obj.ZoneName for obj in ZoneList">
+                            <option value="">--------Select Zone--------</option>
+                        </select>
+                    </div>
+                </div>                                                
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>State :</label>
+                        <select class="form-control"
+                                ng-model="Search.StateId"
+                                ng-change="StateChange(Search.StateId)"
+                                ng-options="obj.StateId as obj.StateName for obj in StateList">
+                            <option value="">--------Select State--------</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label>District :</label>
+                        <select class="form-control"
+                                ng-model="Search.DistrictId"
+                                ng-change="DistrictChange(Search.DistrictId)"
+                                ng-options="obj.DistrictId as obj.DistrictName for obj in DistrictList">
+                            <option value="">--------Select District--------</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>City :</label>
+                        <select class="form-control"
+                                ng-model="Search.CityId"
+                                ng-options="obj.CityId as obj.CityName for obj in CityList">
+                            <option value="">--------Select City--------</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Pin Code :</label>
+                        <input type="text"
+                               name="PinCode"
+                               class="form-control"
+                               only-numbers
+                               maxlength="6"
+                               ng-model="Search.PinCode" />
+                    </div> 
+                </div>   
+                
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label>BlackListed :</label>
+                        <select class="form-control"
+                                name="BlackListed"
+                                ng-model="Search.BlackListed" >
+                            <option value="">----Select BlackListed----</option>
+                            <option value=1>YES</option>
+                            <option value=0>NO</option>
+                        </select>
+                    </div> 
+                    <div class="col-md-3">
+                        <label>Event :</label>
+                        <select class="form-control"
+                                name="BlackListed"
+                                ng-model="Search.EventType">
+                            <option value="">----Select Event----</option>
+                            <option value=1>Current event</option>
+                            <option value=2>This Year's All Event</option>
+                            <option value=3>Last Year's Current Event</option>                                                        
+                            <option value=4>Last Year's All Event</option>
+                            <option value=5>Participated Till Date</option>
+                            <option value=6>Not Participated Till Date</option>                            
+                                                                                    
+                            
+                        </select>
+                    </div>                     
+                </div>
+                
+                <hr />
+                <div class="col-md-12" ng-include="'Templates/Common/Partial/Pagination.html'"></div>
+                <div class="col-md-12">                                   
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Code</th>
+                                <th>School Name</th>
+                                <th>Address</th>
+                                <th>Country</th>
+                                <th>Zone</th>
+                                <th>State</th>
+                                <th>District</th>
+                                <th>City</th>
+                                <th>Pin Code</th>
+                                <th>Email-ID</th>
+                                <th>Mobile No.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in SearchList" ng-dblclick="SelectedSchool(data)">
+                                <td>{{$index+1}}</td>
+                                <td ng-bind="data.SchCode"></td>
+                                <td ng-bind="data.SchName"></td>
+                                <td ng-bind="data.SchAddress"></td>
+                                <td ng-bind="data.CountryName"></td>
+                                <td ng-bind="data.ZoneName"></td>
+                                <td ng-bind="data.StateName"></td>
+                                <td ng-bind="data.DistrictName"></td>
+                                <td ng-bind="data.CityName"></td>
+                                <td ng-bind="data.SchPinCode"></td>
+                                <td ng-bind="data.SchEmail"></td>
+                                <td ng-bind="data.SchPhoneNo"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                                                            
+            </div>
+        </div>
+    </div>
+</form>

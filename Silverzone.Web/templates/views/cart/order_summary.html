@@ -1,0 +1,220 @@
+﻿<div ng-init="orderTotal_Amount = (cart.quizPoint_isChecked ? (cart.total_Amount - (cart.quizPoints/10)) : cart.total_Amount | number : 2)">
+
+    <div class="row col-md-12 col-sm-2" style="margin-top: -15px;" ng-if="cartDetail.Is_paymentDone_online">
+
+        <h3>Order Summary  <i class="fa fa-arrow-circle-o-right"></i></h3>
+
+        <div class="col-md-6">
+            <button type="button" class="btn btn-default" onclick="window.print();return false;"> <i class="fa fa-print"></i> Print </button>
+        </div>
+        
+        <div class="col-md-6">
+            <a href="#" class="btn btn-default pull-right" ng-click="cartDetail.goTohome()"> <i class="fa fa-home"></i>  Home</a>
+        </div>
+
+        <div class="col-md-8" style="border: 1px solid #ddd; margin: 15px 0px 15px 0px;">
+            <h3>
+                Your order has been placed successfully.<br>Your will receive the goods within 7-10 working days.<br>
+
+            </h3><h4><strong>Order Number:</strong>SzOrd09082016/11011</h4>
+            <h4><strong>Order Date:</strong>08/09/2016</h4>
+            <h4><strong>Your Status:</strong>Order Placed</h4>
+            <h4><strong>Payment Method:</strong>Online</h4>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 25px;margin-left: 0px !important;margin-bottom: -20px;" ng-if="cartDetail.Is_paymentDone_offline">
+        <div class="col-sm-12">
+
+            <h3>Order Summary  <i class="fa fa-arrow-circle-o-right"></i></h3>
+
+            <div class="col-md-6">
+                <button type="button" class="btn btn-default" onclick="window.print();return false;"> <i class="fa fa-print"></i> Print </button>
+            </div>
+
+            <div class="col-md-6">
+                <a href="#" class="btn btn-default pull-right" ng-click="cartDetail.goTohome()"> <i class="fa fa-home"></i>  Home</a>
+            </div>
+
+
+            <div class="col-md-12">
+                <h3>
+                    Your order has been placed successfully.<br>Your order may take 7-10 working days to deliver.<br>Please make a note of the following while sending in your payments.
+                </h3>
+            </div>
+
+            <div style="margin: 26px 0px 15px 0px;border: 1px solid #ddd;padding: 17px;">
+                <p style="font-size:16px">
+                    <i class="fa fa-arrow-right red"></i> Prepare <strong>At Par Multi-City</strong> Cheque in favor of <strong>3GENX INDIA</strong> for <i class="fa fa-rupee"></i> {{ orderTotal_Amount }} <br>
+                </p><div class="text-center">OR</div>
+                <div style="font-size:16px;">Prepare a Demand Draft in favor of <strong>3GENX INDIA</strong> payable at New Delhi for the Amount <i class="fa fa-rupee"></i> {{ orderTotal_Amount }} </div><br>
+                <p></p>
+                <p style="font-size:16px">
+                    <i class="fa fa-arrow-right"></i>  Write Your Postal Address,Phone Number and Order Number <strong> {{ cartDetail.order_confirmData.OrderNumber }} </strong> at the back side of your Cheque/Draft.<br>
+                </p>
+                <p style="font-size:16px;">
+                    <i class="fa fa-arrow-right"></i>  Mail Your Cheque/Draft to following Address:<br>
+                </p><div style="padding: 10px;">
+
+                    <strong>3GENX C/O SILVERZONE</strong><br>
+                    B-2,Ansal Chamber II,<br>
+                    BhikaJi Cama Place,<br>
+                    New Delhi-110066,India<br>
+                    Phone:-+91-11-26166210-12
+                </div>
+                <p></p>
+
+            </div>
+
+            <div>
+                <h4><strong>Order Number: </strong> {{ cartDetail.order_confirmData.OrderNumber }} </h4>
+                <h4><strong>Order Date: </strong>{{ cartDetail.order_confirmData.OrderDate | dateFormat: 'DD/MM/YYYY' }} </h4>
+                <h4><strong>Your Status:</strong>Order Placed</h4>
+                <h4><strong>Payment Method:</strong>Cheque/Draft/Cash Deposit</h4>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row" style="margin-top: 45px;">
+        <div class="col-md-5 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shipping Address</h3>
+                    <a href="#"class="btn btn-info pull-right btn-xs btn-close" style="margin-top: -20px;" ui-sref="cart_address_detail" ng-hide="cartDetail.Is_paymentDone_online || cartDetail.Is_paymentDone_offline">
+                        <strong> <i class="fa fa-edit"></i> CHANGE ADDRESS</strong>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 col-sm-2">
+                        <h4> {{ cartDetail.selected_shipping_Adress.Username }} </h4>
+                        <p style="margin-bottom: 10px;">
+                            {{cartDetail.selected_shipping_Adress.Address}} - {{cartDetail.selected_shipping_Adress.PinCode}} , {{ cartDetail.selected_shipping_Adress.City }} <br /> {{ cartDetail.selected_shipping_Adress.State }}
+                        </p>
+
+                        <p style="color: #565656;padding: 10px 0;margin: 10px 0 20px;border-top: #e6e6e6 solid 1px;border-bottom: #e6e6e6 solid 1px;">
+                            <i class="fa fa-envelope"></i><span style="margin-left: 5px;" ng-bind="cartDetail.selected_shipping_Adress.Email"></span>
+                            <br />
+                            <i class="fa fa-phone"></i><span style="margin-left: 5px;"><strong> {{ cartDetail.selected_shipping_Adress.Mobile }} </strong></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading panel-primary">
+                    <div class="panel-title">
+                        Your Cart Items- {{ cart.Items.length }} Item(s)
+                        <div class="text-right" style="margin-top:-20px;">Order Total: <i class="fa fa-rupee"> </i>
+                            {{ orderTotal_Amount }} 
+                        </div>
+                    </div>                    
+                </div>
+
+                <div class="panel-body">
+                    <table class="table panel-primary">
+                        <tbody>
+
+                            <tr>
+                                <th>
+                                    Book Image
+                                </th>
+                                <th>
+                                    Book Name
+                                </th>
+                                <th>
+                                    Price (each)
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                                <th>SubTotal</th>
+
+                            </tr>
+
+                            <tr ng-repeat="item in cart.Items track by $index">
+                                <td>
+                                    <img ng-src="{{ imgBase + item.bookImage }}" class="img-responsive img-bordered" style="width: 75px;">
+                                </td>
+                                <td>
+                                    <p> <!--  splitting data using custom filter to get info from title -->
+                                        <strong ng-if="item.bookType === 1"> {{ ::item.bookTitle | split: ':' : 0 }} </strong><br />
+                                        <strong ng-if="item.bookType === 2"> 
+                                        <a href="" show-Bundle:Modal bundleId="{{item.bookId}}">{{ ::item.bookTitle | split: ':' : 0 }}</a>
+                                        </strong><br />
+                                        <strong>Publisher: </strong>{{ ::item.bookPublisher }} <br />
+                                        <strong>BookType: </strong> {{ ::item.bookTitle | split: ':' : 1 | split: '-' : 0 }} <br />
+                                        <strong>Class: </strong> {{ ::item.bookTitle | split: '-' : 1 }} <br />
+                                        <strong>Subject: </strong> {{ ::item.Subject }} <br />
+                                    </p>
+                                </td>
+
+                                <td>
+                                    <i class="fa fa-rupee"></i> {{ item.bookTotalPrice/item.bookQty | number : 2 }}
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-lg">
+                                        <lable ng-bind="item.bookQty"></lable>
+                                    </div>
+                                </td>
+                                <td><i class="fa fa-rupee"></i> {{ ::item.bookTotalPrice | number : 2 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Toatal</strong></td>
+                                <td id="cart-total"><i class="fa fa-rupee"></i> {{ ::cart.shipping_Amount | number : 2 }} </></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <strong>
+                                        Shipping Charges
+                                        <div style="font-size: 75% !important;"> (for first unit @ {{ cartDetail.country_type === 1 ? 40 : 1200 }} and rest @ {{ cartDetail.country_type === 1 ? 25 : 200 }} each) </div>
+                                    </strong>
+                                </td>
+                                <td id="cart-total"><i class="fa fa-rupee"></i> {{ ::cart.shipping_Charges }} </></td>
+                            </tr>
+
+                            <tr ng-if="cart.quizPoints >= 100 && cart.quizPoint_isChecked">
+                                <td colspan="3"></td>
+                                <td> <strong>Redeem Quiz Points (-)</strong> </td>
+                                <td><i class="fa fa-rupee"></i> {{ cart.quizPoints/10 }} </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Payable Amount</strong></td>
+                                <td>
+                                    <i class="fa fa-rupee"></i>
+                                {{ orderTotal_Amount }}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-12 col-sm-2 text-right" ng-hide="cartDetail.Is_paymentDone_online || cart.Is_paymentDone_offline">
+            <a href="#" class="btn btn-primary" ui-sref="payment_method({paymentProceed_btn_isClicked: true})"> Proceed To Payment </a>
+        </div>
+
+    </div>
+
+</div>

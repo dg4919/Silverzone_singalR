@@ -1,0 +1,85 @@
+﻿<style>
+    .disable_continer {
+        opacity: .5;
+        z-index: 10000;
+        pointer-events: none;
+    }
+
+    .product-info a {
+        color: #337ab7 !important;
+    }
+
+    .product-info a :hover {
+        color: #23527c !important;
+    }
+
+    .product-info a.btn{
+        color: #fff !important;
+    }
+
+</style>
+
+
+
+<!--- Image slider -->
+<!--<div class="row slider" style="margin-top: 20px;">
+    <div class="col-sm-12">
+        <img src="Images/books_banner.jpg" class="img-responsive" style="width: 100%;height: 300px;" />
+    </div>
+</div>-->
+<!--- Content -->
+<div class="row main_content" style="margin-top: 20px;">
+    <div class="col-md-12">
+
+        <div id="BookSearchDiv" ng-include="'templates/Partials/book_search.html'"></div>                   <!-- Note : Don't prefix '/' in Any URL's bcoz we got it from base href -->
+        <!--List : {{ bookList[0] }}-->
+        <!--values of selected : {{ buyBook_isDisable }}-->
+        <div class="row">
+
+            <uib-tabset active="selecteBookType" type="pills">
+
+                <uib-tab index="0" heading="Book" class="col-sm-3 text-center">
+                    <div class="col-sm-12" style="margin-top: 7px;">
+
+                        <div style="height: 50%; border: 1px solid #ddd;" ng-if="bookList.length === 0">
+                            <h3>
+                                We did not find any books :(
+                                <br>
+                                Try Again
+                            </h3>
+                        </div>
+
+                        <div ng-repeat="bookInfo in bookList" ng-if="bookList.length">
+
+                            <!--  bootstrap clearfix class every three (or whatever number) element corrects display problem from differents block's height. -->
+                            <div class="clearfix" ng-if="$index % 4 == 0"></div>
+                            <div class="col-sm-3 col-lg-3 col-md-3">
+                                <bind:Books book="bookInfo"></bind:Books>
+                            </div>
+
+                        </div>
+                    </div>
+                </uib-tab>
+
+                <uib-tab index="1" heading="Bundle" class="col-sm-3 text-center">
+                    <div class="col-sm-12" style="margin-top: 7px;">
+                        <div style="height: 50%; border: 1px solid #ddd;" ng-if="bundleList.comboNames.length === 0">
+                            <h3>
+                                We did not find any bundle :(
+                                <br>
+                                Try Again
+                            </h3>
+                        </div>
+
+                        <bind-Bundles combo="bundleList" ng-if="bundleList.comboNames.length">
+                        </bind-Bundles>
+                    </div>
+
+                </uib-tab>
+
+            </uib-tabset>
+
+        </div>
+    </div>
+
+</div>

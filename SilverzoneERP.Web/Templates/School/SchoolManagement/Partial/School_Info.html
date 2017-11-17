@@ -1,0 +1,153 @@
+﻿<div class="col-md-12 sz_section">
+    School Information
+</div>
+
+<div class="col-md-12">
+    <div class="form-group col-md-6">
+        <label>School Name:</label>
+        <input type="text"
+               name="SchName"
+               ng-model="SchMngt.SchName"               
+               class="form-control"
+               placeholder="School Name"
+               autofocus>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label><i class="fa fa-envelope"></i> Email-ID:</label>
+        <input type="email"
+               name="SchEmail"
+               ng-model="SchMngt.SchEmail"               
+               class="form-control"
+               placeholder="Ex. - abc@gmail.com" />
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group col-md-6">
+        <label>Address:</label>
+        <textarea name="SchAddress"
+                  ng-model="SchMngt.SchAddress"                  
+                  class="form-control">
+        </textarea>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Alternate Address</label>
+        <textarea name="SchAltAddress"
+                  ng-model="SchMngt.SchAltAddress"                  
+                  class="form-control">
+        </textarea>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-map-marker"></i> Select City :</label>
+        <select class="form-control"
+                name="CityId"
+                ng-model="SchMngt.CityId"
+                ng-options="obj.CityId as obj.CityName for obj in City"
+                ng-change="CityChange()">
+            <option value="">---------Select City---------</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-map-marker"></i> District</label>
+        <span class="form-control"
+              ng-bind="SchMngt.DistrictName">
+        </span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-map-marker"></i> State</label>
+        <span class="form-control"
+              ng-bind="SchMngt.StateName">
+        </span>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-map-marker"></i> Country</label>
+        <span class="form-control"
+              ng-bind="SchMngt.CountryName">
+        </span>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group col-md-2">
+        <label>Pin Code :</label>
+        <input type="text"
+               class="form-control"
+               name="SchPinCode"              
+               ng-model="SchMngt.SchPinCode"
+               only-numbers />
+    </div>
+
+    <div class="form-group col-md-2">
+        <label><i class="fa fa-phone"></i> Phone No. :</label>
+        <input type="text"
+               class="form-control"
+               name="SchPhoneNo"
+               ng-model="SchMngt.SchPhoneNo"               
+               only-numbers />
+    </div>
+
+    <div class="form-group col-md-2">
+        <label>Fax No. :</label>
+        <input type="text"
+               name="SchFaxNo"
+               class="form-control"
+               ng-model="SchMngt.SchFaxNo"               
+               only-numbers />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>Website :</label>
+        <input type="text"
+               name="SchWebSite"
+               class="form-control"                         
+               ng-model="SchMngt.SchWebSite" />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-glass"></i> Category :</label>
+        <select class="form-control"
+                name="SchCategoryId"
+                ng-model="SchMngt.SchCategoryId"
+                ng-options="obj.Id as obj.CategoryName for obj in Related_Object.SchoolCategory" >
+            <option value="">-------Select Category-------</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group col-md-3">
+        <label><i class="fa fa-glass"></i> School Group :</label>
+        <select class="form-control"
+                name="SchGroupId"
+                ng-model="SchMngt.SchGroupId"
+                ng-options="obj.Id as obj.SchoolGroupName for obj in Related_Object.SchoolGroup" >
+            <option value="">---------Select School Group---------</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label>Affiliation No. :</label>
+        <input type="text"
+               class="form-control"
+               name="SchAffiliationNo"               
+               ng-model="SchMngt.SchAffiliationNo" />
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Board :</label>
+        <input type="text"
+               class="form-control"
+               name="SchBoard"
+               maxlength="50"
+               ng-model="SchMngt.SchBoard" />
+    </div>
+</div>
+

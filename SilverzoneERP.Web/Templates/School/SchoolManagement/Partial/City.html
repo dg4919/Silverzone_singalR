@@ -1,0 +1,81 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section">
+            <a href="#"
+               ng-click="Back()"
+               style="color:white;">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <strong>City</strong>
+            <button type="submit"
+                    class="pull-right btn btn-default">
+                <i class="fa fa-saved"></i> <strong>Save</strong>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group col-md-12">
+                        <label>Country :</label>
+                        <select class="form-control"
+                                name="CountryId"
+                                ng-model="City_Obj.CountryId"
+                                ng-change="CountryChange(City_Obj.CountryId)"
+                                ng-options="obj.CountryId as obj.CountryName for obj in CountryList">
+                            <option value="">----------Select Country----------</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">                    
+                    <div class="form-group col-md-4">
+                        <label>Zone :</label>
+                        <select class="form-control"
+                                name="ZoneId"
+                                ng-model="City_Obj.ZoneId"
+                                ng-change="ZoneChange(City_Obj.ZoneId)"
+                                ng-options="obj.ZoneId as obj.ZoneName for obj in ZoneList">
+                            <option value="">---Select Zone---</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <label>State :</label>
+                        <select class="form-control"
+                                name="StateId"
+                                ng-model="City_Obj.StateId"
+                                ng-change="StateChange(City_Obj.StateId)"
+                                ng-options="obj.StateId as obj.StateName for obj in StateList">
+                            <option value="">------------Select State------------</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group col-md-6">
+                        <label>District :</label>
+                        <select class="form-control"
+                                name="DistrictId"
+                                ng-model="City_Obj.DistrictId"                                
+                                ng-options="obj.DistrictId as obj.DistrictName for obj in DistrictList">
+                            <option value="">------------Select District------------</option>
+                        </select>
+                    </div>
+                  
+                    <div class="form-group col-md-6">
+                        <label>City :</label>
+                        <input type="text"
+                               name="CityName"
+                               class="form-control"                               
+                               ng-model="City_Obj.CityName">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

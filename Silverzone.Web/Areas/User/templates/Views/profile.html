@@ -1,0 +1,116 @@
+﻿<style>
+    .ng-hide {
+        display: none;
+    }
+</style>
+
+<!-- All Class r depend to this Id  -->
+<div id="userProfile_Container" class="no-skin row" style="margin-top: 25px;">
+
+    <div id="sidebar" class="col-md-2"
+         ng-include="'Areas/User/templates/partials/sideBar.html'">
+    </div>
+
+    <div class="col-md-10">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Home</a>
+                </li>
+                <li class="active">Dashboard</li>
+            </ul><!-- /.breadcrumb -->
+
+        </div>
+
+        <div class="page-content">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="row">
+                        <div class="space-6"></div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        Account Information
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <form ng-submit="save_userInfo(model)">
+
+                                            <div class="col-md-3 col-lg-3" align="center">
+                                                <img class="img-circle img-responsive" ng-src="{{ model.ProfilePic || '/Images/profile-img.jpg' }}" style="width:150px;height:150px;">
+                                                <a title="Change Profile Picture" style="cursor: pointer;position: relative;top: -32px;color: aliceblue;" class="fa fa-camera" onclick="$('#img_dialog').click();"></a>
+                                                <input id="img_dialog" type="file" onchange="angular.element(this).scope().uploadImage(this)" style="display:none;">
+                                            </div>
+
+                                            <div class="col-md-9 col-lg-9">
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Name:</td>
+                                                            <td><input class="form-control col-md-12" ng-model="model.UserName" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Class:</td>
+                                                            <td>            <!-- on chage dropDown only id will be pass instead of class Model  -->
+                                                                <select class="form-control col-md-12 " ng-model="model.Class"
+                                                                        ng-options="::class.Id as ::class.className for class in classList">
+                                                                    
+                                                                    <option value=""> ---- Select Class ---- </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>                                                       
+
+                                                        <tr>
+                                                            <td>Gender</td>
+                                                            <td>
+                                                                <label class="radio-inline col-sm-6">
+                                                                    <input type="radio" name="optradio" ng-model="model.Gender" value="1">Male
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="optradio" ng-model="model.Gender" value="2">Female
+                                                                </label>
+                                                            </td>
+                                                        </tr>   
+                                                        
+                                                        <tr>
+                                                            <td>Date of Birth</td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <div class='input-group date' id='datetimepicker1' data-provide="datepicker">
+                                                                        <input type='text' class="form-control col-md-12" ng-model="model.DOB" />
+                                                                        <span class="input-group-addon">
+                                                                            <span class="fa fa-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                                                                             
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="col-md-12 text-center" style="margin-top:15px;">
+                                                    <button type="submit" class="btn btn-primary">Save Profile </button>
+</div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,170 @@
+﻿<style>
+        label {
+            padding: 3px 0px;
+        }
+
+        .myclass {
+            position: absolute;
+            right: 38px;
+            margin-top: -22px;
+            cursor: pointer;
+        }
+
+        #inventoryBox {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .form-control1[disabled], .form-control1[readonly] {
+            background-color: #eee;
+            opacity: 1;
+            cursor: not-allowed;
+        }
+
+        .form-group .has-error {
+        color: #dd4b39;
+    }
+
+</style>
+
+<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<div class="sz_card">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            Search Purchase Orders
+        </div>
+
+        <form name="search_poForm"
+              ng-submit="search(search_poForm)"
+              ng-validate="validationOptions"
+              novalidate="novalidate">
+
+            <div class="row" style="padding: 20px;">
+
+                <sourc model="model.SourceId"
+                       clas-type="classsName"
+                       show:label="True">
+                </sourc>
+
+                <source_info model="model.SourceInfo_Id"
+                             src-id="model.SourceId"
+                             clas-type="classsName">
+                </source_info>
+
+                <div class="form-group col-sm-3">
+                    <label class="control-label col-sm-12">PO No</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control1" ng-model="model.poNo" />
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <label class="control-label col-sm-12">PO type</label>
+                    <div class="col-sm-12">
+                        <select class="form-control1" ng-model="model.poType">
+                            <option value=""> ---- Select Type ---- </option>
+                            <option value="1"> Pending </option>
+                            <option value="2"> Completed </option>
+                            <option value="3"> Adjusted </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-left: 7px;">
+                <book_search model="bookSearchModel"
+                             clas="col-sm-3"></book_search>
+            </div>
+
+            <div class="row" style="margin-top: 10px; margin-left: 19px;">
+                <from_date model="model"
+                           clas-type="classsName">
+                </from_date>
+
+                <to:date model="model"
+                         clas-type="classsName">
+                </to:date>
+            </div>
+
+            <div class="panel-footer" style="margin-top: 40px;">
+                <div class="row">
+                    <button type="submit"
+                            class="btn btn-info pull-right">
+                        Search PO
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <h3>
+        List of Pending PO
+    </h3>
+
+    <div class="row"
+         ng-if="!PO_searchResult.length"
+         style="padding: 22px;">
+        <h2 class="text-success"> There is no record found :( </h2>
+    </div>
+
+    <div ng-if="PO_searchResult.length"
+         ng-repeat="res in PO_searchResult"
+         style="border: 1px solid #ddd;padding: 15px 0px;margin: 10px 0px;">
+
+        <div class="col-sm-12">
+            Source Name (To):
+            <span ng-bind="res.srcName"></span>
+        </div>
+
+        <table class="table table-striped responsive"
+               wt-responsive-table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Category</th>
+                    <th>Total Order</th>
+                    <th>Quantity Recieved</th>
+                    <th>Pending Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in res.POdetails" ng-if="poType ? showInfo(entity, poType) : true">
+                    <td>{{ ::$index+1 }}</td>
+                    <td ng-bind="::entity.Book.subjectName"></td>
+                    <td ng-bind="::entity.Book.className"></td>
+                    <td ng-bind="::entity.Book.categoryName"></td>
+                    <td>
+                        <a href="#"
+                           ng-click="get_pendingPO_details(res.srcId, entity.BookId)">
+                            {{ ::entity.poQty }}
+                        </a>
+                    </td>
+                    <td ng-bind="::entity.stockQty"></td>
+                    <td ng-bind="::entity.poQty - entity.stockQty"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        // date class also required with the class of picker
+        //$('#datepicker').datepicker();
+        $('.datepicker').datepicker(
+          //'update', get_TodayDate()
+          'setEndDate', moment(new Date()).format('MM/DD/YYYY')
+        );
+    });
+</script>

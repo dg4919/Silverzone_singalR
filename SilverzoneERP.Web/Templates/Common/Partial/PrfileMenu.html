@@ -1,0 +1,64 @@
+﻿
+<div>
+    <ul>
+        <li class="dropdown profile_details_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+                <div class="profile_img" style="text-align:center;">
+                    <span style="border: 1px solid;"
+                          class="img-circle {{SelectedEvent.EventColor}}">{{SelectedEvent.EventCode}}</span>
+
+                    <i class="lnr lnr-chevron-down"></i>
+                    <i class="lnr lnr-chevron-up"></i>
+
+                </div>
+            </a>            
+            <ul class="dropdown-menu drp-mnu">
+                <li ng-repeat="data in EventInfo">
+                    <a href="#"
+                       ng-click="ChangeEvent(data.EventId,'btn-danger')">
+                        <span class="img-circle sz_event_menu btn-danger">{{data.EventCode}}</span> {{data.SubjectName}}
+                    </a>
+                </li>
+
+                <!--<li ng-click="ChangeEvent('iIO','I','btn-danger')"><a href="#"><span class="img-circle sz_event_menu btn-danger">I</span> iIO</a></li>
+                <li ng-click="ChangeEvent('iOM','M','btn-info')"><a href="#"><span class="img-circle sz_event_menu btn-info">M</span> iOM</a></li>
+                <li ng-click="ChangeEvent('iOS','S','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-success">S</span> iOS</a></li>
+                <li ng-click="ChangeEvent('iOEL','E','btn-warning')"><a href="#"><span class="img-circle sz_event_menu btn-warning">E</span> iOEL</a></li>
+                <li ng-click="ChangeEvent('sKGKO','G','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-primary">G</span> sKGKO</a></li>
+                <li ng-click="ChangeEvent('iFLO','F','btn-first')"><a href="#"><span class="img-circle sz_event_menu btn-first">F</span> iFLO</a></li>
+                <li ng-click="ChangeEvent('iTHO','T','btn-second')"><a href="#"><span class="img-circle sz_event_menu btn-second">T</span> iTHO</a></li>
+                <li ng-click="ChangeEvent('aBHO','H','btn-third')"><a href="#"><span class="img-circle sz_event_menu btn-third">H</span> aBHO</a></li>
+                <li ng-click="ChangeEvent('iSSO','D','btn-fourth')"><a href="#"><span class="img-circle sz_event_menu btn-fourth">D</span> iSSO</a></li>
+                <li ng-click="ChangeEvent('iRAO','R','btn-fifth')"><a href="#"><span class="img-circle sz_event_menu btn-fifth">R</span> iRAO</a></li>
+                <li ng-click="ChangeEvent('iOS','S','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-sixth"></span> <i class="fa fa-question-sign"></i></a></li>
+                <li ng-click="ChangeEvent('iOS','S','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-seventh"></span> &times;</a></li>
+                <li ng-click="ChangeEvent('iOS','S','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-eighth"></span> <i class="fa fa-exclamation-sign"></i></a></li>
+                <li ng-click="ChangeEvent('iOS','S','btn-success')"><a href="#"><span class="img-circle sz_event_menu btn-ninth"></span> <i class="fa fa-arrow-right rotate-45-left"></i></a></li>-->
+            </ul>
+        </li>
+    </ul>
+</div>
+<div>
+    <ul>
+        <li class="dropdown profile_details_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <div class="profile_img">
+                    <img ng-src="{{UserInfo.ProfilePic}}" class="img-circle" height="40" width="40" />
+                    <!--<span style="background:url({{UserInfo.ProfilePic}}) no-repeat center"> </span>-->
+                    <div class="user-name">
+                        <p>{{UserInfo.UserName}}<span>{{UserInfo.RoleName}}</span></p>
+                    </div>
+                    <i class="lnr lnr-chevron-down"></i>
+                    <i class="lnr lnr-chevron-up"></i>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+            <ul class="dropdown-menu drp-mnu">
+                <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
+                <li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li>
+                <li> <a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i> Logout</a> </li>
+            </ul>
+        </li>
+    </ul>
+</div>

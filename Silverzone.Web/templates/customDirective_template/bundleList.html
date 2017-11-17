@@ -1,0 +1,98 @@
+﻿<div class="col-md-12 product-info">
+    
+    <!-- angularjs UI Bootstrap -->
+    <uib-tabset active="active">
+        
+        <!--index="item.Id"  >   $index must be a uniqe integer value  -->
+        <uib-tab index="$index" 
+                 ng-repeat="name in combo.comboNames" 
+                 heading="{{name}}">
+        
+            <div style="padding: 5px;" 
+                 ng-init="comboDetail = combo.comboInfo[$index]">
+                 <!--ng-repeat="comboDetail in combo.comboInfo">-->
+
+                <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                    <div class="col-sm-6">
+                        <h4> This Combo includes following Items :-</h4>
+                    </div>
+                    <div class="col-sm-6 text-right"
+                         ng-init="bookbundle.bookBundle_cart_count[comboDetail.Id] = 1">        <!-- To assign a new scope value for each model -->
+
+                        <button class="btn btn-info btn-xs"
+                                ng-click="bookbundle.addCombo_toCart(comboDetail, comboDetail.Id)"
+                                style="margin-right: 10px; outline: none !important;">
+                            Add to cart
+                        </button>
+
+                        <button class="btn btn-default btn-guests btn-guests-minus btn-sm" style="font-size: 7px !important;" ng-click="bookbundle.addCartqty(false, comboDetail.Id)">
+                            <span class="fa-stack">
+                                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                <i class="fa fa-minus fa-stack-1x"></i>
+                            </span>
+                        </button>
+                        <input type="text" style="width: 60px;text-align: center;" maxlength="2" ng-model="bookbundle.bookBundle_cart_count[comboDetail.Id]" ng-keyup="bookbundle.check_cart(comboDetail.Id)">
+                        <button class="btn btn-default btn-guests btn-guests-plus btn-sm" style="font-size: 7px !important;" ng-click="bookbundle.addCartqty(true, comboDetail.Id)">
+                            <span class="fa-stack">
+                                <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                <i class="fa fa-plus fa-stack-1x"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 text-danger" style="font-size: larger;">
+                    <span class="text-info">
+                        Total Price :
+                    </span>
+                    <strong><i class="fa fa-inr"></i> </strong>
+                    <span style="text-decoration: line-through;" ng-bind="::comboDetail.books_totalPrice"></span>
+                </div>
+
+                <div class="col-sm-6 text-warning text-right" style="font-size: larger;">
+
+                    <span class="text-info">Combo Price :</span>
+                    <strong><i class="fa fa-inr"></i> </strong>
+                    <span ng-bind="::comboDetail.bundle_totalPrice"></span>
+                </div>
+
+                <div class="row" style="margin-top: 50px;">
+
+                    <div ng-repeat="book in comboDetail.bookInfo">
+
+                        <div class="col-sm-3" style="padding: 5px;">
+
+                            <a ui-sref="book_details({bookId : book.BookId, bookTitle : (book.title | stringFilter) })">
+                                <img ng-src="{{ $root.imgBase + book.BookImage }}" class="img-responsive" style="margin: 0 auto; height:170px;">
+                            </a>
+
+                            <div class="text-center">
+                                <div class="name-container"><a ng-bind="book.title"> </a></div>
+
+                                <div class="price" style="margin: 6px 0px 6px 0px;">
+                                    <strong><i class="fa fa-inr"></i> </strong>
+                                    <span ng-bind="::book.price"> </span>
+                                </div>
+
+                                <div style="margin-bottom: 5px;">
+                                    <a class="btn btn-primary btn-xs" ui-sref="book_details({bookId : book.BookId, bookTitle : (book.title | stringFilter) })"> Details </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-1"
+                             ng-if="!$last"
+                             style="width: 25px !important; padding: 0px !important; margin-top: 10%;">
+                            <i class="fa fa-plus fa-2x" style="color: burlywood;"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </uib-tab>
+    </uib-tabset>
+
+</div>

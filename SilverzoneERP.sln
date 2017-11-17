@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverzoneERP.Web", "SilverzoneERP.Web\SilverzoneERP.Web.csproj", "{F544D803-9202-4818-B174-9D9EA7854DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverzoneERP.Api", "SilverzoneERP.Api\SilverzoneERP.Api.csproj", "{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8} = {1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C} = {29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverzoneERP.Entities", "SilverzoneERP.Entities\SilverzoneERP.Entities.csproj", "{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverzoneERP.Data", "SilverzoneERP.Data\SilverzoneERP.Data.csproj", "{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C} = {29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverzoneERP.Context", "SilverzoneERP.Context\SilverzoneERP.Context.csproj", "{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverzone.Web", "Silverzone.Web\Silverzone.Web.csproj", "{03D50F6D-32D0-4D58-B006-193FFF0E12B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F544D803-9202-4818-B174-9D9EA7854DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F544D803-9202-4818-B174-9D9EA7854DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F544D803-9202-4818-B174-9D9EA7854DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F544D803-9202-4818-B174-9D9EA7854DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C77BD21-C7D9-4483-9172-EDF0238BF8DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29268DA0-B7DD-4C44-BF4A-B25728AF5F7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8DA364-6ECD-4CE4-B686-AA03BE6DF7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E286EF7-03EC-4CAF-AA9E-C53D6F180F22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D50F6D-32D0-4D58-B006-193FFF0E12B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D50F6D-32D0-4D58-B006-193FFF0E12B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D50F6D-32D0-4D58-B006-193FFF0E12B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D50F6D-32D0-4D58-B006-193FFF0E12B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dg4919-myprojects.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Silverzone.Web\\Silverzone.Web.csproj
+		SccProjectName1 = Silverzone.Web
+		SccLocalPath1 = Silverzone.Web
+		SccProjectUniqueName2 = SilverzoneERP.Api\\SilverzoneERP.Api.csproj
+		SccProjectName2 = SilverzoneERP.Api
+		SccLocalPath2 = SilverzoneERP.Api
+		SccProjectUniqueName3 = SilverzoneERP.Context\\SilverzoneERP.Context.csproj
+		SccProjectName3 = SilverzoneERP.Context
+		SccLocalPath3 = SilverzoneERP.Context
+		SccProjectUniqueName4 = SilverzoneERP.Data\\SilverzoneERP.Data.csproj
+		SccProjectName4 = SilverzoneERP.Data
+		SccLocalPath4 = SilverzoneERP.Data
+		SccProjectUniqueName5 = SilverzoneERP.Entities\\SilverzoneERP.Entities.csproj
+		SccProjectName5 = SilverzoneERP.Entities
+		SccLocalPath5 = SilverzoneERP.Entities
+		SccProjectUniqueName6 = SilverzoneERP.Web\\SilverzoneERP.Web.csproj
+		SccProjectName6 = SilverzoneERP.Web
+		SccLocalPath6 = SilverzoneERP.Web
+	EndGlobalSection
+EndGlobal

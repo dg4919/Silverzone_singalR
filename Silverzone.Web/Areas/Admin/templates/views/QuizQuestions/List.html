@@ -1,0 +1,59 @@
+﻿
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6" style="font-size: 1.4em;">Quiz Questions List</div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default pull-right" ui-sref="quiz_create"> Add Quiz </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="table">
+                        <table datatable="ng" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Question</th>
+                                    <th>Active Date </th>
+                                    <th> Status </th>
+                                    <th>CreatedBy</th>
+                                    <th>UpdatedBy</th>
+                                    <th>UpdationDate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="quiz in quizList">
+                                    <td>{{ $index }}</td>
+                                    <td>{{ quiz.Question }}</td>
+                                    <td>{{ quiz.Active_Date  | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td> <switch class="green" ng-model="quiz.Status" ng-change="changeCallback(bundle)"></switch> </td>
+                                    <td>{{ quiz.CreatedBy }}</td>
+                                    <td>{{ quiz.UpdatedBy }}</td>
+                                    <td>{{ quiz.UpdationDate | dateFormat: 'DD/MM/YYYY' }}</td>
+                                    <td>
+                                        <a ui-sref="quiz_edit({ quizId : quiz.Id })" class="btn btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <button type="button" ng-click="Show_deleteModal($index)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

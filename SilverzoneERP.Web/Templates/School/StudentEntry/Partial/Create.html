@@ -1,0 +1,75 @@
+﻿
+<div class="row">
+    <div class="form-group col-md-2">
+        <label>School Code :</label>
+        <input class="form-control"
+               only-numbers
+               ng-change="SchMngt.SchCode.length>=6 && SearchSchool_KeyPress(SchMngt.SchCode)"
+               ng-model="SchMngt.SchCode" />
+    </div>
+
+
+<div class="form-group col-md-10">
+    <label>School Name :</label>
+    <span class="form-control"          
+          ng-bind="SchMngt.SchName"></span>    
+</div>
+    </div>
+
+<div class="row">
+    <div class="form-group col-md-2">
+        <label>Class :</label>
+        <select class="form-control"
+                ng-model="StudentEntry.ClassId"
+                name="ClassName"                
+                ng-options="obj.ClassId as obj.ClassName for obj in SchMngt.Events.EnrollmentOrderSummary">
+            <option value="">---Select Class---</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-2">
+        <label>Section :</label>
+        <input class="form-control sz-uppercase"
+               name="Section"
+               maxlength="1"
+               only-caracter
+               autofocus
+               ng-model="StudentEntry.Section" />
+    </div>
+
+       
+    <div class="col-md-2 form-group">
+        <label>Roll No :</label>
+        <div class="input-group" style="width:0px;margin-left:0em;">
+            <span class="input-group-addon">
+                <label>
+                    <input type="checkbox" 
+                           aria-label="Checkbox for following text input"
+                           ng-click="AutoRollNo(IsAutoRollNo)"
+                           ng-model="IsAutoRollNo"                            
+                           ng-disabled="!StudentEntry.RollNo">
+                    Auto
+                </label>
+            </span>
+            <input type="text"                    
+                   class="form-control"
+                   aria-label="Text input with checkbox"
+                   name="RollNo"
+                   maxlength="3"
+                   only-numbers
+                   autofocus
+                   ng-disabled="IsAutoRollNo"
+                   ng-model="StudentEntry.RollNo">
+        </div>
+    </div>
+
+    <div class="form-group col-md-2">
+        <label>Name :</label>
+        <input class="form-control"
+               name="StudentName"
+               maxlength="50"
+               autofocus
+               ng-model="StudentEntry.StudentName" />
+    </div>
+
+    </div>

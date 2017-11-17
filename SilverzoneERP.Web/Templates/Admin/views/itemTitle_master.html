@@ -1,0 +1,94 @@
+﻿<div ng-include="'Templates/Common/Partial/userHeader.html'"></div>
+
+<section class="content">
+    <div class="row">
+        
+        {{ titleModel }}
+
+        <div class="col-md-offset-1 col-md-10">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Item Title Master</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form name="itemTitleForm" class="form-horizontal"
+                      ng-submit="submit_data(itemTitleForm)"
+                      ng-validate="validationOptions"
+                      novalidate="novalidate">
+                    <div class="box-body">
+                        <div class="form-group">
+
+                            <div class="col-sm-4">
+                                <label for="inputEmail3" class="col-sm-12 control-label pull-left"
+                                       style="margin-bottom: 10px;margin-left: -24px !important;">
+                                    Subject Name
+                                </label>
+
+                                <select class="form-control1"
+                                        name="subject"
+                                        ng-model="titleModel.subjectId"
+                                        ng-options="::subject.Id as ::subject.SubjectName for subject in entity.subjectList">
+                                    <option value=""> --- Select Subject --- </option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <label for="inputEmail3" class="control-label text-left"
+                                       style="margin-bottom: 10px;margin-left: 57px;">
+                                    Select Class
+                                </label>
+
+                                <div class="col-sm-12" ng-repeat="category in entity.categoryList">
+
+                                    <div class="col-sm-6">                                        
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                                <select class="form-control1"
+                                                        ng-model="titleModel.entitys[$index].classLimit.from"
+                                                        ng-options="::class.Id as ::class.className for class in entity.classList">
+                                                    <option value=""> -- From -- </option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control1"
+                                                        ng-model="titleModel.entitys[$index].classLimit.to"
+                                                        ng-options="::class.Id as ::class.className for class in entity.classList">
+                                                    <option value=""> --- To --- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="inputEmail3" class="col-sm-12 control-label pull-left"
+                                               style="margin-bottom: 10px;margin-left: -10px !important;"></label>
+                                        <div class="col-sm-12" style="margin-top: 25px;">
+                                            <p ng-bind="category.Name"
+                                               ng-init="titleModel.entitys[$index].categoryId = category.Id"></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <a class="btn btn-default" ui-sref="book_category_list" href="/ERP/Admin/bookCategory/List">
+                            Book Category List
+                        </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                            Add
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

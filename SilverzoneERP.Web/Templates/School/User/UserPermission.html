@@ -1,0 +1,71 @@
+﻿
+<form name="frm" ng-submit="frm.$valid && Submit()">
+    <div class="header-section">
+        <div class="menu-right">
+            <div class="user-panel-top">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                        <strong>User Permission</strong>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="pull-right">
+                            <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>
+                            <button class="btn btn-default" ng-click="Active_Deactive(false)" ng-if="Changed" type="button">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>
+
+
+                            <!--<select ng-hide="isEdit" style="color:black;" ng-model="selectedIndex" ng-change="SelectedIndexChanged(selectedIndex)">
+                                <option value="0">All</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                            </select>
+                            <a ng-hide="isEdit" href="#" style="text-decoration:none;" ng-click="Add()"><i class="fa fa-plus"></i></a>-->
+                        </span>
+                    </div>
+                    <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="sz_card">
+        <!--Start Create Section-->
+        <div ng-show="isEdit"> 
+            <div class="row" ng-if="UserPermissionList.length!=0">
+                <div class="col-lg-12"
+                     ng-include="'/Templates/School/User/UserPermissionList_Partial.html'">
+                </div>
+            </div>                                                                             
+        </div>
+        <!--End Create Section-->
+        <!--Start List Section-->
+        <div ng-hide="isEdit">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-1">User:</label>
+                        <div class="col-md-8">
+                            <select class="form-control"
+                                    ng-disabled="isDisable"
+                                    ng-model="UserPermission.UserId"
+                                    ng-options="obj.Id as obj.UserName for obj in UserList"
+                                    ng-change="selectedItemChange(UserPermission.UserId)">
+                                <option value="">Select User</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <!--End List Section-->
+    </div>
+</form>

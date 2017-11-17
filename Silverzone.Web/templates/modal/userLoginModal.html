@@ -1,0 +1,61 @@
+﻿
+<div class="panel-default">
+    <div class="panel-heading" style="text-align: center;">
+        <div class="panel-title">Sign In</div>
+        <button type="button" class="close" style="margin-top: -24px;" ng-click="cancel()"> × </button>
+    </div>
+
+    <div style="padding-top:30px" class="panel-body">
+
+        <!--  novalidate is use to stop client side HTML validation  -->
+        <form name="user_loginForm" ng-submit="is_forgetLogin ? savePassword() : user_SignIn(user_loginForm)" ng-validate="validationOptions">
+
+            <div class="col-md-offset-2">
+
+                <div id="loginForm" ng-if="!is_forgetLogin">
+                    <div style="margin-bottom: 25px;position: relative;" class="form-group">
+                        <span style="position: absolute;top: 10px;left: 15px;"><i class="fa fa-user"></i></span>
+                        <input class="form-control" name="userName" placeholder="Enter Email/Mobile Number" type="text" ng-model="userInfo.userName" style="padding-left: 37px;">
+                    </div>
+
+                    <div style="margin-bottom: 25px;position: relative;" class="form-group">
+                        <span style="position: absolute;top: 10px;left: 15px;"><i class="fa fa-key"></i></span>
+                        <input class="form-control cls_Password" name="password" placeholder="Enter Password" type="password" ng-model="userInfo.Password" style="padding-left: 37px;">
+                        <span style="position: absolute;top: 7px;right: 78px;z-index: 10;"> <a href="#" ng-click="forgetPassword(user_loginForm)">Forgot?</a></span>
+                    </div>
+
+                </div>
+
+                <div id="OTP_container" ng-if="is_forgetLogin">
+
+                    <div style="margin-bottom: 25px;position: relative;" class="form-group">
+                        <span style="position: absolute;top: 10px;left: 15px;"><i class="fa fa-user"></i></span>
+                        <input class="form-control" name="userName" type="text" ng-model="userInfo.userName" readonly style="padding-left: 37px;">
+                        <span style="position: absolute;top: 7px;right: 76px;z-index: 10;"> <a href="#" ng-click="change_sts()">Change?</a></span>
+                    </div>
+
+                    <div style="margin-bottom: 25px;position: relative;" class="form-group">
+                        <input class="form-control" placeholder="Enter OTP" type="text" ng-model="userInfo.sms_OTP" maxlength="6" ng-keyup="userInfo.sms_OTP.length == 6 ? validate_OTP($event) : ''" ng-disabled="is_enable" number-Only>
+                        <span style="position: absolute;top: 7px;right: 74px;z-index: 10;" ng-hide="is_enable" ng-click="forgetLogin_resend()"> <a href="#">Resend?</a></span>
+                    </div>
+
+                    <div style="margin-bottom: 25px;position: relative;" class="form-group">
+                        <span style="position: absolute;top: 10px;left: 15px;"><i class="fa fa-key"></i></span>
+                        <input class="form-control" name="password" placeholder="Set New Password" type="password" ng-model="userInfo.Password" ng-disabled="!is_enable" style="padding-left: 37px;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="page-footer" style="margin-top: 50px;">
+                <div style="margin-top:10px" class="form-group">
+                    <input type="button" value="Register" class="btn btn-primary pull-left" ng-click="Show_signUpModal()">
+                    <input type="submit" value="Login" class="btn btn-info pull-right">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

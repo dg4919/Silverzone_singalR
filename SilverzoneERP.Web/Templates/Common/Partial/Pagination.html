@@ -1,0 +1,23 @@
+﻿<div class="pagination pull-right">
+    <ul>
+        <li ng-class="firstPageDisabled()">
+            <a href ng-if="firstPageDisabled()=='disabled'">First</a>
+            <a href ng-if="firstPageDisabled()!='disabled'" ng-click="firstPage()">First</a>
+        </li>
+        <li ng-class="prevPageDisabled()">
+            <a href ng-if="prevPageDisabled()=='disabled'">« Prev</a>
+            <a href ng-if="prevPageDisabled()!='disabled'" ng-click="prevPage()">« Prev</a>
+        </li>
+        <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+            <a href>{{n}}</a>
+        </li>
+        <li ng-class="nextPageDisabled()">
+            <a href ng-if="nextPageDisabled()=='disabled'">Next »</a>
+            <a href ng-if="nextPageDisabled()!='disabled'" ng-click="nextPage()">Next »</a>
+        </li>
+        <li ng-class="lastPageDisabled()">
+            <a href ng-if="lastPageDisabled()=='disabled'">Last</a>
+            <a href ng-if="lastPageDisabled()!='disabled'" ng-click="lastPage()">Last</a>
+        </li>
+    </ul>
+</div>

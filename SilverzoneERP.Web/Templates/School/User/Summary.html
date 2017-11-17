@@ -1,0 +1,116 @@
+﻿
+<form name="frm" ng-submit="frm.$valid && Submit()">
+    <div class="header-section">
+        <div class="menu-right">
+            <div class="user-panel-top">
+                <div class="col-lg-12">
+                    <div class="col-md-3">
+                        <a ng-show="isEdit" href="#" style="text-decoration:none" class="fa fa-arrow-left" ng-click="Back()"></a>
+                        <strong>Summary</strong>
+                    </div>
+                    <div ng-if="Permission.Edit" class="col-md-4">
+                        <span class="pull-right">
+                            <button class="btn btn-default" ng-show="isEdit" type="submit">
+                                <i class="fa fa-saved"></i>
+                                <strong>Save Change</strong>
+                            </button>                            
+                        </span>
+                    </div>
+                    <div class="profile_details col-md-3" ng-include="'Templates/Common/Partial/PrfileMenu.html'"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="sz_card">
+        <!--Start Create Section-->
+        <div ng-show="isEdit">
+            <div class="row">
+                <div class="col-lg-12"
+                     ng-include="'/Templates/School/User/UserPermissionList_Partial.html'">
+                </div>            
+            </div>
+        </div>
+        <!--End Create Section-->
+        <!--Start List Section-->
+        <div ng-hide="isEdit">
+            <div class="row">               
+                <div class="col-lg-12">                  
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-2">User:</label>
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-model="UserSummary.UserId"
+                                    ng-options="obj.Id as obj.UserName for obj in UserList">
+                                <option value="">Select User</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-2">Role:</label>
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-model="UserSummary.RoleId"
+                                    ng-options="obj.Id as obj.RoleName for obj in RoleList">
+                                <option value="">Select Role</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-2">Limit:</label>
+                        <div class="col-md-10">
+                            <input type="number"
+                                   class="form-control"
+                                   min="1"
+                                   ng-model="UserSummary.Limit" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button"
+                               class="btn btn-danger"
+                               ng-click="Generate()"
+                               value="Generate report" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default" ng-repeat="data in UserRoleList">
+                        <div class="panel-heading">
+                            <strong>Role : </strong>{{data.RoleName}}
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped responsive" wt-responsive-table>
+                                <thead>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>EmailId</th>
+                                        <th ng-if="Permission.Read"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in data.Users">
+                                        <td>
+                                            <img ng-src="{{UserInfo.ImgPrefix}}{{data.ProfilePic==null?'ProfilePic/placeholderImage.png':data.UserImage}}"
+                                                 class="img-circle" alt="User IMG"
+                                                 style="height:50px;width:50px; margin-top:10px;" />
+                                            {{user.UserName}}
+                                        </td>
+                                        <td>{{user.EmailID}}</td>
+                                        <td ng-if="Permission.Read">
+                                            <input type="button"
+                                                   value="Details"
+                                                   class="btn btn-default"
+                                                   ng-click="Details($event,data,user)" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End List Section-->
+    </div>
+</form>

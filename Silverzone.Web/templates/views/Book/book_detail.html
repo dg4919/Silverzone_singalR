@@ -1,0 +1,159 @@
+﻿
+<!--- Content -->
+<div class="row main_content" style="margin-top: 20px;">
+    <div class="col-md-12">
+
+        <div id="BookSearchDiv" ng-include="'templates/Partials/book_search.html'"></div>                   <!-- Note : Don't prefix '/' in Any URL's bcoz we got it from base href -->
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-4" style="cursor: pointer; width:28% !important;">
+                        <div class="thumbnail">
+                            <div style="text-align:center;padding: 3px;width: 80%;position: absolute;height: 23px;color: #fff;background-color: rgba(101, 153, 216, 0.89);"
+                                 ng-if="bookDetail.bookInfo.In_stock && bookDetail.bookInfo.CouponInfo">
+                                <b ng-if="bookDetail.bookInfo.CouponInfo.couponType === 1"> Flat <i class="fa fa-inr"></i> {{ bookDetail.bookInfo.CouponInfo.couponPrice }} OFF </b>
+                                <b ng-if="bookDetail.bookInfo.CouponInfo.couponType === 2"> {{ bookDetail.bookInfo.CouponInfo.couponPrice }}% Discount </b>
+                            </div>
+
+                            <img id="item-display" class="img-responsive" ng-src="{{ bookDetail.bookInfo.BookImage && ($root.imgBase + bookDetail.bookInfo.BookImage) }}" style="height: 200px; margin:0 auto;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4> {{ bookDetail.bookInfo.book_title }} : {{ bookDetail.bookInfo.Category }} - {{ bookDetail.bookInfo.Class }} </h4>
+                        <hr>
+                        <div class="product-price">
+                            <b><i class="fa fa-inr"></i> </b>
+                            <span ng-bind="::bookDetail.bookInfo.Price" ng-style="bookDetail.bookInfo.CouponInfo && { 'text-decoration' : 'line-through' }"></span>
+                            <span ng-bind="bookDetail.bookInfo.CouponInfo.book_newPrice" ng-hide="!bookDetail.bookInfo.CouponInfo"></span>
+                        </div>
+                        <div class="text-info">
+                            <b ng-bind="bookDetail.bookInfo.In_stock ? 'In Stock': 'Out of Stock'"></b>
+                        </div>
+
+                        <div class="text-warning" ng-if="bookDetail.combo.combo_status">
+                            <a href="" scroll:to="bundleTab">
+                            This Book is also available in Bundle (Click to View)</a>
+                        </div>
+
+                        <div style="margin-top: 12px;">
+                            <button class="btn btn-default btn-guests btn-guests-minus btn-sm" style="font-size: 7px !important;" ng-click="bookDetail.addCartqty(false)">
+                                <span class="fa-stack">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-minus fa-stack-1x"></i>
+                                </span>
+                            </button>
+                            <input type="text" style="width: 60px;text-align: center;" maxlength="2" ng-model="bookDetail.book_cart_count" ng-keyup="bookDetail.check_cart()">
+                            <button class="btn btn-default btn-guests btn-guests-plus btn-sm" style="font-size: 7px !important;" ng-click="bookDetail.addCartqty(true)">
+                                <span class="fa-stack">
+                                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                    <i class="fa fa-plus fa-stack-1x"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <hr>
+                        <div class="btn-group cart">
+                            <button type="button" class="btn btn-success"
+                                    ng-click="bookDetail.bookInfo.In_stock && bookDetail.addtoCart(bookDetail.bookInfo, bookDetail.book_cart_count)"
+                                    ng-disabled="!bookDetail.bookInfo.In_stock">
+                                Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-12 product-info">
+
+                        <uib-tabset active="active">
+
+                            <uib-tab index="1" heading="DESCRIPTION">
+                                <section style="padding: 7px !important;" ng-bind="bookDetail.bookInfo.BookDescription"></section>
+                            </uib-tab>
+
+                            <uib-tab index="2" heading="PRODUCT INFO">
+                                <section>
+                                    <div ng-repeat="book_content in bookDetail.bookInfo.contents" ng-bind="book_content.content_name"> </div>
+                                </section>
+                            </uib-tab>
+
+                            <uib-tab index="3" heading="REVIEWS">
+                                <div class="col-sm-12" style="border: 1px solid #ddd;margin-top: -1px;">
+                                    <div style="margin: 0px 7px 7px 7px;">
+                                        <h4>Top Customer Reviews</h4>
+                                    </div>
+                                    <div style="border-top: 1px solid #ddd; display: table; margin-top: 6px;padding-top: 6px;">
+                                        <div class="col-sm-3" style="margin-top: 20px;">
+                                            <div style="color: #e9ce18; font-size: larger;">
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star-empty"></span>
+                                                <span class="fa fa-star-empty"></span>
+                                            </div>
+                                            <span style="font-size: 1.2em;margin-top: -7px;">Divya Gupta</span>
+                                            <p style="color: #848484;font-size: 0.9em;">17 Aug 2016</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <h4>Corsair Gaming Series GS600 Features:</h4>
+                                            <p style="color: #848484;margin-bottom: 10px;font-weight: normal;font-size: 0.9em;margin-top: 6px;">
+                                                The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC.
+                                                A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+
+                        </uib-tabset>
+
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px; border: 1px solid #ddd; padding: 0px 15px;" ng-show="bookDetail.suggestionList.length !== 0 || bookDetail.recommendList.length !== 0">
+                    <div class="row" ng-if="bookDetail.suggestionList.length !== 0">
+
+                        <div class="panel-heading" style="background: #bce8f1;margin: 10px;">
+                            <h1 class="panel-title">Suggestion for you</h1>
+                        </div>
+
+                        <div ng-repeat="bookInfo in bookDetail.suggestionList">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <bind-Books book="bookInfo"></bind-Books>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="bookDetail.recommendList.length !== 0">
+                        <div class="panel-heading" style="background: #faebcc;margin: 10px;">
+                            <h1 class="panel-title">Recommend for you</h1>
+                        </div>
+
+                        <div ng-repeat="bookInfo in bookDetail.recommendList">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <bind_Books book="bookInfo"></bind_Books>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="bundleTab" class="row" ng-if="bookDetail.combo.combo_status && bookDetail.combo.comboInfo">
+                        <div class="panel-heading" style="background: #eee;margin: 10px;">
+                            <h1 class="panel-title"> Bundles </h1>
+                        </div>
+
+                        <bind:Bundles combo="bookDetail.combo"></bind:Bundles>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+       
+</div>
+
+
+
+

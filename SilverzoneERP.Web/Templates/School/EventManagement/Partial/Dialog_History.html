@@ -1,0 +1,74 @@
+﻿<form name="frm"
+      ng-submit="Submit(frm)"
+      ng-validate="validationOptions"
+      novalidate="novalidate">
+
+    <div class="modal-content">
+        <div class="modal-header sz_section row">
+            <div class="col-md-2">
+                <a href="#"
+                   ng-click="Back()"
+                   style="color:white;">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <strong>History</strong>
+            </div>
+            <div class="col-md-8 text-center">
+                {{SchMngt.SchName}}
+            </div>
+            <div class="col-md-2">
+                <span class="pull-right">
+                    <select class="form-control"
+                            ng-model="SelectedYear"
+                            ng-change="YearChange()"
+                            ng-options="obj.EventManagementYear as obj.EventManagementYear for obj in Preserve_History.data |unique:'EventManagementYear'">
+                        <option value="">All Year's</option>                        
+                    </select>
+                </span>
+            </div>            
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <table class="table table-striped responsive" wt-responsive-table>
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Event</th>
+                                <th>Students</th>
+                                <th>Net Balance</th>
+                                <th>Payment</th>
+                                <th>Adjust</th>
+                                <th>Balance</th>                                
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="data in History.data">
+                                <td>{{$index+1}}</td>
+                                <td ng-bind="data.Event"></td>
+                                <td ng-bind="data.Students"></td>
+                                <td ng-bind="data.NetBalance"></td>
+                                <td ng-bind="data.Payment"></td>
+                                <td ng-bind="data.Adjust"></td>
+                                <td ng-bind="data.Payment+data.Adjust-data.NetBalance"></td>                               
+                            </tr>
+                        </tbody>
+                        <tfoot style="border-top:1px solid;">
+                            <tr>
+                                <td></td>
+                                <td>Total</td>                                
+                                <td ng-bind="History.Summary.Students"></td>
+                                <td ng-bind="History.Summary.NetBalance"></td>
+                                <td ng-bind="History.Summary.Payment"></td>
+                                <td ng-bind="History.Summary.Adjust"></td>
+                                <td ng-bind="History.Summary.Payment+History.Summary.Adjust-History.Summary.NetBalance"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

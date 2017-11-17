@@ -1,0 +1,143 @@
+﻿<style>
+
+    #quizOptions .col-sm-6 {
+        padding: 0px 10px 10px 0px !important;
+    }
+
+</style>
+
+<script type="text/ng-template" id="view/quizImages.html">
+    <img class="img-responsive" style="height: 52px;width: 55px;"
+         ng-src="{{ (type === 1 ? quiz.ImageUrl : quiz.optionModel.options_ImageUrl[index]) }}" />
+    <a title="Choose Image" class="fa fa-plus" style="cursor: pointer;position: relative;top: -34px;margin-left: 22px;color:#efb6b6;"></a>
+    <input id="img_dialog" type="file" style="display:none;">
+</script>
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-offset-1 col-md-10">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Quiz Question</h3>
+                </div>
+
+                <!--Model :  {{ quizInfo }}-->
+                <form name="quizForm" class="form-horizontal" ng-submit="submit_data(quizForm)" ng-validate="validationOptions" novalidate="novalidate">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label">Quiz Type</label>
+                            <div class="col-sm-7">
+                                <select class="form-control" ng-model="quizInfo.QuizType">
+                                    <option value=""> ---- Select Quiz Type ---- </option>
+
+                                    <option ng-repeat="quizType in quizTypes"
+                                            value="{{ $index + 1 }}"
+                                            ng-bind="quizType"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div ng-show="quizInfo.QuizType">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Question</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" placeholder="Quiz Question" name="quiz_question" ng-model="quizInfo.Question">
+                                </div>
+                                <div class="col-sm-2"
+                                     file:uploader
+                                     ng-model="quizInfo.ImageUrl">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Options</label>
+
+                                <div class="col-sm-offset-1 col-sm-11">
+
+                                    <div class="col-sm-6"
+                                         style="padding: 10px;"
+                                         ng-repeat="i in optionArr track by $index">
+                                        <div class="radio-inline col-sm-8">
+                                            <input type="radio" value="{{ is_Edit ? quizInfo.optionModel.Id[$index] : $index }}" class="radio" ng-model="quizInfo.AnswerId">
+                                            <input type="text" ng-model="quizInfo.optionModel.options[$index]" class="form-control">
+                                        </div>    <!-- in quizInfo.options = [value1, value2, value3] > array will be create -->
+
+                                        <div class="col-sm-3"
+                                             file-uploader
+                                             ng-model="quizInfo.optionModel.options_ImageUrl[$index]">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-offset-1 col-sm-11">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"
+                                                   ng-bind="quizInfo.QuizType === '1' ? 'Active Date' : 'Start Date'">
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <input type="text" class="form-control" ng-model="quizInfo.Active_Date" name="Active_Date" readonly>
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="quizInfo.QuizType === '2'">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-3 control-label"> End Date </label>
+                                                <div class="col-sm-6">
+                                                    <div class="input-group date" data-provide="datepicker">
+                                                        <input type="text" class="form-control" ng-model="quizInfo.End_Date" name="End_Date" readonly>
+                                                        <span class="input-group-addon">
+                                                            <span class="fa fa-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12" style="padding: 10px;">
+                                            <label class="col-sm-1">Prize</label>
+                                            <div class="col-sm-7" style="margin-left: 23px;">
+                                                <input type="text" ng-model="quizInfo.Prize" class="form-control" name="Prize">
+                                            </div>
+
+                                            <div class="col-sm-3"
+                                                 file_uploader
+                                                 ng-model="quizInfo.PrizeImage">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-footer">
+                        <a class="btn btn-default" ui-sref="quiz_list"> Quiz List </a>
+                        <button type="submit" class="btn btn-info pull-right">
+                            {{ is_Edit ? 'Update Quiz' : 'Add Quiz' }}
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
